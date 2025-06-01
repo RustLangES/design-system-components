@@ -1,0 +1,58 @@
+{
+  "name": "@rustlanges/react",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/lib/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": {
+      "default": "./dist/styles.css"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RustLangES/design-system-components",
+    "directory": "js/react"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b ./tsconfig.lib.json && vite build && npm run check:tsc && npm run build:tailwindcss",
+    "build:tailwindcss": "npx @tailwindcss/cli -i lib/styles.css -o dist/styles.css --minify",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && npm run check:tsc",
+    "check:tsc": "tsc --noEmit -p tsconfig.app.json",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@tailwindcss/cli": "^4.1.8",
+    "@tailwindcss/vite": "^4.1.8",
+    "@types/node": "^22.15.29",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react-swc": "^3.10.0",
+    "ajv": "^8.17.1",
+    "eslint": "^9.28.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "glob": "^11.0.2",
+    "globals": "^16.2.0",
+    "jiti": "^2.4.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.8",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.0",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}
