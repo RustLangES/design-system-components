@@ -1,4 +1,4 @@
-import { Example } from "@rustlanges/react";
+import { Button, Example, Github, Telegram } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
 export function App() {
@@ -7,12 +7,16 @@ export function App() {
       <h1 className="text-5xl font-bold text-center mb-5">
         RustLangES Components
       </h1>
+      <p className="text-center text-xs">
+        Change your computer theme to explore the different styles (light, dark)
+      </p>
       <ShowComponent
         title="Example With Props Definition"
         propsDef={{
           text: {
             type: "string",
-            optional: true,
+            options: ["option", "value"],
+            default: "option",
           },
           boolean: {
             type: "boolean",
@@ -37,9 +41,33 @@ export function App() {
         }}
         component={Example}
       />
-      <ShowComponent title="Example With children">
-        <Example required="" />
-        <Example required="" boolean />
+
+      <ShowComponent
+        title="Button"
+        propsDef={{
+          variant: {
+            type: "string",
+            options: ["primary", "secondary", "text", "icon"],
+            default: "primary",
+          },
+          label: {
+            type: "string",
+            default: "Botón",
+          },
+          disabled: {
+            type: "boolean",
+            default: false,
+          },
+          icon: {
+            type: "function",
+          },
+        }}
+        component={Button}
+      />
+      <ShowComponent title="Button with icon">
+        <Button variant="primary" icon={<Telegram />} label="Botón" />
+        <Button variant="secondary" icon={<Telegram />} label="Botón" />
+        <Button variant="icon" icon={<Github />} />
       </ShowComponent>
     </div>
   );
