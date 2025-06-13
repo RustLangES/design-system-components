@@ -70,7 +70,11 @@ export function ShowComponentField({
                 </option>
               ) : null}
               {def.options.map((optionToSelect, idx) => (
-                <option key={idx} value={optionToSelect as string}>
+                <option
+                  key={idx}
+                  selected={optionToSelect === value}
+                  value={optionToSelect as string}
+                >
                   {String(optionToSelect)}
                 </option>
               ))}
