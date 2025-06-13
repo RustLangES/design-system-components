@@ -2,3 +2,213 @@
 
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  /* ----- Breakpoints ----- */
+  --breakpoint-desktop: 360px;
+
+  /* ------ Colors ------ */
+  --color-primary-50: #fff6ed;
+  --color-primary-100: #ffebd4;
+  --color-primary-200: #ffd2a8;
+  --color-primary-300: #ffb270;
+  --color-primary-400: #ff8637;
+  --color-primary-500: #ff6e1f;
+  --color-primary-600: #f04906;
+  --color-primary-700: #c63407;
+  --color-primary-800: #9e2a0e;
+  --color-primary-900: #7f260f;
+  --color-primary-950: #450f05;
+
+  --color-secondary-50: #f4f3ff;
+  --color-secondary-100: #ebe9fe;
+  --color-secondary-200: #d9d6fe;
+  --color-secondary-300: #bcb5fd;
+  --color-secondary-400: #9a8afb;
+  --color-secondary-500: #7a5bf7;
+  --color-secondary-600: #6637ee;
+  --color-secondary-700: #5927da;
+  --color-secondary-800: #3e1c96;
+  --color-secondary-900: #3e1c96;
+  --color-secondary-950: #240f66;
+
+  --color-neutral-50: #f6f6f6;
+  --color-neutral-100: #e7e7e7;
+  --color-neutral-200: #d1d1d1;
+  --color-neutral-300: #b0b0b0;
+  --color-neutral-400: #888888;
+  --color-neutral-500: #6d6d6d;
+  --color-neutral-600: #5d5d5d;
+  --color-neutral-700: #4f4f4f;
+  --color-neutral-800: #454545;
+  --color-neutral-900: #3d3d3d;
+  --color-neutral-950: #222222;
+
+  --color-error-50: #fff1f1;
+  --color-error-100: #fee5e5;
+  --color-error-200: #fdced2;
+  --color-error-300: #fba6ac;
+  --color-error-400: #f87480;
+  --color-error-500: #f04257;
+  --color-error-600: #dd2140;
+  --color-error-700: #ba1636;
+  --color-error-800: #9c1533;
+  --color-error-900: #851632;
+  --color-error-950: #4a0717;
+
+  --color-warning-50: #fdf7e9;
+  --color-warning-100: #faebc7;
+  --color-warning-200: #f7d591;
+  --color-warning-300: #f0b042;
+  --color-warning-400: #eb9a24;
+  --color-warning-500: #dc8316;
+  --color-warning-600: #bd6211;
+  --color-warning-700: #974411;
+  --color-warning-800: #7d3816;
+  --color-warning-900: #6b2e18;
+  --color-warning-950: #3e160a;
+
+  --color-success-50: #effef5;
+  --color-success-100: #dafee9;
+  --color-success-200: #b8fad4;
+  --color-success-300: #80f5b4;
+  --color-success-400: #48e78f;
+  --color-success-500: #19ce6b;
+  --color-success-600: #0eab55;
+  --color-success-700: #0f8646;
+  --color-success-800: #12693a;
+  --color-success-900: #115632;
+  --color-success-950: #03301a;
+
+  --color-light: #fafafa;
+  --color-dark: #2e2e2e;
+
+  /* ------ Font Family ------ */
+  --text-xxs: 0.625rem;
+}
+
+@utility shadow-rb-* {
+  box-shadow: 1px 1px 0 0 --value(--color- *);
+  @media (min-width: 360px) {
+    box-shadow: 2px 2px 0 0 --value(--color- *);
+  }
+}
+
+@layer components {
+  .text-h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 125%;
+    letter-spacing: 0.32%;
+
+    @apply desktop:text-[48px];
+  }
+
+  .text-h2 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 0.24%;
+
+    @apply desktop:text-[32px];
+  }
+
+  .text-h3 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: 0.2%;
+
+    @apply desktop:text-[28px];
+  }
+
+  .text-h4 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 160%;
+    letter-spacing: 0.18%;
+
+    @apply desktop:text-[24px];
+  }
+
+  .text-h5 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 160%;
+    letter-spacing: 0.08%;
+
+    @apply desktop:text-[20px];
+  }
+
+  .text-h6 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 160%;
+    letter-spacing: 0.07%;
+
+    @apply desktop:text-[18px];
+  }
+
+  .text-subtitle-1 {
+    font-size: 16px;
+    line-height: 175%;
+    letter-spacing: 0.08%;
+
+    @apply desktop:text-[20px];
+  }
+
+  .text-subtitle-2 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 160%;
+    letter-spacing: 0.08%;
+
+    @apply desktop:text-[16px];
+  }
+
+  .text-paragraph-1 {
+    font-size: 14px;
+    line-height: 160%;
+    letter-spacing: 0;
+
+    @apply desktop:text-[16px];
+  }
+
+  .text-paragraph-2 {
+    font-size: 12px;
+    line-height: 160%;
+    letter-spacing: 0;
+
+    @apply desktop:text-[14px];
+  }
+
+  .text-button {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 160%;
+    letter-spacing: 0.28%;
+    @apply desktop:text-[16px];
+  }
+
+  .text-caption {
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0.06%;
+  }
+
+  .text-overline {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: 1%;
+  }
+
+  .heading {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 125%;
+    letter-spacing: 0.32%;
+
+    @apply desktop:text-[40px];
+  }
+}
