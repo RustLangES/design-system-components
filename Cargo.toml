@@ -1,2 +1,15 @@
+[package]
+name = "rustlanges-components"
+version = "0.1.0"
+
+[lib]
+path = "crates/lib.rs"
+
+[features]
+leptos = ["leptos-components"]
+
 [workspace]
-members = []
+members = ["crates/leptos"]
+
+[dependencies]
+leptos-components = { path = "./crates/leptos", optional = true }
