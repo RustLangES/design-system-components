@@ -1,5 +1,6 @@
 import { Button, Example, Github, Telegram } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
+import { Input } from "../lib/components/input/Input";
 
 export function App() {
   return (
@@ -71,6 +72,21 @@ export function App() {
         <Button variant="secondary" icon={<Telegram />} label="Botón" />
         <Button variant="icon" icon={<Github />} />
       </ShowComponent>
+
+      <ShowComponent
+        title="Custom Input Field"
+        propsDef={{
+          placeholder: { type: "string", default: "Input" },
+          icon: { type: "function", optional: true },
+          state: {
+            type: "string",
+            options: ["default", "hover", "active", "inactive", "error"],
+            default: "default",
+          },
+          error: { type: "string", optional: true },
+        }}
+        component={Input}
+      />
     </div>
   );
 }
