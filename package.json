@@ -3,5 +3,8 @@
   "private": true,
   "workspaces": [
     "js/react"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
 }
