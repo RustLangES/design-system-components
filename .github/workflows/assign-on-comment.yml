@@ -1,0 +1,68 @@
+name: Assign user on comment
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  assign-user:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if comment contains assignment phrase
+        id: check_comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const commentBody = context.payload.comment.body.toLowerCase();
+            const assignPatterns = [
+              /[Aa]signar a @([a-zA-Z0-9_-]+)/,
+              /[Aa]signar @([a-zA-Z0-9_-]+)/,
+              /[Aa]ssign to @([a-zA-Z0-9_-]+)/,
+              /[Aa]ssign @([a-zA-Z0-9_-]+)/
+            ];
+            
+            let assignee = null;
+            
+            for (const pattern of assignPatterns) {
+              const match = commentBody.match(pattern);
+              if (match && match[1]) {
+                assignee = match[1];
+                break;
+              }
+            }
+            
+            if (assignee) {
+              return { assignee, should_assign: true };
+            }
+            return { should_assign: false };
+      
+      - name: Assign user
+        if: steps.check_comment.outputs.should_assign == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            try {
+              await github.rest.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                assignees: ['${{ steps.check_comment.outputs.assignee }}']
+              });
+              console.log(`Successfully assigned @${{ steps.check_comment.outputs.assignee }}`);
+            } catch (error) {
+              console.error('Error assigning user:', error);
+              if (error.status === 403) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.payload.issue.number,
+                  body: `⚠️ No tengo permisos para asignar usuarios. Por favor, un mantenedor debe asignar a @${{ steps.check_comment.outputs.assignee }} manualmente.`
+                });
+              } else if (error.status === 404) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.payload.issue.number,
+                  body: `⚠️ El usuario @${{ steps.check_comment.outputs.assignee }} no existe o no es miembro de este repositorio.`
+                });
+              }
+            }
