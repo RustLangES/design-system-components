@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Check if comment contains assignment phrase
         id: check_comment
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const commentBody = context.payload.comment.body.toLowerCase();
@@ -36,8 +36,10 @@ jobs:
             return { should_assign: false };
       
       - name: Assign user
-        if: steps.check_comment.outputs.should_assign == 'true'
-        uses: actions/github-script@v6
+        if: ${{ fromJson(steps.check_comment.outputs.result).should_assign == 'true' }}
+        uses: actions/github-script@v7
+        env:
+          ASSIGNEE: ${{ fromJson(steps.check_comment.outputs.result).assignee }}
         with:
           script: |
             try {
@@ -45,9 +47,9 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.payload.issue.number,
-                assignees: ['${{ steps.check_comment.outputs.assignee }}']
+                assignees: ['${{ env.ASSIGNEE }}']
               });
-              console.log(`Successfully assigned @${{ steps.check_comment.outputs.assignee }}`);
+              console.log(`Successfully assigned @${{ env.ASSIGNEE }}`);
             } catch (error) {
               console.error('Error assigning user:', error);
               if (error.status === 403) {
@@ -55,14 +57,14 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: context.payload.issue.number,
-                  body: `⚠️ No tengo permisos para asignar usuarios. Por favor, un mantenedor debe asignar a @${{ steps.check_comment.outputs.assignee }} manualmente.`
+                  body: `⚠️ No tengo permisos para asignar usuarios. Por favor, un mantenedor debe asignar a @${{ env.ASSIGNEE }} manualmente.`
                 });
               } else if (error.status === 404) {
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: context.payload.issue.number,
-                  body: `⚠️ El usuario @${{ steps.check_comment.outputs.assignee }} no existe o no es miembro de este repositorio.`
+                  body: `⚠️ El usuario @${{ env.ASSIGNEE }} no existe o no es miembro de este repositorio.`
                 });
               }
             }
