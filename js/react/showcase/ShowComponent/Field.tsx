@@ -1,16 +1,21 @@
 import { useEffect } from "react";
 import { NormalizedProps } from "./types";
 
-export function ShowComponentField(
-  { name, def, setValue, modified, setModified, ...props }: {
-    name: string;
-    def: NormalizedProps[string];
-    value: unknown;
-    setValue(v: unknown): void;
-    modified: boolean;
-    setModified(v: boolean): void;
-  },
-) {
+export function ShowComponentField({
+  name,
+  def,
+  setValue,
+  modified,
+  setModified,
+  ...props
+}: {
+  name: string;
+  def: NormalizedProps[string];
+  value: unknown;
+  setValue(v: unknown): void;
+  modified: boolean;
+  setModified(v: boolean): void;
+}) {
   const value = !def.optional || modified ? props.value : def.default;
 
   useEffect(() => {
@@ -49,60 +54,81 @@ export function ShowComponentField(
           </svg>
         </button>
       )}
-      {def.type === "string"
-        ? (
-          <textarea
-            className="max-w-[150px] min-h-[1.7rem] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1"
-            value={value as string}
-            onChange={(ev) => {
-              setModified(true);
-              setValue(ev.currentTarget.value);
-            }}
-          />
-        )
-        : def.type === "boolean"
-        ? (
-          <>
-            <button
-              className="flex justify-center items-center min-w-[1.7rem] h-[1.7rem] border-1 shadow-brutal rounded-sm cursor-pointer"
-              onClick={() => {
+      {def.type === "string" ? (
+        <>
+          {!!def.options.length ? (
+            <select
+              defaultValue={def.default as string}
+              onChange={(e) => {
                 setModified(true);
-                setValue(!props.value);
+                setValue(e.currentTarget.value);
               }}
             >
-              <span
-                className={(props.value ? "block" : "hidden") +
-                  " bg-black w-[1rem] h-[1rem] rounded-xs"}
-              />
-            </button>
-          </>
-        )
-        : def.type === "object"
-        ? (
-          <input
-            disabled
-            className="max-w-[150px] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1 bg-gray-300 cursor-not-allowed"
-            value="object"
-          />
-        )
-        : def.type === "function"
-        ? (
-          <input
-            disabled
-            className="w-[150px] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1 bg-gray-300 cursor-not-allowed"
-            value="function"
-          />
-        )
-        : def.type === "callback"
-        ? (
-          <p
-            className={"min-w-[150px] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1 text-center " +
-              (props.value ? "bg-green-400" : "")}
+              {!def.default ? (
+                <option disabled selected value={undefined}>
+                  - select -
+                </option>
+              ) : null}
+              {def.options.map((optionToSelect, idx) => (
+                <option
+                  key={idx}
+                  selected={optionToSelect === value}
+                  value={optionToSelect as string}
+                >
+                  {String(optionToSelect)}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <textarea
+              className="max-w-[150px] min-h-[1.7rem] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1"
+              value={value as string}
+              onChange={(ev) => {
+                setModified(true);
+                setValue(ev.currentTarget.value);
+              }}
+            />
+          )}
+        </>
+      ) : def.type === "boolean" ? (
+        <>
+          <button
+            className="flex justify-center items-center min-w-[1.7rem] h-[1.7rem] border-1 shadow-brutal rounded-sm cursor-pointer"
+            onClick={() => {
+              setModified(true);
+              setValue(!props.value);
+            }}
           >
-            Callback
-          </p>
-        )
-        : null}
+            <span
+              className={
+                (props.value ? "block" : "hidden") +
+                " bg-black w-[1rem] h-[1rem] rounded-xs"
+              }
+            />
+          </button>
+        </>
+      ) : def.type === "object" ? (
+        <input
+          disabled
+          className="max-w-[150px] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1 bg-gray-300 cursor-not-allowed"
+          value="object"
+        />
+      ) : def.type === "function" ? (
+        <input
+          disabled
+          className="w-[150px] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1 bg-gray-300 cursor-not-allowed"
+          value="function"
+        />
+      ) : def.type === "callback" ? (
+        <p
+          className={
+            "min-w-[150px] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1 text-center " +
+            (props.value ? "bg-green-400" : "")
+          }
+        >
+          Callback
+        </p>
+      ) : null}
     </div>
   );
 }
