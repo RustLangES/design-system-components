@@ -26,7 +26,7 @@ export function ShowComponentField({
   });
 
   return (
-    <div className="w-full flex items-center">
+    <div className="flex w-full items-center">
       <label className="w-full">
         {name}
         <span className={def.optional ? "text-cyan-700" : "text-red-700"}>
@@ -35,7 +35,7 @@ export function ShowComponentField({
       </label>
       {modified && (
         <button
-          className="flex justify-center items-center min-w-[1.7rem] h-[1.7rem] border-1 rounded-sm shadow-brutal mr-1"
+          className="border-1 shadow-brutal mr-1 flex h-[1.7rem] min-w-[1.7rem] items-center justify-center rounded-sm"
           // Ignore label events
           onClick={() => {
             setValue(def.default);
@@ -59,7 +59,7 @@ export function ShowComponentField({
           {def.options.length ? (
             <select
               defaultValue={def.default as string}
-              onChange={(e) => {
+              onChange={e => {
                 setModified(true);
                 setValue(e.currentTarget.value);
               }}
@@ -81,9 +81,9 @@ export function ShowComponentField({
             </select>
           ) : (
             <textarea
-              className="max-w-[150px] min-h-[1.7rem] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1"
+              className="border-1 shadow-brutal h-[1.7rem] min-h-[1.7rem] max-w-[150px] rounded-sm px-1"
               value={value as string}
-              onChange={(ev) => {
+              onChange={ev => {
                 setModified(true);
                 setValue(ev.currentTarget.value);
               }}
@@ -93,7 +93,7 @@ export function ShowComponentField({
       ) : def.type === "boolean" ? (
         <>
           <button
-            className="flex justify-center items-center min-w-[1.7rem] h-[1.7rem] border-1 shadow-brutal rounded-sm cursor-pointer"
+            className="border-1 shadow-brutal flex h-[1.7rem] min-w-[1.7rem] cursor-pointer items-center justify-center rounded-sm"
             onClick={() => {
               setModified(true);
               setValue(!props.value);
@@ -102,7 +102,7 @@ export function ShowComponentField({
             <span
               className={
                 (props.value ? "block" : "hidden") +
-                " bg-black w-[1rem] h-[1rem] rounded-xs"
+                " rounded-xs h-[1rem] w-[1rem] bg-black"
               }
             />
           </button>
@@ -110,19 +110,19 @@ export function ShowComponentField({
       ) : def.type === "object" ? (
         <input
           disabled
-          className="max-w-[150px] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1 bg-gray-300 cursor-not-allowed"
+          className="border-1 shadow-brutal h-[1.7rem] max-w-[150px] cursor-not-allowed rounded-sm bg-gray-300 px-1"
           value="object"
         />
       ) : def.type === "function" ? (
         <input
           disabled
-          className="w-[150px] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1 bg-gray-300 cursor-not-allowed"
+          className="border-1 shadow-brutal h-[1.7rem] w-[150px] cursor-not-allowed rounded-sm bg-gray-300 px-1"
           value="function"
         />
       ) : def.type === "callback" ? (
         <p
           className={
-            "min-w-[150px] h-[1.7rem] border-1 rounded-sm shadow-brutal px-1 text-center " +
+            "border-1 shadow-brutal h-[1.7rem] min-w-[150px] rounded-sm px-1 text-center " +
             (props.value ? "bg-green-400" : "")
           }
         >

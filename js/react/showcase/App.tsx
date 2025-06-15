@@ -3,8 +3,8 @@ import { ShowComponent } from "./ShowComponent";
 
 export function App() {
   return (
-    <div className="px-5 max-w-[1024px] mx-auto mt-10">
-      <h1 className="text-5xl font-bold text-center mb-5">
+    <div className="mx-auto mt-10 max-w-[1024px] px-5">
+      <h1 className="mb-5 text-center text-5xl font-bold">
         RustLangES Components
       </h1>
       <p className="text-center text-xs">

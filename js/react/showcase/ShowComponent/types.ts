@@ -1,14 +1,14 @@
 export type FieldType<Field, F> = unknown extends F
   ? string
   : Field extends string
-  ? "string"
-  : Field extends boolean
-  ? "boolean"
-  : Field extends Function
-  ? "function" | "callback"
-  : Field extends object
-  ? "object"
-  : string;
+    ? "string"
+    : Field extends boolean
+      ? "boolean"
+      : Field extends Function
+        ? "function" | "callback"
+        : Field extends object
+          ? "object"
+          : string;
 
 export type PropsDefOptional<Field> = undefined extends Field
   ? Field extends undefined

@@ -29,7 +29,7 @@ export function ShowComponent(
   const title =
     props.title ??
     ("component" in props
-      ? props.component.displayName ?? props.component.name
+      ? (props.component.displayName ?? props.component.name)
       : null) ??
     "No title";
 
@@ -72,18 +72,20 @@ function ShowComponentInner(
                 prop.type === "string"
                   ? ""
                   : prop.type === "boolean"
-                  ? false
-                  : prop.type === "number"
-                  ? 0
-                  : prop.type === "object"
-                  ? {}
-                  : prop.type === "function"
-                  ? () => {}
-                  : prop.type === "callback"
-                  ? () => {}
-                  : (() => {
-                      throw new Error("Unknown prop type: " + prop.type);
-                    })(),
+                    ? false
+                    : prop.type === "number"
+                      ? 0
+                      : prop.type === "object"
+                        ? {}
+                        : prop.type === "function"
+                          ? () => {}
+                          : prop.type === "callback"
+                            ? () => {}
+                            : (() => {
+                                throw new Error(
+                                  "Unknown prop type: " + prop.type
+                                );
+                              })(),
               disabled: false,
               optional: false,
               options: [],
@@ -101,11 +103,11 @@ function ShowComponentInner(
   return (
     <ShowComponentContainer title={props.title} className="bg-gray-50">
       {!!Object.keys(inputs).length && (
-        <div className="w-full max-w-xs border-r-1 border-r-gray-300 pt-2 pr-2 flex flex-col gap-2">
+        <div className="border-r-1 flex w-full max-w-xs flex-col gap-2 border-r-gray-300 pr-2 pt-2">
           {inputs}
         </div>
       )}
-      <div className="w-full py-2 flex justify-center items-center gap-2 flex-wrap">
+      <div className="flex w-full flex-wrap items-center justify-center gap-2 py-2">
         {"component" in props ? (
           <props.component {...childrenProps} />
         ) : (
@@ -131,8 +133,8 @@ function processProps(
             prop.type === "callback"
               ? () => setValue(true)
               : !prop.optional || modified
-              ? value
-              : prop.settedDefault,
+                ? value
+                : prop.settedDefault,
           element: (
             <ShowComponentField
               key={name}
@@ -153,7 +155,7 @@ function processProps(
     Object.entries(newProps).map(([k, v]) => [k, v.value])
   );
 
-  const inputs = Object.values(newProps).map((p) => p.element);
+  const inputs = Object.values(newProps).map(p => p.element);
 
   return [childrenProps, inputs];
 }

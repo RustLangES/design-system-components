@@ -16,7 +16,7 @@ export const Button = (props: ButtonProps) => {
     <button
       className={cn(
         ...variants[variant],
-        "px-8 h-12 text-button w-fit cursor-pointer disabled:cursor-not-allowed flex items-center justify-center gap-2.5 transition",
+        "text-button flex h-12 w-fit cursor-pointer items-center justify-center gap-2.5 px-8 transition disabled:cursor-not-allowed",
         "[&>svg]:size-6",
         className
       )}

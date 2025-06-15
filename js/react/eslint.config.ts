@@ -23,9 +23,12 @@ export default ts.config([
     rules: {
       "no-sparse-arrays": "off",
       "@typescript-eslint/no-unsafe-function-type": "off",
-      "react-refresh/only-export-components": ["warn", {
-        allowConstantExport: true,
-      }],
+      "react-refresh/only-export-components": [
+        "warn",
+        {
+          allowConstantExport: true,
+        },
+      ],
     },
   },
   globalIgnores(["**/dist"]),
