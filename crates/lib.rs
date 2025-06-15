@@ -1,1 +1,2 @@
-pub use leptos::*;
+#[cfg(feature = "leptos")]
+pub use leptos_components::*;
