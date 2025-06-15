@@ -56,7 +56,7 @@ export function ShowComponentField({
       )}
       {def.type === "string" ? (
         <>
-          {!!def.options.length ? (
+          {def.options.length ? (
             <select
               defaultValue={def.default as string}
               onChange={(e) => {
