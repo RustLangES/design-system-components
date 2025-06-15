@@ -1,11 +1,11 @@
 name: Quality Gate
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
       - "crates/**/**.rs"
-
   pull_request:
     paths:
       - "crates/**/**.rs"
