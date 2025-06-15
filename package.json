@@ -3,5 +3,13 @@
   "private": true,
   "workspaces": [
     "js/react"
-  ]
+  ],
+  "scripts": {
+    "fmt": "npx prettier --write .",
+    "fmt:check": "npx prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "3.5.3",
+    "prettier-plugin-tailwindcss": "0.6.12"
+  }
 }
