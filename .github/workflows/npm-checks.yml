@@ -48,12 +48,12 @@ jobs:
           echo "Packages to check: $PACKAGES"
           echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
 
-      - name: Run lint on all packages (Push)
-        if: github.event_name == 'push'
+      - name: Run lint on all packages (Push or Manual)
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: pnpm -r lint
 
-      - name: Run format check on all packages (Push)
-        if: github.event_name == 'push'
+      - name: Run format check on all packages (Push or Manual)
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: pnpm -r fmt:check
 
       - name: Run lint on changed packages (PR)
