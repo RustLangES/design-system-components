@@ -1,0 +1,79 @@
+name: Lint and Format Check
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "js/**"
+      - "package.json"
+      - "pnpm-workspace.yaml"
+  pull_request:
+    paths:
+      - "js/**"
+      - "package.json"
+      - "pnpm-workspace.yaml"
+
+jobs:
+  lint-format:
+    name: Lint and Format Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Get changed packages (PR)
+        if: github.event_name == 'pull_request'
+        id: changed-packages
+        run: |
+          CHANGED_FILES=$(git diff --name-only HEAD origin/${{ github.base_ref }} | grep -E 'js/.*/package.json|js/.*/src/')
+          PACKAGES=$(echo "$CHANGED_FILES" | sed -n 's|js/\([^/]*\)/.*|\1|p' | sort | uniq)
+
+          if [ -z "$PACKAGES" ]; then
+            PACKAGES=$(ls -1 js)
+          fi
+
+          echo "Packages to check: $PACKAGES"
+          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
+
+      - name: Run lint on all packages (Push)
+        if: github.event_name == 'push'
+        run: pnpm -r lint
+
+      - name: Run format check on all packages (Push)
+        if: github.event_name == 'push'
+        run: pnpm -r fmt:check
+
+      - name: Run lint on changed packages (PR)
+        if: github.event_name == 'pull_request'
+        run: |
+          for package in ${{ steps.changed-packages.outputs.packages }}; do
+            echo "Running lint in $package"
+            cd js/$package && pnpm lint && cd ../..
+          done
+
+      - name: Run format check on changed packages (PR)
+        if: github.event_name == 'pull_request'
+        run: |
+          for package in ${{ steps.changed-packages.outputs.packages }}; do
+            echo "Running format check in $package"
+            cd js/$package && pnpm fmt:check && cd ../..
+          done

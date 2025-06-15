@@ -1,0 +1,15 @@
+name: Quality Gate
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "crates/**/**.rs"
+
+  pull_request:
+    paths:
+      - "crates/**/**.rs"
+
+jobs:
+  quality-gate:
+    uses: RustLangES/workflows/.github/workflows/quality-gate.yml@main
