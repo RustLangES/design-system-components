@@ -73,8 +73,8 @@ All components follow specifications from our [official Figma](https://www.figma
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/rustlanges/design-system.git
-cd design-system
+git clone https://github.com/RustLangES/design-system-components.git
+cd design-system-components
 ```
 
 2. Install dependencies:

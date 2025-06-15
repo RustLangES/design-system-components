@@ -73,8 +73,8 @@ Todos los componentes siguen las especificaciones de nuestro [Figma oficial](htt
 
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/rustlanges/design-system.git
-cd design-system
+git clone https://github.com/RustLangES/design-system-components.git
+cd design-system-components
 ```
 
 2. Instala dependencias:
