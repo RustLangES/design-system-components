@@ -106,6 +106,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 ---
 
 <div align="center">
-  <img src="./.github/RustLangES_Logo.png" width="200" alt="RustLangES logo">
+  <img src="./.github/RustLangES_Logo-dark.png#gh-dark-mode-only" width="200" alt="RustLangES logo">
+  <img src="./.github/RustLangES_Logo.png#gh-light-mode-only" width="200" alt="RustLangES logo">
   <p>Part of the RustLangES ecosystem</p>
 </div>
