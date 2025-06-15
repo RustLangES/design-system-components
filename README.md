@@ -4,7 +4,7 @@
 
 <img src="./.github/banner.png" width="100%" alt="Design System de RustLangES">
 
-## :rocket Introducción
+## :rocket: Introducción
 
 El Design System de RustLangES es la fuente única de verdad para los componentes UI en los proyectos de la comunidad Rust en español. Proporciona componentes accesibles, consistentes y de alta calidad para múltiples tecnologías.
 
@@ -18,7 +18,7 @@ pnpm add @rustlanges/react
 cargo add rustlanges-leptos
 ```
 
-## :sparks: Características principales
+## :sparkles: Características principales
 
 - **Multi-framework**: Soporte para React, Leptos y más
 - **Modo claro/oscuro**: Compatibilidad automática con el tema del sistema
@@ -92,7 +92,7 @@ pnpm run dev
 Sigue nuestra [guía de contribución](CONTRIBUTING.ES.md) para:
 - :new: Añadir nuevos componentes
 - :bug: Reportar errores
-- :sparks: Proponer mejoras
+- :sparkles: Proponer mejoras
 
 **Importante**: Todos los componentes deben:
 1. Seguir las especificaciones de Figma
