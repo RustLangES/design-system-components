@@ -34,40 +34,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Get changed packages (PR)
-        if: github.event_name == 'pull_request'
-        id: changed-packages
-        run: |
-          CHANGED_FILES=$(git diff --name-only HEAD origin/${{ github.base_ref }} | grep -E 'js/.*/package.json|js/.*/src/')
-          PACKAGES=$(echo "$CHANGED_FILES" | sed -n 's|js/\([^/]*\)/.*|\1|p' | sort | uniq)
-
-          if [ -z "$PACKAGES" ]; then
-            PACKAGES=$(ls -1 js)
-          fi
-
-          echo "Packages to check: $PACKAGES"
-          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
-
-      - name: Run lint on all packages (Push or Manual)
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+      - name: Run lint on all packages
         run: pnpm -r lint
 
-      - name: Run format check on all packages (Push or Manual)
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+      - name: Run format check on all packages
         run: pnpm -r fmt:check
-
-      - name: Run lint on changed packages (PR)
-        if: github.event_name == 'pull_request'
-        run: |
-          for package in ${{ steps.changed-packages.outputs.packages }}; do
-            echo "Running lint in $package"
-            cd js/$package && pnpm lint && cd ../..
-          done
-
-      - name: Run format check on changed packages (PR)
-        if: github.event_name == 'pull_request'
-        run: |
-          for package in ${{ steps.changed-packages.outputs.packages }}; do
-            echo "Running format check in $package"
-            cd js/$package && pnpm fmt:check && cd ../..
-          done
