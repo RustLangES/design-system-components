@@ -1,4 +1,4 @@
-import { Button, Chip, Example, Github, Telegram } from "@rustlanges/react";
+import { Button, Chip, Example, Github, Tag, Telegram } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
 export function App() {
@@ -94,6 +94,31 @@ export function App() {
           },
         }}
         component={Chip}
+      />
+      <ShowComponent
+        title="Tag"
+        component={Tag}
+        propsDef={{
+          label: { 
+            type: "string", 
+            default: "#tag",
+          },
+          selected: { 
+            type: "boolean", 
+            default: false, 
+            optional: true,
+          }, 
+          as: { 
+            type: "string", 
+            options: ["span", "button", "a"],
+            optional: true,
+          },
+         
+          onClick: {
+            type: "callback",
+            optional: true
+          },
+        }}
       />
     </div>
   );
