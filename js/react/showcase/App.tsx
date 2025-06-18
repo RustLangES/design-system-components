@@ -1,4 +1,4 @@
-import { Button, Example, Github, Tag, Telegram } from "@rustlanges/react";
+import { Button, Chip, Example, Github, Tag, Telegram } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
 export function App() {
@@ -71,6 +71,30 @@ export function App() {
         <Button variant="secondary" icon={<Telegram />} label="Botón" />
         <Button variant="icon" icon={<Github />} />
       </ShowComponent>
+      <ShowComponent
+        title="Chip"
+        propsDef={{
+          variant: {
+            type: "string",
+            options: [
+              "featured",
+              "numeric",
+              "description",
+              "location",
+              "small",
+            ],
+            default: "featured",
+          },
+          label: {
+            type: "string",
+            default: "Destacado",
+          },
+          className: {
+            type: "string",
+          },
+        }}
+        component={Chip}
+      />
       <ShowComponent
         title="Tag"
         component={Tag}
