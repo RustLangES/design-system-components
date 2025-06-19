@@ -264,7 +264,7 @@
 
   .text-paragraph-2 {
     font-size: 12px;
-    line-height: 160%;
+    line-height: 150%;
     letter-spacing: 0;
 
     @apply desktop:text-[14px];
