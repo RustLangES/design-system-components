@@ -5,7 +5,6 @@ import {
   Tag,
   Telegram,
   Flap,
-  StarBold,
   Chip,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
