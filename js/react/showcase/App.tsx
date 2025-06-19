@@ -1,4 +1,13 @@
-import { Button, Chip, Example, Github, Tag, Telegram } from "@rustlanges/react";
+import {
+  Button,
+  Example,
+  Github,
+  Tag,
+  Telegram,
+  Flap,
+  StarBold,
+  Chip,
+} from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
 export function App() {
@@ -99,26 +108,41 @@ export function App() {
         title="Tag"
         component={Tag}
         propsDef={{
-          label: { 
-            type: "string", 
+          label: {
+            type: "string",
             default: "#tag",
           },
-          selected: { 
-            type: "boolean", 
-            default: false, 
+          selected: {
+            type: "boolean",
+            default: false,
             optional: true,
-          }, 
-          as: { 
-            type: "string", 
+          },
+          as: {
+            type: "string",
             options: ["span", "button", "a"],
             optional: true,
           },
-         
+
           onClick: {
             type: "callback",
-            optional: true
+            optional: true,
           },
         }}
+      />
+      <ShowComponent
+        title="Flap"
+        propsDef={{
+          variant: {
+            type: "string",
+            options: ["highlight", "descriptive", "numeric"],
+            default: "descriptive",
+          },
+          label: {
+            type: "string",
+            default: "Oficial",
+          },
+        }}
+        component={Flap}
       />
     </div>
   );
