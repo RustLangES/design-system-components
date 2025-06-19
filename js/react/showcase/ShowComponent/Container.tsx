@@ -22,7 +22,9 @@ export function ShowComponentContainer(
           <ChevronDown />
         </span>
       </summary>
-      <div className={"flex gap-2 " + props.contentClassName}>
+      <div
+        className={"flex flex-col gap-5 sm:flex-row " + props.contentClassName}
+      >
         {props.children}
       </div>
     </details>
