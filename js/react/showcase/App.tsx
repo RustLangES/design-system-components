@@ -6,6 +6,7 @@ import {
   Telegram,
   Flap,
   Chip,
+  Level,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
@@ -142,6 +143,26 @@ export function App() {
           },
         }}
         component={Flap}
+      />
+      <ShowComponent
+        title="Level"
+        propsDef={{
+          variant: {
+            type: "string",
+            options: ["n1", "n2", "n3", "op"],
+            default: "n1",
+          },
+          label: {
+            type: "string",
+            default: "Oficial",
+          },
+          as: {
+            type: "string",
+            options: ["a", "button", "span"],
+            default: "span",
+          },
+        }}
+        component={Level}
       />
     </div>
   );
