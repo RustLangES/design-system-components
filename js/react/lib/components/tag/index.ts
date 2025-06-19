@@ -1,1 +1,1 @@
-export { Tag } from "./tag.component"
+export { Tag } from "./tag.component";

@@ -1,24 +1,26 @@
-import { ComponentPropsWithoutRef, useMemo } from "react";
 import { cn } from "../../utils/tw-merge";
 import { TAG_VARIANTS } from "./tag.const";
+import { withAs } from "../../utils/hoc/with-as.hoc";
 
-type TagProps<C extends React.ElementType> = {
-  as?: C;
+type TagProps = {
   label?: string;
-} & Omit<ComponentPropsWithoutRef<C>, "children">;
-
-export const Tag = <C extends React.ElementType = "span"> ({ label, selected, className , as, ...rest }: TagProps<C>) => {
-  const Component = useMemo(() => as || "span", [as])
-  return (
-    <Component
-      className={cn([
-        selected ? TAG_VARIANTS.selected : TAG_VARIANTS.default,
-        "text-xs font-semibold grid place-items-center px-2 h-7 border cursor-pointer rounded-[20px] transition",
-        className
-      ])}
-      {...rest}
-    >
-      {label}
-    </Component>
-  );
+  selected?: boolean;
+  className?: string;
 };
+
+export const Tag = withAs(
+  (Component, { label, selected, className, ...rest }: TagProps) => {
+    return (
+      <Component
+        className={cn([
+          selected ? TAG_VARIANTS.selected : TAG_VARIANTS.default,
+          "grid h-7 cursor-pointer place-items-center rounded-[20px] border px-2 text-xs font-semibold transition",
+          className,
+        ])}
+        {...rest}
+      >
+        {label}
+      </Component>
+    );
+  }
+);
