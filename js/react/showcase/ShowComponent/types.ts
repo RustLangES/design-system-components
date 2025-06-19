@@ -28,7 +28,7 @@ export type PropsDefConfig<Field> = {
 } & PropsDefOptional<Field>;
 
 export type PropsDef<P> = {
-  [K in keyof P]-?: PropsDefConfig<P[K]>;
+  [K in keyof P]: PropsDefConfig<P[K]>;
 };
 
 export type GenericPropDef = Record<string, PropsDefConfig<unknown>>;
