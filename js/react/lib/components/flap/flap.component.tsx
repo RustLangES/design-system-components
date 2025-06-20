@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from "react";
 import { FLAP_ICONS, FLAP_VARIANTS } from "./flap.const";
-import { cn } from "../../utils/tw-merge";
+import { cn } from "@/utils/tw-merge";
 
 type FlapProps = {
   label: string;

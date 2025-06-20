@@ -1,6 +1,6 @@
-import { cn } from "../../utils/tw-merge";
+import { withAs } from "@/utils/hoc";
+import { cn } from "@/utils/tw-merge";
 import { TAG_VARIANTS } from "./tag.const";
-import { withAs } from "../../utils/hoc/with-as.hoc";
 
 type TagProps = {
   label?: string;

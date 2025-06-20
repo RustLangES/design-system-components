@@ -1,4 +1,4 @@
-import { StarBold } from "../../icons";
+import { StarBold } from "@/icons";
 
 export const FLAP_VARIANTS = {
   highlight: "text-primary-400",

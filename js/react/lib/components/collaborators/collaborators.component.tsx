@@ -1,8 +1,8 @@
 import { Fragment } from "react/jsx-runtime";
-import { Github } from "../../icons";
 import { Avatar } from "../avatar/avatar.component";
 import { MAX_COLLABORATORS } from "./collaborators.const";
 import { Button } from "../button";
+import { Github } from "@/icons";
 
 type Collaborator = {
   avatarUrl: string;
