@@ -17,6 +17,12 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    // Path aliases
+    "baseUrl": "./lib",
+    "paths": {
+      "@/*": ["./*"],
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

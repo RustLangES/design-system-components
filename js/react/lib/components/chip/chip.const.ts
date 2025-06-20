@@ -1,4 +1,4 @@
-import { Location, StarBold } from "../../icons";
+import { Location, StarBold } from "@/icons";
 
 export const variants = {
   featured: [

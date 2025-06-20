@@ -1,4 +1,4 @@
-import { cn } from "../../utils/tw-merge";
+import { cn } from "@/utils/tw-merge";
 import { ChipVariants, icons, variants } from "./chip.const";
 import React from "react";
 

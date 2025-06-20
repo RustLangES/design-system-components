@@ -1,5 +1,5 @@
-import { withAs } from "../../utils/hoc/with-as.hoc";
-import { cn } from "../../utils/tw-merge";
+import { withAs } from "@/utils/hoc";
+import { cn } from "@/utils/tw-merge";
 
 type AvatarProps = {
   avatarUrl: string;

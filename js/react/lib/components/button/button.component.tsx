@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { cn } from "../../utils/tw-merge";
 import { ButtonVariants, variants } from "./button.const";
-import { withAs } from "../../utils/hoc/with-as.hoc";
+import { withAs } from "@/utils/hoc";
+import { cn } from "@/utils/tw-merge";
 
 export type ButtonProps = {
   variant?: ButtonVariants;
