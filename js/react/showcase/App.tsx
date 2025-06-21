@@ -8,6 +8,7 @@ import {
   Chip,
   Level,
   Collaborators,
+  Radio,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
@@ -207,6 +208,17 @@ export function App() {
           </div>
         </div>
       </ShowComponent>
+      <ShowComponent
+        title="Radio"
+        component={Radio}
+        propsDef={{
+          checked: {
+            type: "boolean",
+            default: false,
+            optional: true,
+          },
+        }}
+      />
     </div>
   );
 }
