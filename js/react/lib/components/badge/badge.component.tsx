@@ -12,7 +12,7 @@ export const Badge = withAs(
   (Component, { type, variant, count, ...rest }: BadgeProps) => {
     const displayValue = () => {
       if (type !== "numeric") return BADGE_TEXT[variant];
-      if (count > LIMIT_NUMERIC) return "+9";
+      if (count > LIMIT_NUMERIC) return `+${LIMIT_NUMERIC}`;
       return count;
     };
 
