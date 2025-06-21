@@ -7,4 +7,5 @@ export * from "./components/level";
 export * from "./components/avatar";
 export * from "./components/collaborators";
 export * from "./components/radio";
+export * from "./components/badge";
 export * from "./icons";

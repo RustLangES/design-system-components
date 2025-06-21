@@ -9,6 +9,7 @@ import {
   Level,
   Collaborators,
   Radio,
+  Badge,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
@@ -216,6 +217,28 @@ export function App() {
             type: "boolean",
             default: false,
             optional: true,
+          },
+        }}
+      />
+      <ShowComponent
+        title="Badge"
+        component={Badge}
+        propsDef={{
+          variant: {
+            type: "string",
+            options: ["completed", "pending", "reading", "unread"],
+            default: "completed",
+          },
+          type: {
+            type: "string",
+            default: "numeric",
+
+            options: ["default", "numeric", "text"] as unknown as ["numeric"],
+          },
+          count: {
+            type: "string",
+            default: 1,
+            optional: false,
           },
         }}
       />
