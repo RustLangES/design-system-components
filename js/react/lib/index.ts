@@ -6,4 +6,5 @@ export * from "./components/flap";
 export * from "./components/level";
 export * from "./components/avatar";
 export * from "./components/collaborators";
+export * from "./components/radio";
 export * from "./icons";
