@@ -1,5 +1,6 @@
 packages:
   - js/react
+  - styles
 onlyBuiltDependencies:
   - "@parcel/watcher"
   - "@swc/core"

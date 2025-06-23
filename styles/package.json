@@ -1,0 +1,43 @@
+{
+  "name": "@rustlanges/styles",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": "./tailwindcss.css",
+    "./bundled.css": "./dist/bundled.css",
+    "./breakpoints": "./breakpoints.css",
+    "./components": "./components.css",
+    "./tailwindcss": "./tailwindcss.css",
+    "./theme": "./theme.css",
+    "./utilities": "./utilities.css",
+    "./components/*": "./components/*.css",
+    "./utilities/*": "./utilities/*.css"
+  },
+  "files": [
+    "dist",
+    "components",
+    "utilities",
+    "breakpoints.css",
+    "components.css",
+    "package.json",
+    "safelist.txt",
+    "tailwindcss.css",
+    "theme.css",
+    "utilities.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RustLangES/design-system-components",
+    "directory": "styles"
+  },
+  "scripts": {
+    "build": "npx @tailwindcss/cli -i tailwindcss.css -o dist/bundled.css --minify"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.8",
+    "tailwindcss": "^4.1.8"
+  },
+  "dependencies": {}
+}
