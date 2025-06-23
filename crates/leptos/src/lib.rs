@@ -1,7 +1,7 @@
-pub use leptos;
-use leptos::tachys::renderer::dom::Element;
-use leptos::view;
+pub(crate) use tailwind_fuse::tw_merge as tw;
 
-fn button() -> Element {
-    view! {}
+pub mod button;
+
+pub mod prelude {
+    pub use crate::button::{Button, Variant as ButtonVariant};
 }
