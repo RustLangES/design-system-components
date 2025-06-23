@@ -10,6 +10,7 @@ import {
   Collaborators,
   Radio,
   Badge,
+  DropdownState,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
@@ -239,6 +240,21 @@ export function App() {
             type: "string",
             default: 1,
             optional: false,
+          },
+        }}
+      />
+      <ShowComponent
+        component={DropdownState}
+        title="Dropdown State"
+        propsDef={{
+          onChange: {
+            type: "callback",
+            default: console.log,
+          },
+          value: {
+            type: "string",
+            options: ["completed", "pending", "reading", "unread"],
+            default: "completed",
           },
         }}
       />
