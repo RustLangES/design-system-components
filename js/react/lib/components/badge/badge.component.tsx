@@ -20,7 +20,7 @@ export const Badge = withAs(
       <Component
         {...rest}
         className={cn([
-          "text-paragraph-2 flex items-center gap-1 rounded-full border-[0.8px] border-black px-2",
+          "text-paragraph-2 flex w-fit items-center gap-1 rounded-full border-[0.8px] border-black px-2",
           BADGE_VARIANTS[variant],
           BADGE_TYPE[type],
           "desktop:text-[12px] text-[10px]",

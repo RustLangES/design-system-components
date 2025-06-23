@@ -8,4 +8,5 @@ export * from "./components/avatar";
 export * from "./components/collaborators";
 export * from "./components/radio";
 export * from "./components/badge";
+export * from "./components/dropdown";
 export * from "./icons";
