@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 leptos = { version = "0.8.2", default-features = false }
+tailwind_fuse = { version = "0.3", features = ["variant", "tailwind_fuse_macro"] }
