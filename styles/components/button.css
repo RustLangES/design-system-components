@@ -1,0 +1,63 @@
+@layer components {
+  .rustlanges-button {
+    @apply flex h-12 w-fit cursor-pointer items-center justify-center gap-2.5 px-8 transition [&>svg]:size-6;
+
+    @variant disabled {
+      @apply cursor-not-allowed;
+    }
+  }
+
+  .rustlanges-button--primary {
+    @apply rounded-2xl border;
+    @apply bg-primary-500 shadow-rb-black border-black text-black;
+    @apply hover:bg-primary-600 active:shadow-none;
+
+    @variant disabled {
+      @apply border-neutral-400 bg-neutral-100 text-neutral-400 shadow-none;
+    }
+
+    @variant dark {
+      @apply bg-primary-300 hover:bg-primary-400 disabled:bg-neutral-950;
+    }
+  }
+
+  .rustlanges-button--secondary {
+    @apply rounded-2xl border;
+    @apply bg-light shadow-rb-neutral-950 border-neutral-950 text-neutral-950;
+    @apply active:shadow-none;
+
+    @variant disabled {
+      @apply border-neutral-400! bg-neutral-100 text-neutral-400 shadow-none;
+    }
+
+    @variant hover {
+      @apply shadow-rb-primary-500 border-primary-500 text-primary-500;
+    }
+
+    @variant dark {
+      @apply bg-dark text-light border-light shadow-rb-neutral-50;
+      @apply disabled:bg-neutral-950;
+    }
+  }
+
+  .rustlanges-button--text {
+    @apply hover:text-primary-600 text-neutral-950;
+
+    @variant dark {
+      @apply text-light hover:text-primary-300;
+    }
+  }
+
+  .rustlanges-button--icon {
+    @apply p-2! aspect-square !h-fit rounded-full border;
+    @apply bg-light border-black text-black;
+
+    @variant hover {
+      @apply text-primary-500 border-primary-500;
+    }
+
+    @variant dark {
+      @apply bg-dark border-light text-light;
+    }
+  }
+}
