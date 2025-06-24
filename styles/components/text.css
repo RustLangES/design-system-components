@@ -91,6 +91,7 @@
     font-weight: 600;
     line-height: 160%;
     letter-spacing: 0.28%;
+
     @apply desktop:text-[16px];
   }
 
