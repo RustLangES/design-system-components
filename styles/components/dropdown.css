@@ -1,0 +1,45 @@
+@layer components {
+  .rustlanges-dropdown {
+    @apply relative grid w-fit;
+  }
+
+  .rustlanges-dropdown__view {
+    @apply shadow-rb-black flex h-6 items-center gap-1 overflow-hidden rounded-sm border border-black;
+    @apply text-[12px];
+  }
+
+  .rustlanges-dropdown__view-dot {
+    @apply ml-2 size-1 rounded-full;
+  }
+
+  .rustlanges-dropdown__view-icon {
+    @apply size-6 rounded-r-sm border-l border-l-black;
+    @apply bg-white text-black;
+
+    @variant dark {
+      @apply bg-dark text-neutral-50;
+    }
+  }
+
+  .rustlanges-dropdown__content {
+    @apply absolute left-0 top-full mt-2 w-full transition duration-200;
+  }
+
+  .rustlanges-dropdown__content--open {
+    @apply visible opacity-100;
+  }
+
+  .rustlanges-dropdown__content--closed {
+    @apply invisible opacity-0;
+  }
+
+  .rustlanges-dropdown__list {
+    @apply shadow-rb-black grid gap-1.5 px-2 py-1.5 transition;
+    @apply rounded-sm border border-black;
+    @apply bg-white dark:bg-dark;
+  }
+
+  .rustlanges-dropdown__list-item {
+    @apply cursor-pointer;
+  }
+}
