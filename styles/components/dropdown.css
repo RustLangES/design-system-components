@@ -36,7 +36,7 @@
   .rustlanges-dropdown__list {
     @apply shadow-rb-black grid gap-1.5 px-2 py-1.5 transition;
     @apply rounded-sm border border-black;
-    @apply bg-white dark:bg-dark;
+    @apply dark:bg-dark bg-white;
   }
 
   .rustlanges-dropdown__list-item {
