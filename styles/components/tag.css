@@ -4,10 +4,10 @@
   }
 
   .rustlanges-tag--default {
-    @apply bg-light text-black border-black;
+    @apply bg-light border-black text-black;
 
     @variant dark {
-      @apply bg-neutral-950 text-neutral-50 border-neutral-50;
+      @apply border-neutral-50 bg-neutral-950 text-neutral-50;
     }
   }
   .rustlanges-tag--selected {

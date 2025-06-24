@@ -12,7 +12,7 @@ export const Tag = withAs(
     return (
       <Component
         className={cn([
-          selected ? "rustlanges-tag--selected" :  "rustlanges-tag--default",
+          selected ? "rustlanges-tag--selected" : "rustlanges-tag--default",
           "rustlanges-tag",
           className,
         ])}
