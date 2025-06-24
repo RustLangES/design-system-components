@@ -258,6 +258,11 @@ export function App() {
           },
         }}
       />
+      <ShowComponent title="Scroll bar ">
+        <div className="scrollbar mx-auto h-48 w-full overflow-auto">
+          <div className="mx-auto flex h-96 w-20 items-center">Container</div>
+        </div>
+      </ShowComponent>
     </div>
   );
 }
