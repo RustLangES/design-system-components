@@ -83,7 +83,7 @@
 
   --color-light: #fafafa;
   --color-dark: #2e2e2e;
-  --color-gray: #D9D9D9;
+  --color-gray: #d9d9d9;
 
   /* Fonts */
   --text-xxs: 10px;
@@ -301,5 +301,32 @@
     letter-spacing: 0.32%;
 
     @apply desktop:text-[40px];
+  }
+}
+
+@layer utilities {
+  @supports not selector(::-webkit-scrollbar) {
+    .scrollbar {
+      scrollbar-color: var(--color-neutral-300) var(--color-neutral-100);
+
+      @variant dark {
+        scrollbar-color: var(--color-neutral-900) var(--color-neutral-600);
+      }
+    }
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    @apply w-4;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply rounded-full bg-neutral-100 dark:bg-neutral-900;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-neutral-300 transition dark:bg-neutral-600;
+  }
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply opacity-90;
   }
 }
