@@ -12,12 +12,7 @@ export const Level = withAs(
     return (
       <Component
         {...rest}
-        className={cn([
-          "rounded-xl border border-black px-2 leading-[150%]",
-          "desktop:text-sm text-xxs",
-          LEVEL_VARIANTS[variant],
-          className,
-        ])}
+        className={cn(["rustlanges-level", LEVEL_VARIANTS[variant], className])}
       >
         {LEVEL_LABELS[variant]}
       </Component>
