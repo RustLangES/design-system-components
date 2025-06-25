@@ -1,4 +1,3 @@
 export interface ContactFormProps {
-    theme?: 'light' | 'dark';
-  }
-  
+  theme?: "light" | "dark";
+}

@@ -8,7 +8,7 @@ import {
 import type { ContactFormProps } from "./contact-form.types";
 import { Button } from "../button";
 
-export default function ContactForm({ theme = "light" }: ContactFormProps) {
+export function ContactForm({ theme = "light" }: ContactFormProps) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -63,7 +63,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`max-w-xl rounded-2xl p-6 shadow-md ${t.form}`}
+      className={`max-w-xl rounded-2xl p-6 ${t.form}`}
     >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
@@ -101,7 +101,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
       <div className="mt-4">
         <div className="relative">
           <Location
-            className={`pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 transform ${
+            className={`pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 transform ${
               theme === "dark" ? "text-gray-400" : "text-gray-500"
             }`}
           />
