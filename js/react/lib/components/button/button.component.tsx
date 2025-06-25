@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { cn } from "../../utils/tw-merge";
 import { ButtonVariants, variants } from "./button.const";
+import { withAs } from "@/utils/hoc";
+import { cn } from "@/utils/tw-merge";
 
 export type ButtonProps = {
   variant?: ButtonVariants;
@@ -10,20 +11,19 @@ export type ButtonProps = {
   className?: string;
 };
 
-export const Button = (props: ButtonProps) => {
+export const Button = withAs((Component, props: ButtonProps) => {
   const { label, variant = "primary", icon, className, ...attr } = props;
   return (
-    <button
+    <Component
       className={cn(
-        ...variants[variant],
-        "text-button flex h-12 w-fit cursor-pointer items-center justify-center gap-2.5 px-8 transition disabled:cursor-not-allowed",
-        "[&>svg]:size-6",
+        variants[variant],
+        "text-button rustlanges-button",
         className
       )}
       {...attr}
     >
       {variant !== "icon" ? label : null}
       {icon ? icon : null}
-    </button>
+    </Component>
   );
-};
+}, "button");

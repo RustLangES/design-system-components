@@ -19,6 +19,7 @@ export default defineConfig({
     alias: {
       "@rustlanges/react/styles.css": resolve(__dirname, "lib/styles.css"),
       "@rustlanges/react": resolve(__dirname, "lib/index.ts"),
+      "@": resolve(__dirname, "./lib"),
     },
   },
   build: {
