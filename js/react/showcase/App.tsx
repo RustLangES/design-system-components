@@ -1,5 +1,6 @@
 import {
   Button,
+  ContactForm,
   Example,
   Github,
   Tag,
@@ -89,6 +90,9 @@ export function App() {
         <Button variant="primary" icon={<Telegram />} label="Botón" />
         <Button variant="secondary" icon={<Telegram />} label="Botón" />
         <Button variant="icon" icon={<Github />} />
+      </ShowComponent>
+      <ShowComponent title="Contact Form">
+        <ContactForm />
       </ShowComponent>
       <ShowComponent
         title="Chip"
