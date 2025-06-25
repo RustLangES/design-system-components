@@ -21,7 +21,7 @@ export const variants = {
     "dark:text-light dark:hover:text-primary-300",
   ],
   icon: [
-    "rounded-full border aspect-square p-2! !h-fit",
+    "rounded-full border aspect-square p-0! size-10",
     "bg-light border-black text-black",
     "dark:bg-dark dark:border-light dark:text-light",
     "hover:text-primary-500 hover:border-primary-500",
