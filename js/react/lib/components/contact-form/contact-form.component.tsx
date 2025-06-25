@@ -3,7 +3,6 @@ import { Location } from "../../icons";
 import {
   BASE_INPUT_CLASS,
   CONTACT_FORM_ERROR_MESSAGES,
-  CONTACT_FORM_STYLES,
   ERROR_INPUT_CLASS,
 } from "./contact-form.const";
 import { Button } from "../button";
