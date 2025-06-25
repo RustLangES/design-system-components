@@ -1,9 +1,9 @@
 import {
   Button,
+  ContactForm,
   Example,
   Github,
   Telegram,
-  ContactForm,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
@@ -77,17 +77,9 @@ export function App() {
         <Button variant="secondary" icon={<Telegram />} label="Botón" />
         <Button variant="icon" icon={<Github />} />
       </ShowComponent>
-      <ShowComponent
-        title="Contact Form"
-        propsDef={{
-          theme: {
-            type: "string",
-            options: ["light", "dark"],
-            default: "light",
-          },
-        }}
-        component={ContactForm}
-      />
+      <ShowComponent title="Contact Form">
+        <ContactForm />
+      </ShowComponent>
     </div>
   );
 }

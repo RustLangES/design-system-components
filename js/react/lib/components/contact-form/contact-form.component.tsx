@@ -8,7 +8,7 @@ import {
 import type { ContactFormProps } from "./contact-form.types";
 import { Button } from "../button";
 
-export function ContactForm({ theme = "light" }: ContactFormProps) {
+export function ContactForm() {
   const [form, setForm] = useState({
     name: "",
     email: "",
