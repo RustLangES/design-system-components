@@ -11,8 +11,11 @@ import {
   Radio,
   Badge,
   DropdownState,
+  Calendar,
+  CalendarRangeDate,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
+import { useState } from "react";
 
 const collaborator = {
   avatarUrl:
@@ -21,6 +24,10 @@ const collaborator = {
 };
 
 export function App() {
+  const [single, setSingle] = useState<Date | null>(new Date());
+  const [multiple, setMultiple] = useState<Record<string, Date> | null>(null);
+  const [range, setRange] = useState<CalendarRangeDate | null>(null);
+
   return (
     <div className="mx-auto mt-10 max-w-[1024px] px-5">
       <h1 className="mb-5 text-center text-5xl font-bold">
@@ -262,6 +269,11 @@ export function App() {
         <div className="scrollbar mx-auto h-48 w-full overflow-auto">
           <div className="mx-auto flex h-96 w-20 items-center">Container</div>
         </div>
+      </ShowComponent>
+      <ShowComponent title="Calendar">
+        <Calendar type="single" onChange={setSingle} value={single} />
+        <Calendar type="multiple" onChange={setMultiple} value={multiple} />
+        <Calendar type="range" onChange={setRange} value={range} />
       </ShowComponent>
     </div>
   );
