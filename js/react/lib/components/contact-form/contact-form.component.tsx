@@ -1,7 +1,12 @@
 import { useState } from "react";
-import { Location } from '../../icons';
-import { CONTACT_FORM_ERROR_MESSAGES } from "./contact-form.const";
+import { Location } from "../../icons";
+import {
+  CONTACT_FORM_ERROR_MESSAGES,
+  CONTACT_FORM_STYLES,
+  BASE_INPUT_CLASS,
+} from "./contact-form.const";
 import type { ContactFormProps } from "./contact-form.types";
+import { Button } from "../button";
 
 export default function ContactForm({ theme = "light" }: ContactFormProps) {
   const [form, setForm] = useState({
@@ -53,31 +58,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
     }
   };
 
-  const base = "w-full p-2 rounded-md border outline-none transition";
-  const styles = {
-    light: {
-      form: "bg-gray-100",
-      bg: "bg-white text-black",
-      border: "border-gray-300",
-      focus: "focus:border-orange-500",
-      error: "border-red-500 text-red-600",
-      placeholder: "placeholder-gray-400",
-      button: "bg-orange-500 text-white hover:bg-orange-600",
-      disabled: "bg-gray-300 text-gray-500",
-    },
-    dark: {
-      form: "bg-[#1e1e1e]",
-      bg: "bg-[#2c2c2c] text-white",
-      border: "border-gray-600",
-      focus: "focus:border-orange-400",
-      error: "border-red-500 text-red-500",
-      placeholder: "placeholder-gray-500",
-      button: "bg-orange-500 text-white hover:bg-orange-600",
-      disabled: "bg-gray-700 text-gray-500",
-    },
-  };
-
-  const t = styles[theme];
+  const t = CONTACT_FORM_STYLES[theme];
 
   return (
     <form
@@ -92,7 +73,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Nombre"
-            className={`${base} ${t.bg} ${t.placeholder} ${t.border} ${
+            className={`${BASE_INPUT_CLASS} ${t.bg} ${t.placeholder} ${t.border} ${
               errors.name ? t.error : touched.name ? t.focus : ""
             }`}
           />
@@ -107,7 +88,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Email"
-            className={`${base} ${t.bg} ${t.placeholder} ${t.border} ${
+            className={`${BASE_INPUT_CLASS} ${t.bg} ${t.placeholder} ${t.border} ${
               errors.email ? t.error : touched.email ? t.focus : ""
             }`}
           />
@@ -130,7 +111,7 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Ubicación"
-            className={`${base} pl-10 ${t.bg} ${t.placeholder} ${t.border} ${
+            className={`${BASE_INPUT_CLASS} pl-10 ${t.bg} ${t.placeholder} ${t.border} ${
               errors.location ? t.error : touched.location ? t.focus : ""
             }`}
           />
@@ -147,20 +128,19 @@ export default function ContactForm({ theme = "light" }: ContactFormProps) {
           value={form.message}
           onChange={handleChange}
           placeholder="Mensaje"
-          className={`${base} ${t.bg} ${t.placeholder} ${t.border} resize-none`}
+          className={`${BASE_INPUT_CLASS} ${t.bg} ${t.placeholder} ${t.border} resize-none`}
         />
       </div>
 
       <div className="mt-6 text-right">
-        <button
-          type="submit"
-          className={`rounded-md px-6 py-2 font-semibold ${
+        <Button
+          label="Enviar"
+          className={`px-6 py-2 font-semibold ${
             Object.keys(errors).length ? t.disabled : t.button
           }`}
           disabled={Object.keys(errors).length > 0}
-        >
-          Enviar
-        </button>
+          {...{ type: "submit" }}
+        />
       </div>
     </form>
   );
