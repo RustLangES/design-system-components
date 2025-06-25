@@ -63,7 +63,7 @@ export function ContactForm({ theme = "light" }: ContactFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`max-w-xl rounded-2xl p-6 ${t.form}`}
+      className={`border-1 shadow-rb-black max-w-xl rounded-2xl p-6 ${t.form}`}
     >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
