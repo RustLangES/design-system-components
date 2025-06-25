@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Location } from "../../icons";
 import {
+  BASE_INPUT_CLASS,
   CONTACT_FORM_ERROR_MESSAGES,
   CONTACT_FORM_STYLES,
-  BASE_INPUT_CLASS,
+  ERROR_INPUT_CLASS,
 } from "./contact-form.const";
-import type { ContactFormProps } from "./contact-form.types";
 import { Button } from "../button";
+import { cn } from "../../utils/tw-merge";
 
 export function ContactForm() {
   const [form, setForm] = useState({
@@ -17,18 +18,22 @@ export function ContactForm() {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
+
+    if (errors[name]) {
+      const updated = { ...errors };
+      delete updated[name];
+      setErrors(updated);
+    }
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name } = e.target;
-    setTouched(prev => ({ ...prev, [name]: true }));
 
     if (!form[name as keyof typeof form]) {
       setErrors(prev => ({
@@ -58,14 +63,12 @@ export function ContactForm() {
     }
   };
 
-  const t = CONTACT_FORM_STYLES[theme];
-
   return (
     <form
       onSubmit={handleSubmit}
-      className={`border-1 shadow-rb-black max-w-xl rounded-2xl p-6 ${t.form}`}
+      className="@container border-1 shadow-rb-black bg-light w-full max-w-xl rounded-xl border-black p-6 dark:bg-neutral-900"
     >
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="@md:grid-cols-2 grid grid-cols-1 gap-4">
         <div>
           <input
             name="name"
@@ -73,12 +76,15 @@ export function ContactForm() {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Nombre"
-            className={`${BASE_INPUT_CLASS} ${t.bg} ${t.placeholder} ${t.border} ${
-              errors.name ? t.error : touched.name ? t.focus : ""
-            }`}
+            className={cn(
+              ...BASE_INPUT_CLASS,
+              !!errors.name && ERROR_INPUT_CLASS
+            )}
           />
           {errors.name && (
-            <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+            <p className="text-error-800 dark:text-error-300 mt-1 text-sm">
+              {errors.name}
+            </p>
           )}
         </div>
         <div>
@@ -88,12 +94,15 @@ export function ContactForm() {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Email"
-            className={`${BASE_INPUT_CLASS} ${t.bg} ${t.placeholder} ${t.border} ${
-              errors.email ? t.error : touched.email ? t.focus : ""
-            }`}
+            className={cn(
+              ...BASE_INPUT_CLASS,
+              !!errors.email && ERROR_INPUT_CLASS
+            )}
           />
           {errors.email && (
-            <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+            <p className="text-error-800 dark:text-error-300 mt-1 text-sm">
+              {errors.email}
+            </p>
           )}
         </div>
       </div>
@@ -101,9 +110,10 @@ export function ContactForm() {
       <div className="mt-4">
         <div className="relative">
           <Location
-            className={`pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 transform ${
-              theme === "dark" ? "text-gray-400" : "text-gray-500"
-            }`}
+            className={cn(
+              "pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 transform",
+              "text-gray-500 dark:text-gray-400"
+            )}
           />
           <input
             name="location"
@@ -111,13 +121,17 @@ export function ContactForm() {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Ubicación"
-            className={`${BASE_INPUT_CLASS} pl-10 ${t.bg} ${t.placeholder} ${t.border} ${
-              errors.location ? t.error : touched.location ? t.focus : ""
-            }`}
+            className={cn(
+              ...BASE_INPUT_CLASS,
+              "pl-10",
+              !!errors.location && ERROR_INPUT_CLASS
+            )}
           />
         </div>
         {errors.location && (
-          <p className="mt-1 text-sm text-red-500">{errors.location}</p>
+          <p className="text-error-800 dark:text-error-300 mt-1 text-sm">
+            {errors.location}
+          </p>
         )}
       </div>
 
@@ -128,16 +142,14 @@ export function ContactForm() {
           value={form.message}
           onChange={handleChange}
           placeholder="Mensaje"
-          className={`${BASE_INPUT_CLASS} ${t.bg} ${t.placeholder} ${t.border} resize-none`}
+          className={cn(...BASE_INPUT_CLASS, "resize-none")}
         />
       </div>
 
-      <div className="mt-6 text-right">
+      <div className="mt-6">
         <Button
           label="Enviar"
-          className={`px-6 py-2 font-semibold ${
-            Object.keys(errors).length ? t.disabled : t.button
-          }`}
+          className="@md:w-fit @md:float-right w-full"
           disabled={Object.keys(errors).length > 0}
           {...{ type: "submit" }}
         />
