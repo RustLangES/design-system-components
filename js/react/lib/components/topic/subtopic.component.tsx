@@ -1,13 +1,10 @@
 import { Badge } from "../badge";
 import { Level } from "../level";
-import { ButtonHTMLAttributes } from "react";
 import { TopicElement } from "./topic.types";
 import { withAs } from "@/utils/hoc";
 
-type SubTopicProps = TopicElement & ButtonHTMLAttributes<HTMLButtonElement>;
-
 export const SubTopic = withAs(
-  (Component, { level, state, title, ...rest }: SubTopicProps) => {
+  (Component, { level, state, title, ...rest }: TopicElement) => {
     return (
       <Component {...rest} tabIndex={0} className="rustlanges-subtopic">
         <Level variant={level} />

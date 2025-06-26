@@ -12,7 +12,10 @@
 
   .rustlanges-topic__summary {
     @apply grid w-full grid-cols-[auto_1fr_auto_auto] items-center gap-2 border-y border-black px-3 py-4;
-    @apply [&>svg]:duration-400 [&>svg]:size-6 [&>svg]:transition;
+
+    & > svg {
+      @apply duration-400 size-6 transition;
+    }
   }
 
   .rustlanges-topic__title {
