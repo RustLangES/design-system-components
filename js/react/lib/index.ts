@@ -11,4 +11,5 @@ export * from "./components/radio";
 export * from "./components/badge";
 export * from "./components/dropdown";
 export * from "./components/calendar";
+export * from "./components/topic";
 export * from "./icons";

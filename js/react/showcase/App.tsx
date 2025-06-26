@@ -14,6 +14,8 @@ import {
   DropdownState,
   Calendar,
   CalendarRangeDate,
+  Topic,
+  SubTopic,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 import { useState } from "react";
@@ -279,6 +281,40 @@ export function App() {
         <Calendar type="multiple" onChange={setMultiple} value={multiple} />
         <Calendar type="range" onChange={setRange} value={range} />
       </ShowComponent>
+      <ShowComponent
+        component={Topic}
+        title="Topic"
+        propsDef={{
+          level: {
+            type: "string",
+            default: "n1",
+            options: ["n1", "n2", "n3", "op"],
+          },
+          title: { type: "string", default: "Tópico" },
+          state: {
+            type: "string",
+            default: "completed",
+            options: ["completed", "pending", "reading", "unread"],
+          },
+        }}
+      />
+      <ShowComponent
+        component={SubTopic}
+        title="Sub Topic"
+        propsDef={{
+          level: {
+            type: "string",
+            default: "n1",
+            options: ["n1", "n2", "n3", "op"],
+          },
+          title: { type: "string", default: "Tópico" },
+          state: {
+            type: "string",
+            default: "completed",
+            options: ["completed", "pending", "reading", "unread"],
+          },
+        }}
+      />
     </div>
   );
 }
