@@ -1,0 +1,32 @@
+@layer component {
+  .rustlanges-topic {
+    @apply w-full;
+  }
+  .rustlanges-topic[open] svg {
+    @apply -rotate-180;
+  }
+
+  .rustlanges-topic__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .rustlanges-topic__summary {
+    @apply grid w-full grid-cols-[auto_1fr_auto_auto] items-center gap-2 border-y border-black px-3 py-4;
+    @apply [&>svg]:duration-400 [&>svg]:size-6 [&>svg]:transition;
+  }
+
+  .rustlanges-topic__title {
+    @apply text-neutral-950 dark:text-neutral-50;
+  }
+
+  .rustlanges-subtopic {
+    @apply grid w-full grid-cols-[auto_1fr_auto] items-center gap-2 border-b px-6 py-2.5;
+    @apply border-b-gray dark:border-b-neutral-600;
+  }
+
+  .rustlanges-subtopic__title {
+    @apply text-neutral-950;
+    @apply desktop:text-sm text-xs;
+    @apply dark:text-neutral-50;
+  }
+}
