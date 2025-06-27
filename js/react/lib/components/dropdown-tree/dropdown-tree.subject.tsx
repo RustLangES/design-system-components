@@ -3,7 +3,6 @@ import { ArrowDown } from "@/icons";
 import { Badge } from "../badge";
 import { Level } from "../level";
 import { TopicElement } from "./dropdown-tree.types";
-import { cn } from "@/utils/tw-merge";
 import { Radio } from "../radio";
 
 type SubjectProps = PropsWithChildren &
@@ -17,7 +16,7 @@ export const DropdownTreeSubject = ({
   ...rest
 }: SubjectProps) => {
   return (
-    <details className={cn(["rustlanges-dropdown-tree-subject"])}>
+    <details className="rustlanges-dropdown-tree-subject">
       <summary>
         <Badge type="text" variant={state} />
         <Level as="span" variant={level} />

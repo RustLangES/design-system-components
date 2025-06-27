@@ -22,16 +22,13 @@
   }
 
   .rustlanges-dropdown-tree-start--extended {
-    box-shadow: 2px 2px 0px 0px #000000;
-    box-sizing: content-box;
-    @apply rounded-xl border border-black;
+    @apply shadow-brutal rounded-xl border border-black;
     @apply dark:bg-secondary-950 bg-secondary-50;
   }
 
   .rustlanges-dropdown-tree-start--default {
     & > summary {
-      box-shadow: 2px 2px 0px 0px #000000;
-      @apply mb-4 gap-4 rounded-2xl border border-black;
+      @apply shadow-brutal mb-4 gap-4 rounded-2xl border border-black;
       @apply dark:bg-secondary-950 bg-secondary-50;
     }
 

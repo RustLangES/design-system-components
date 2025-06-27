@@ -1,7 +1,6 @@
 @layer component {
   .rustlanges-dropdown-tree-subject {
-    box-shadow: 2px 2px 0px 0px #000000;
-    @apply relative ml-6 flex items-center rounded-xl border border-black;
+    @apply shadow-brutal relative ml-6 flex items-center rounded-xl border border-black;
     @apply bg-light;
     @apply dark:bg-dark;
 
