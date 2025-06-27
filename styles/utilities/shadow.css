@@ -4,3 +4,7 @@
     box-shadow: 2px 2px 0 0 --value(--color- *);
   }
 }
+
+@utility shadow-brutal {
+  box-shadow: 2px 2px 0 0 #000000;
+}
