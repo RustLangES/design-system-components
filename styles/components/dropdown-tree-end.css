@@ -1,0 +1,12 @@
+@layer component {
+  .dropdown-tree-end {
+    box-shadow: 2px 2px 0px 0px #000000;
+    @apply grid h-fit w-full rounded-xl border border-black px-4 py-2.5 text-left;
+    @apply bg-secondary-50 text-neutral-950;
+    @apply dark:bg-secondary-950 dark:text-neutral-50;
+
+    & > span:first-child {
+      @apply flex items-center justify-between;
+    }
+  }
+}

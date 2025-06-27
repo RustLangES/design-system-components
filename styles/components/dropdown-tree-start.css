@@ -1,0 +1,47 @@
+@layer component {
+  .rustlanges-dropdown-tree-start {
+    @apply box-border h-fit w-full;
+
+    & > summary {
+      @apply grid w-full grid-cols-[auto_1fr_auto] items-center gap-2 px-4 py-2.5 marker:hidden;
+      @apply [&>*:first-child]:col-span-3;
+
+      & > svg {
+        @apply duration-400 size-6 text-neutral-950 transition;
+        @apply dark:text-neutral-50;
+      }
+    }
+
+    &[open] > summary > svg {
+      @apply -rotate-180;
+    }
+  }
+
+  .rustlanges-dropdown-tree-start__title {
+    @apply text-neutral-950 dark:text-neutral-50;
+  }
+
+  .rustlanges-dropdown-tree-start--extended {
+    box-shadow: 2px 2px 0px 0px #000000;
+    box-sizing: content-box;
+    @apply rounded-xl border border-black;
+    @apply dark:bg-secondary-950 bg-secondary-50;
+  }
+
+  .rustlanges-dropdown-tree-start--default {
+    & > summary {
+      box-shadow: 2px 2px 0px 0px #000000;
+      @apply mb-4 gap-4 rounded-2xl border border-black;
+      @apply dark:bg-secondary-950 bg-secondary-50;
+    }
+
+    & > div {
+      @apply relative grid gap-4;
+
+      &::before {
+        content: "";
+        @apply absolute left-[9px] h-full w-0.5 bg-black;
+      }
+    }
+  }
+}
