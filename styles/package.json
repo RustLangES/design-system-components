@@ -34,10 +34,11 @@
   "scripts": {
     "build": "npx @tailwindcss/cli -i tailwindcss.css -o dist/bundled.css --minify"
   },
-  "peerDependencies": {},
-  "devDependencies": {
-    "@tailwindcss/cli": "^4.1.8",
+  "peerDependencies": {
     "tailwindcss": "^4.1.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.8"
   },
   "dependencies": {}
 }
