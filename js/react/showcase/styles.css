@@ -1,6 +1,2 @@
+@import "@rustlanges/showcase/styles.css";
 @import "@rustlanges/react/styles.css";
-@import "tailwindcss";
-
-html {
-  background: var(--color-gray-300);
-}

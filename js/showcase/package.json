@@ -1,6 +1,6 @@
 {
-  "name": "@rustlanges/react",
-  "private": false,
+  "name": "@rustlanges/showcase",
+  "private": true,
   "version": "0.0.1",
   "type": "module",
   "exports": {
@@ -10,9 +10,6 @@
     },
     "./styles.css": {
       "default": "./dist/styles.css"
-    },
-    "./dev": {
-      "default": "./lib/index.ts"
     }
   },
   "files": [
@@ -21,15 +18,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/RustLangES/design-system-components",
-    "directory": "js/react"
+    "directory": "js/showcase"
   },
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b ./tsconfig.lib.json && vite build && npm run check:tsc && npm run build:tailwindcss",
     "build:tailwindcss": "npx @tailwindcss/cli -i lib/styles.css -o dist/styles.css --minify",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && npm run check:tsc",
-    "check:tsc": "tsc --noEmit -p tsconfig.lib.json",
-    "preview": "vite preview"
+    "check:tsc": "tsc --noEmit -p tsconfig.lib.json"
   },
   "peerDependencies": {
     "react": "^19.1.0",
@@ -38,7 +33,6 @@
   "devDependencies": {
     "@eslint/js": "^9.28.0",
     "@rustlanges/styles": "file:../../styles",
-    "@rustlanges/showcase": "file:../showcase",
     "@tailwindcss/cli": "^4.1.8",
     "@tailwindcss/vite": "^4.1.8",
     "@types/node": "^22.15.29",
@@ -61,7 +55,7 @@
     "vite-plugin-dts": "^4.5.4"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.3.1"
+    "alien-signals": "^2.0.5",
+    "clsx": "^2.1.1"
   }
 }

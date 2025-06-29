@@ -15,17 +15,13 @@ export default defineConfig({
       tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
     }),
   ],
-  resolve: {
-    alias: {
-      "@rustlanges/react/styles.css": resolve(__dirname, "lib/styles.css"),
-      "@rustlanges/react": resolve(__dirname, "lib/index.ts"),
-      "@": resolve(__dirname, "./lib"),
-    },
-  },
   build: {
     copyPublicDir: false,
     lib: {
-      entry: resolve(__dirname, "lib/index.ts"),
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        react: resolve(__dirname, "src/react/index.ts"),
+      },
       formats: ["es"],
     },
     rollupOptions: {
@@ -33,13 +29,13 @@ export default defineConfig({
       input: Object.fromEntries(
         // https://rollupjs.org/configuration-options/#input
         glob
-          .sync("lib/**/*.{ts,tsx}", {
-            ignore: ["lib/**/*.showcase.{ts,tsx}", "lib/**/*.d.ts"],
+          .sync("src/**/*.{ts,tsx}", {
+            ignore: ["src/**/*.d.ts"],
           })
           .map(file => [
             // 1. The name of the entry point
             // lib/nested/foo.js becomes nested/foo
-            relative("lib", file.slice(0, file.length - extname(file).length)),
+            relative("src", file.slice(0, file.length - extname(file).length)),
             // 2. The absolute path to the entry file
             // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
             fileURLToPath(new URL(file, import.meta.url)),
