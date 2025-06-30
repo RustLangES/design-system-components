@@ -1,9 +1,9 @@
 import { StarBold } from "@/icons";
 
 export const FLAP_VARIANTS = {
-  highlight: "text-primary-400",
-  numeric: "text-primary-200",
-  descriptive: "text-secondary-400",
+  highlight: "rustlanges-flap--highlight",
+  numeric: "rustlanges-flap--numeric",
+  descriptive: "rustlanges-flap--descriptive",
 };
 
 export const FLAP_ICONS = {

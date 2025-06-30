@@ -1,6 +1,7 @@
 export * from "./components/Example";
 export * from "./components/button";
 export * from "./components/card";
+export * from "./components/contact-form";
 export * from "./components/chip";
 export * from "./components/tag";
 export * from "./components/flap";
@@ -10,4 +11,6 @@ export * from "./components/collaborators";
 export * from "./components/radio";
 export * from "./components/badge";
 export * from "./components/dropdown";
+export * from "./components/calendar";
+export * from "./components/dropdown-tree";
 export * from "./icons";
