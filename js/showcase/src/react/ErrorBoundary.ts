@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { jsxs } from "react/jsx-runtime";
-import { ErrorDef } from "../ShowComponent/error";
+import { ErrorsDef, ErrorStack } from "../ShowComponent/error";
 
 export function createErrorBoundary(
   render: () => React.ReactNode,
-  renderError: (error: ErrorDef[]) => HTMLElement
+  renderErrors: (error: ErrorsDef) => React.ReactNode
 ): React.ReactElement {
-  return jsxs(ErrorBoundary, { render, renderError });
+  return jsxs(ErrorBoundary, { render, renderErrors });
 }
 
 export class ErrorBoundary extends Component<
-  { renderError(error: ErrorDef[]): HTMLElement; render(): React.ReactNode },
+  {
+    renderErrors(error: ErrorsDef): React.ReactNode;
+    render(): React.ReactNode;
+  },
   { error?: Error }
 > {
   componentDidCatch(error: Error): void {
@@ -26,19 +29,13 @@ export class ErrorBoundary extends Component<
 
   render(): React.ReactNode {
     return this.state?.error
-      ? jsxs("div", {
-          styles: "display: contents;",
-          ref: (elem: HTMLElement) =>
-            elem.appendChild(
-              this.props.renderError(errorToDef(this.state.error!))
-            ),
-        })
+      ? this.props.renderErrors(errorToDef(this.state.error!))
       : this.props.render();
   }
 }
 
-function errorToDef(error: Error): ErrorDef[] {
-  return (error.stack?.split?.("\n") ?? [])
+function errorToDef(error: Error): ErrorsDef {
+  const stack: ErrorStack[] = (error.stack?.split?.("\n") ?? [])
     .map(line => {
       // split by really last @
       const [, name, source_ = ""] = line.match(/(.*)@([^@]*)$/) ?? [, line];
@@ -72,17 +69,12 @@ function errorToDef(error: Error): ErrorDef[] {
         column: parseInt(columnN),
         name: name,
         source: sourceFile,
-      } satisfies ErrorDef;
-      // <span key={line} className="flex w-full justify-between">
-      //   <span className="font-semibold">{name}</span>
-      //   <span
-      //     className={
-      //       !source.startsWith("/node_modules") ? "font-semibold" : ""
-      //     }
-      //   >
-      //     {source}
-      //   </span>
-      // </span>
+      } satisfies ErrorStack;
     })
-    .filter((e): e is ErrorDef => !!e);
+    .filter((e): e is ErrorStack => !!e);
+
+  return {
+    message: error.message,
+    stack,
+  };
 }

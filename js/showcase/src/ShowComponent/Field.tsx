@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { NormalizedProps } from "./types";
+import { h } from "../miniui";
 
 export function ShowComponentField({
   name,
@@ -26,16 +27,16 @@ export function ShowComponentField({
   });
 
   return (
-    <div className="flex w-full items-center">
-      <label className="w-full">
+    <div class="flex w-full items-center">
+      <label class="w-full">
         {name}
-        <span className={def.optional ? "text-cyan-700" : "text-red-700"}>
+        <span class={def.optional ? "text-cyan-700" : "text-red-700"}>
           {def.optional ? "?" : "*"}
         </span>
       </label>
       {modified && (
         <button
-          className="border-1 shadow-brutal mr-1 flex h-[1.7rem] min-w-[1.7rem] items-center justify-center rounded-sm"
+          class="border-1 shadow-brutal mr-1 flex h-[1.7rem] min-w-[1.7rem] items-center justify-center rounded-sm"
           // Ignore label events
           onClick={() => {
             setValue(def.default);
@@ -44,7 +45,7 @@ export function ShowComponentField({
         >
           <svg
             fill="currentColor"
-            strokeWidth="0"
+            stroke-width="0"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
             height="1em"
@@ -58,7 +59,7 @@ export function ShowComponentField({
         <>
           {def.options.length ? (
             <select
-              defaultValue={def.default as string}
+              value={def.default as string}
               onChange={e => {
                 setModified(true);
                 setValue(e.currentTarget.value);
@@ -69,9 +70,8 @@ export function ShowComponentField({
                   - select -
                 </option>
               ) : null}
-              {def.options.map((optionToSelect, idx) => (
+              {def.options.map(optionToSelect => (
                 <option
-                  key={idx}
                   selected={optionToSelect === value}
                   value={optionToSelect as string}
                 >
@@ -81,7 +81,7 @@ export function ShowComponentField({
             </select>
           ) : (
             <textarea
-              className="border-1 shadow-brutal h-[1.7rem] min-h-[1.7rem] max-w-[150px] rounded-sm px-1"
+              class="border-1 shadow-brutal h-[1.7rem] min-h-[1.7rem] max-w-[150px] rounded-sm px-1"
               value={value as string}
               onChange={ev => {
                 setModified(true);
@@ -93,14 +93,14 @@ export function ShowComponentField({
       ) : def.type === "boolean" ? (
         <>
           <button
-            className="border-1 shadow-brutal flex h-[1.7rem] min-w-[1.7rem] cursor-pointer items-center justify-center rounded-sm"
+            class="border-1 shadow-brutal flex h-[1.7rem] min-w-[1.7rem] cursor-pointer items-center justify-center rounded-sm"
             onClick={() => {
               setModified(true);
               setValue(!props.value);
             }}
           >
             <span
-              className={
+              class={
                 (props.value ? "block" : "hidden") +
                 " rounded-xs h-[1rem] w-[1rem] bg-black"
               }
@@ -110,18 +110,18 @@ export function ShowComponentField({
       ) : def.type === "object" ? (
         <input
           disabled
-          className="border-1 shadow-brutal h-[1.7rem] max-w-[150px] cursor-not-allowed rounded-sm bg-gray-300 px-1"
+          class="border-1 shadow-brutal h-[1.7rem] max-w-[150px] cursor-not-allowed rounded-sm bg-gray-300 px-1"
           value="object"
         />
       ) : def.type === "function" ? (
         <input
           disabled
-          className="border-1 shadow-brutal h-[1.7rem] w-[150px] cursor-not-allowed rounded-sm bg-gray-300 px-1"
+          class="border-1 shadow-brutal h-[1.7rem] w-[150px] cursor-not-allowed rounded-sm bg-gray-300 px-1"
           value="function"
         />
       ) : def.type === "callback" ? (
         <p
-          className={
+          class={
             "border-1 shadow-brutal h-[1.7rem] min-w-[150px] rounded-sm px-1 text-center " +
             (props.value ? "bg-green-400" : "")
           }

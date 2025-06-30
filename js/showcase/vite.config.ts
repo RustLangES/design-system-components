@@ -2,14 +2,12 @@ import { defineConfig } from "vite";
 import { extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { glob } from "glob";
-import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
     tailwindcss(),
     dts({
       tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
@@ -25,7 +23,7 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["react", "react/jsx-runtime"],
+      external: ["react", "react/jsx-runtime", "react-dom", "react-dom/client"],
       input: Object.fromEntries(
         // https://rollupjs.org/configuration-options/#input
         glob

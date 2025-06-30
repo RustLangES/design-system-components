@@ -1,27 +1,20 @@
+import { registerCase } from "@rustlanges/showcase";
 import { Button } from "./button.component";
 
-export default {
-  title: "Button",
-  propsDef: {
+registerCase("Button", {
+  props: {
     variant: {
-      type: "string",
+      kind: "string",
       options: ["primary", "secondary", "text", "icon"],
       default: "primary",
     },
     label: {
-      type: "string",
+      kind: "string",
       default: "Botón",
     },
-    disabled: {
-      type: "boolean",
-      default: false,
-    },
-    icon: {
-      type: "function",
-    },
-    className: {
-      type: "string",
-    },
+    disabled: "boolean",
+    icon: "function",
+    className: "string",
   },
   component: Button,
-};
+});

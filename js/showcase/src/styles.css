@@ -1,6 +1,5 @@
-@import "@rustlanges/react/styles.css";
-@import "tailwindcss";
+@import "@rustlanges/styles";
 
 html {
-  background: var(--color-gray-300);
+  @apply bg-light dark:bg-dark text-black dark:text-white;
 }
