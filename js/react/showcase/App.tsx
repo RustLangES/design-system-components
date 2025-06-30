@@ -11,6 +11,7 @@ import {
   Radio,
   Badge,
   DropdownState,
+  Card
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 
@@ -257,6 +258,19 @@ export function App() {
             default: "completed",
           },
         }}
+      />
+      <ShowComponent
+        title="Card"
+        propsDef={{
+          clickable: {
+            type: "boolean",
+            default: false,
+          },
+          className: {
+            type: "string",
+          },
+        }}
+        component={Card}
       />
     </div>
   );
