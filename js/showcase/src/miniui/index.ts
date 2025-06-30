@@ -29,12 +29,13 @@ export namespace MiniUI {
       MapToSignals<
         Omit<
           JSX.IntrinsicElements[K],
+          | "class"
           | keyof JSX.CustomEventHandlersNamespaced<
               ExtendedHTMLElementTagMap[K]
             >
           | keyof JSX.CustomEventHandlersLowerCase<ExtendedHTMLElementTagMap[K]>
         > & {
-          class: string | string[];
+          class?: string | string[];
         }
       >
     >
