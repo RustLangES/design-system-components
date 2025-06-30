@@ -33,7 +33,9 @@ export namespace MiniUI {
               ExtendedHTMLElementTagMap[K]
             >
           | keyof JSX.CustomEventHandlersLowerCase<ExtendedHTMLElementTagMap[K]>
-        >
+        > & {
+          class: string | string[];
+        }
       >
     >
   >;
@@ -148,6 +150,8 @@ export function h(
       } else {
         ref.removeAttribute(name);
       }
+    } else if (name === "class" && Array.isArray(value)) {
+      ref.setAttribute("class", value.join(" "));
     } else {
       ref.setAttribute(name, `${value}`);
     }
