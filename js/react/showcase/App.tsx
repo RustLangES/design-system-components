@@ -19,6 +19,7 @@ import {
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 import { Fragment, useState } from "react";
+import { ProgressBar } from "@/components/progress-bar/progress-bar.component";
 
 const collaborator = {
   avatarUrl:
@@ -512,6 +513,17 @@ export function App() {
           <InputSearch className="max-w-80" />
         </div>
       </ShowComponent>
+      <ShowComponent
+        title="Progress Bar"
+        component={ProgressBar}
+        propsDef={{
+          percentage: {
+            type: "string",
+            default: 50,
+            optional: false,
+          },
+        }}
+      />
     </div>
   );
 }
