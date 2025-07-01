@@ -31,8 +31,7 @@ export const InputSearch = ({
     );
   };
 
-  const handleCloseOnClickInput = () =>
-    hasFilter && filterModal.value && filterModal.setFalse();
+  const handleCloseOnClickInput = () => hasFilter && filterModal.setFalse();
 
   return (
     <div className={cn(["rustlanges-input-search-container", className])}>
