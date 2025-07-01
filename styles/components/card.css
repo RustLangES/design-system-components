@@ -1,6 +1,6 @@
 @layer components {
   .rustlanges-card {
-    @apply border-1 shadow-brutal rounded-lg border-black p-4 bg-light;
+    @apply border-1 shadow-brutal bg-light rounded-lg border-black p-4;
     @apply dark:bg-neutral-800;
   }
 
@@ -9,9 +9,9 @@
 
     @apply active:shadow-none;
     @apply hover:shadow-rb-violet-700 hover:border-violet-700;
-    @apply disabled:bg-neutral-100 disabled:shadow-none disabled:border-neutral-400 disabled:text-neutral-400;
+    @apply disabled:border-neutral-400 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:shadow-none;
 
     @apply hover:dark:border-primary-600 hover:dark:shadow-rb-primary-600;
-    @apply dark:disabled:shadow-none dark:disabled:border-neutral-10;
+    @apply dark:disabled:border-neutral-10 dark:disabled:shadow-none;
   }
 }
