@@ -149,6 +149,7 @@ export function App() {
       value: string;
     }>
   >([]);
+
   return (
     <div className="mx-auto mt-10 max-w-[1024px] px-5">
       <h1 className="mb-5 text-center text-5xl font-bold">
