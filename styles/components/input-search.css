@@ -1,0 +1,60 @@
+@layer components {
+  svg {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+
+  .rustlanges-input-search-container {
+    @apply relative flex h-fit w-full;
+  }
+
+  .rustlanges-input-search {
+    @apply shadow-rb-black flex h-11 w-full items-center gap-2.5 rounded-xl border border-black pl-2.5 transition;
+    @apply bg-light dark:bg-neutral-950;
+
+    @variant has-focus {
+      @apply border-primary-500 shadow-rb-primary-500;
+    }
+    & > input[type="text"] {
+      @apply z-50 h-full flex-1 appearance-none pr-2.5 outline-none transition-all;
+      @apply text-dark placeholder:text-neutral-200;
+      @variant dark {
+        @apply text-light placeholder:text-neutral-400;
+      }
+    }
+  }
+  .rustlanges-input-search--filter {
+    @apply rounded-r-none;
+  }
+
+  .rustlanges-input-search__filter {
+    & > button {
+      @apply shadow-rb-black grid size-11 cursor-pointer place-items-center items-center rounded-r-xl border border-black transition;
+      @apply bg-light dark:bg-neutral-950;
+    }
+  }
+
+  .rustlanges-input-search-button {
+    @apply grid size-11 cursor-pointer place-content-center;
+  }
+  .rustlanges-input-search-backdrop__content {
+    @apply absolute left-0 top-full z-[99] mt-2 w-full transition duration-200;
+  }
+
+  .rustlanges-input-search-backdrop__content--open {
+    @apply visible opacity-100;
+  }
+
+  .rustlanges-input-search-backdrop__content--closed {
+    @apply invisible opacity-0;
+  }
+
+  .rustlanges-input-search-backdrop__list {
+    @apply shadow-rb-black flex flex-wrap gap-2 p-4 transition;
+    @apply rounded-sm border border-black;
+    @apply bg-light dark:bg-neutral-950;
+
+    & > li {
+      @apply cursor-pointer;
+    }
+  }
+}

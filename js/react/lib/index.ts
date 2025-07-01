@@ -12,4 +12,5 @@ export * from "./components/badge";
 export * from "./components/dropdown";
 export * from "./components/calendar";
 export * from "./components/dropdown-tree";
+export * from "./components/input-search";
 export * from "./icons";
