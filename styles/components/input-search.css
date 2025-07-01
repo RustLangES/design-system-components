@@ -1,10 +1,12 @@
 @layer components {
-  svg {
-    @apply text-gray-600 dark:text-gray-400;
-  }
+  
 
   .rustlanges-input-search-container {
     @apply relative flex h-fit w-full;
+    
+    svg {
+      @apply text-gray-600 dark:text-gray-400;
+    }
   }
 
   .rustlanges-input-search {
