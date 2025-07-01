@@ -9,14 +9,13 @@ export type CardProps = {
 };
 
 export const Card = withAs((Component, props: CardProps) => {
-  const { clickable = false, disabled = false, className, ...attr } = props;
+  const { clickable = false, className, ...attr } = props;
 
   return (
     <Component
       className={cn(
         ...CARD_GROUP_VARIANTS.default,
-        clickable && "cursor-pointer",
-        disabled && "pointer-events-none",
+        clickable && CARD_GROUP_VARIANTS.clickable,
         className
       )}
       {...attr}
