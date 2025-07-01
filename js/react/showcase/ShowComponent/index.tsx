@@ -101,7 +101,7 @@ function ShowComponentInner(
   const [childrenProps, inputs] = processProps(normalizedProps);
 
   return (
-    <ShowComponentContainer title={props.title} className="bg-gray-50">
+    <ShowComponentContainer title={props.title} className="w-full bg-gray-50">
       {!!Object.keys(inputs).length && (
         <div className="border-r-1 flex w-full max-w-xs flex-col gap-2 border-r-gray-300 pr-2 pt-2">
           {inputs}
