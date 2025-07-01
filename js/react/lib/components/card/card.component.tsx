@@ -1,11 +1,10 @@
+import { PropsWithChildren } from "react";
 import { withAs } from "@/utils/hoc";
 import { cn } from "@/utils/tw-merge";
-import { CARD_GROUP_VARIANTS } from "./card.const";
 
-export type CardProps = {
+export type CardProps = PropsWithChildren & {
   clickable?: boolean;
   className?: string;
-  disabled?: boolean;
 };
 
 export const Card = withAs((Component, props: CardProps) => {
@@ -14,11 +13,11 @@ export const Card = withAs((Component, props: CardProps) => {
   return (
     <Component
       className={cn(
-        ...CARD_GROUP_VARIANTS.default,
-        clickable && CARD_GROUP_VARIANTS.clickable,
+        "rustlanges-card",
+        clickable && "rustlanges-card--clickable",
         className
       )}
       {...attr}
-    ></Component>
+    />
   );
 }, "div");
