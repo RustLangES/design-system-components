@@ -23,7 +23,9 @@ export namespace MiniUI {
   export type HTMLElementType = keyof ExtendedHTMLElementTagMap;
   export type HTMLElementProps<K extends HTMLElementType> = Partial<
     OmitNeverValue<
-      MapToSignals<
+      {
+        use: (ref: JSX.IntrinsicElements[K]) => void;
+      } & MapToSignals<
         Omit<
           JSX.IntrinsicElements[K],
           | "class"
@@ -32,7 +34,7 @@ export namespace MiniUI {
           >
           | keyof JSX.CustomEventHandlersLowerCase<ExtendedHTMLElementTagMap[K]>
         > & {
-          class?: string | string[];
+          class: string | string[];
         }
       >
     >
@@ -151,14 +153,12 @@ export function h(
   };
 
   if (typeof props === "object" && props != null) {
-    for (
-      const [propKey, propValue] of Object.entries(
-        props as Record<string, unknown>,
-      )
-    ) {
-      if (
-        isSignal(propValue) && !propKey.startsWith("on")
-      ) {
+    for (const [propKey, propValue] of Object.entries(
+      props as Record<string, unknown>
+    )) {
+      if (propKey === "use" && typeof propValue === "function") {
+        propValue(elem.deref());
+      } else if (isSignal(propValue) && !propKey.startsWith("on")) {
         effects.push(
           effect(() => {
             refGuard((ref) => {
