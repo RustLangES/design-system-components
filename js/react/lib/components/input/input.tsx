@@ -4,7 +4,6 @@ import clsx from "clsx";
 
 export function Input({
   variant = "default",
-  label,
   errorMessage,
   icon,
   disabled,
@@ -13,7 +12,6 @@ export function Input({
 }: InputFieldProps) {
   return (
     <div className="flex flex-col gap-1">
-      {label && <label className="text-sm font-medium text-black">{label}</label>}
       <div
         className={clsx(
           "flex items-center gap-2 px-4 py-2 rounded-xl transition-colors",
