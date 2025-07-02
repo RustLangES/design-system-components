@@ -31,8 +31,8 @@ export namespace MiniUI {
           JSX.IntrinsicElements[K],
           | "class"
           | keyof JSX.CustomEventHandlersNamespaced<
-              ExtendedHTMLElementTagMap[K]
-            >
+            ExtendedHTMLElementTagMap[K]
+          >
           | keyof JSX.CustomEventHandlersLowerCase<ExtendedHTMLElementTagMap[K]>
         > & {
           class?: string | string[];
@@ -45,20 +45,21 @@ export namespace MiniUI {
     | Node[]
     | string
     | globalThis.Node
+    | Signal<globalThis.Node>
     | WeakRef<globalThis.Node>;
 
   export type MapToSignals<P> = {
-    [K in keyof P]: EventListener extends P[K]
-      ? P[K]
-      : P[K] extends (...args: infer _) => infer __
-        ? never
-        : MaybeSignal<P[K]>;
+    [K in keyof P]: EventListener extends P[K] ? P[K]
+      : P[K] extends (...args: infer _) => infer __ ? never
+      : MaybeSignal<P[K]>;
   };
 
   type OmitNeverValue<Base> = {
-    [Key in keyof Base & {} as [Base[Key]] extends [never] | [undefined]
-      ? never
-      : Key]: Base[Key];
+    [
+      Key in keyof Base & {} as [Base[Key]] extends [never] | [undefined]
+        ? never
+        : Key
+    ]: Base[Key];
   };
 }
 
@@ -77,19 +78,10 @@ export function renderH(parent: HTMLElement, node: MiniUI.Node) {
 }
 
 export function renderAsElement(node: MiniUI.Node): globalThis.Node {
-  if (node instanceof WeakRef) {
-    const childRef = node.deref();
-    !childRef && console.warn("[MiniUI] rendering removed element");
-    return childRef!;
-  } else if (typeof node === "string" || typeof node === "number") {
-    return document.createTextNode(`${node}`);
-  } else if (Array.isArray(node)) {
-    const root = document.createElement("div");
-    root.style.display = "contents";
-    appendChildren(root, node);
-    return root;
+  if (typeof node === "function") {
+    return renderSignal(node);
   } else {
-    return node;
+    return renderSignal(() => node);
   }
 }
 
@@ -128,7 +120,7 @@ export function h(
   const elem = new WeakRef(
     SVGElements.has(elemType)
       ? document.createElementNS("http://www.w3.org/2000/svg", elemType)
-      : document.createElement(elemType)
+      : document.createElement(elemType),
   );
 
   let effects: Array<() => void> = [];
@@ -139,7 +131,7 @@ export function h(
       fn(ref);
     } else {
       // Stop all attached effects and clear it
-      effects.forEach(stop => stop());
+      effects.forEach((stop) => stop());
       effects = [];
     }
   };
@@ -159,21 +151,23 @@ export function h(
   };
 
   if (typeof props === "object" && props != null) {
-    for (const [propKey, propValue] of Object.entries(
-      props as Record<string, unknown>
-    )) {
+    for (
+      const [propKey, propValue] of Object.entries(
+        props as Record<string, unknown>,
+      )
+    ) {
       if (
         isSignal(propValue) ||
         (typeof propValue === "function" && !propKey.startsWith("on"))
       ) {
         effects.push(
           effect(() => {
-            refGuard(ref => {
+            refGuard((ref) => {
               const attrValue = propValue();
 
               setAttribute(ref, propKey, attrValue);
             });
-          })
+          }),
         );
       } else if (typeof propValue === "function") {
         const eventName = propKey.substring(2).toLowerCase();
@@ -205,9 +199,50 @@ function appendChildren(node: Node, children: MiniUI.Node[]) {
       node.appendChild(document.createTextNode(`${child}`));
     } else if (Array.isArray(child)) {
       appendChildren(node, child);
+    } else if (typeof child === "function") {
+      renderSignal(child, node);
     } else {
       console.log(child);
       node.appendChild(child);
     }
   }
+}
+
+function renderSignal(signal: () => MiniUI.Node, parent: Node | null = null) {
+  let node: Node;
+
+  effect(() => {
+    const value = signal();
+    let next_node;
+
+    if (value instanceof WeakRef) {
+      const childRef = value.deref();
+      !childRef && console.error("[MiniUI] rendering removed element");
+      next_node = childRef!;
+    } else if (typeof value === "string" || typeof value === "number") {
+      next_node = document.createTextNode(`${value}`);
+    } else if (Array.isArray(value)) {
+      const root = document.createElement("div");
+      root.style.display = "contents";
+      appendChildren(root, value);
+      next_node = root;
+    } else if (typeof value === "function") {
+      next_node = renderSignal(value, parent);
+    } else {
+      next_node = value;
+    }
+
+    if (node && parent) {
+      parent.replaceChild(next_node, node);
+      node = next_node;
+    } else if (node instanceof Element) {
+      node.replaceWith(next_node)
+      node = next_node;
+    } else {
+      parent?.appendChild(next_node);
+      node = next_node;
+    }
+  });
+
+  return node!;
 }
