@@ -15,11 +15,11 @@ import {
   Calendar,
   CalendarRangeDate,
   DropdownTree,
+  ProgressBar,
   InputSearch,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 import { Fragment, useState } from "react";
-import { ProgressBar } from "@/components/progress-bar/progress-bar.component";
 
 const collaborator = {
   avatarUrl:
