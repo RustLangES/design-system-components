@@ -3,15 +3,12 @@ import { SVGElements } from "dom-expressions/src/constants";
 import { type JSX } from "dom-expressions/src/jsx";
 
 export namespace MiniUI {
-  export const SIGNAL = Symbol("Signal");
-
   export interface WritableSignal<T> extends Signal<T> {
     (value: T): void;
   }
 
   export interface Signal<T> {
     (): T;
-    [SIGNAL]: typeof SIGNAL;
   }
 
   export type MaybeSignal<T> = T | (() => T);
@@ -64,13 +61,11 @@ export namespace MiniUI {
 }
 
 export function isSignal(s: unknown): s is MiniUI.Signal<unknown> {
-  return typeof s === "object" && s !== null && MiniUI.SIGNAL in s;
+  return typeof s === "function";
 }
 
 export function createSignal<T>(value: T): MiniUI.WritableSignal<T> {
-  const newSignal = alienSignal<T>(value) as MiniUI.WritableSignal<T>;
-  newSignal[MiniUI.SIGNAL] = MiniUI.SIGNAL;
-  return newSignal;
+  return alienSignal<T>(value);
 }
 
 export function renderH(parent: HTMLElement, node: MiniUI.Node) {
@@ -157,8 +152,7 @@ export function h(
       )
     ) {
       if (
-        isSignal(propValue) ||
-        (typeof propValue === "function" && !propKey.startsWith("on"))
+        isSignal(propValue) && !propKey.startsWith("on")
       ) {
         effects.push(
           effect(() => {
