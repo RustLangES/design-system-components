@@ -14,9 +14,12 @@ import {
   Radio,
   Badge,
   DropdownState,
+  Card,
   Calendar,
   CalendarRangeDate,
   DropdownTree,
+  ProgressBar,
+  InputSearch,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
 import { Fragment, useState } from "react";
@@ -126,10 +129,30 @@ const tree = {
   ],
 };
 
+const filters = [
+  { label: "Reciente", value: "reciente" },
+  { label: "ES", value: "es" },
+  { label: "EN", value: "en" },
+  { label: "Libros", value: "libros" },
+  { label: "Guías", value: "guias" },
+  { label: "Frameworks", value: "frameworks" },
+  { label: "Librerías", value: "librerias" },
+  { label: "Multinivel", value: "multinivel" },
+  { label: "Principiante", value: "principiante" },
+  { label: "Intermedio", value: "intermedio" },
+  { label: "Avanzado", value: "avanzado" },
+];
+
 export function App() {
   const [single, setSingle] = useState<Date | null>(new Date());
   const [multiple, setMultiple] = useState<Record<string, Date> | null>(null);
   const [range, setRange] = useState<CalendarRangeDate | null>(null);
+  const [activeFilters, setActiveFilters] = useState<
+    Array<{
+      label: string;
+      value: string;
+    }>
+  >([]);
 
   return (
     <div className="mx-auto mt-10 max-w-[1024px] px-5">
@@ -371,6 +394,27 @@ export function App() {
           },
         }}
       />
+      <ShowComponent
+        title="Card"
+        propsDef={{
+          clickable: {
+            type: "boolean",
+            default: false,
+          },
+          disabled: {
+            type: "boolean",
+            default: false,
+          },
+          className: {
+            type: "string",
+            default: "min-w-50 min-h-50",
+          },
+          onClick: {
+            type: "callback",
+          },
+        }}
+        component={Card}
+      />
       <ShowComponent title="Scroll bar ">
         <div className="scrollbar mx-auto h-48 w-full overflow-auto">
           <div className="mx-auto flex h-96 w-20 items-center">Container</div>
@@ -570,6 +614,28 @@ export function App() {
           </div>
         </div>
       </ShowComponent>
+      <ShowComponent title="Input Search">
+        <div className="flex min-h-60 w-full flex-wrap justify-evenly gap-40 p-5">
+          <InputSearch
+            activeFilters={activeFilters}
+            onChangeFilter={setActiveFilters}
+            filters={filters}
+            className="max-w-80"
+          />
+          <InputSearch className="max-w-80" />
+        </div>
+      </ShowComponent>
+      <ShowComponent
+        title="Progress Bar"
+        component={ProgressBar}
+        propsDef={{
+          percentage: {
+            type: "string",
+            default: 50,
+            optional: false,
+          },
+        }}
+      />
     </div>
   );
 }

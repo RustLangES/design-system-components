@@ -1,0 +1,23 @@
+@layer components {
+  .rustlanges-card {
+    @apply bg-light border-1 shadow-brutal rounded-lg border-black p-4;
+    @apply dark:bg-neutral-900;
+  }
+
+  .rustlanges-card--clickable {
+    @apply cursor-pointer;
+
+    @variant hover {
+      @apply shadow-rb-violet-700 border-violet-700;
+      @apply dark:border-primary-600 dark:shadow-rb-primary-600;
+    }
+
+    @apply active:shadow-none;
+  }
+
+  .rustlanges-card--disabled {
+    @apply pointer-events-none shadow-none;
+    @apply border-neutral-200;
+    @apply dark:border-neutral-600;
+  }
+}

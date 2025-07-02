@@ -1,6 +1,7 @@
 @import "./components/avatar.css";
 @import "./components/badge.css";
 @import "./components/button.css";
+@import "./components/card.css";
 @import "./components/chip.css";
 @import "./components/collaborators.css";
 @import "./components/dropdown.css";
@@ -14,3 +15,5 @@
 @import "./components/dropdown-tree-topic.css";
 @import "./components/dropdown-tree-subtopic.css";
 @import "./components/dropdown-tree-end.css";
+@import "./components/input-search.css";
+@import "./components/progress-bar.css";

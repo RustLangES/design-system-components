@@ -1,5 +1,6 @@
 export * from "./components/Example";
 export * from "./components/button";
+export * from "./components/card";
 export * from "./components/contact-form";
 export * from "./components/chip";
 export * from "./components/tag";
@@ -13,4 +14,6 @@ export * from "./components/badge";
 export * from "./components/dropdown";
 export * from "./components/calendar";
 export * from "./components/dropdown-tree";
+export * from "./components/input-search";
+export * from "./components/progress-bar";
 export * from "./icons";
