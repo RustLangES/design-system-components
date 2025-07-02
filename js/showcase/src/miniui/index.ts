@@ -40,6 +40,7 @@ export namespace MiniUI {
   export type Element<P> = HTMLElementType | Component<P>;
   export type Node =
     | Node[]
+    | boolean
     | string
     | globalThis.Node
     | Signal<Node>
@@ -189,6 +190,10 @@ function appendChildren(node: Node, children: MiniUI.Node[]) {
     if (child instanceof WeakRef) {
       const childRef = child.deref();
       childRef && node.appendChild(childRef);
+    } else if (typeof child === "boolean") {
+      if (child) {
+        node.appendChild(document.createTextNode(`${child}`));
+      }
     } else if (typeof child === "string" || typeof child === "number") {
       node.appendChild(document.createTextNode(`${child}`));
     } else if (Array.isArray(child)) {
@@ -213,6 +218,12 @@ function renderSignal(signal: () => MiniUI.Node, parent: Node | null = null) {
       const childRef = value.deref();
       !childRef && console.error("[MiniUI] rendering removed element");
       next_node = childRef!;
+    } else if (typeof value === "boolean") {
+      if (value) {
+        next_node = document.createTextNode(`${value}`);
+      } else {
+        next_node = document.createComment("");
+      }
     } else if (typeof value === "string" || typeof value === "number") {
       next_node = document.createTextNode(`${value}`);
     } else if (Array.isArray(value)) {
