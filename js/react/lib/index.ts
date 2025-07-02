@@ -1,5 +1,6 @@
 export * from "./components/Example";
 export * from "./components/button";
+export * from "./components/card";
 export * from "./components/contact-form";
 export * from "./components/chip";
 export * from "./components/tag";

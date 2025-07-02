@@ -12,6 +12,7 @@ import {
   Radio,
   Badge,
   DropdownState,
+  Card,
   Calendar,
   CalendarRangeDate,
   DropdownTree,
@@ -389,6 +390,27 @@ export function App() {
             default: "completed",
           },
         }}
+      />
+      <ShowComponent
+        title="Card"
+        propsDef={{
+          clickable: {
+            type: "boolean",
+            default: false,
+          },
+          disabled: {
+            type: "boolean",
+            default: false,
+          },
+          className: {
+            type: "string",
+            default: "min-w-50 min-h-50",
+          },
+          onClick: {
+            type: "callback",
+          },
+        }}
+        component={Card}
       />
       <ShowComponent title="Scroll bar ">
         <div className="scrollbar mx-auto h-48 w-full overflow-auto">
