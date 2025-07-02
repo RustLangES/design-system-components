@@ -16,6 +16,7 @@ import {
   Calendar,
   CalendarRangeDate,
   DropdownTree,
+  ProgressBar,
   InputSearch,
 } from "@rustlanges/react";
 import { ShowComponent } from "./ShowComponent";
@@ -534,6 +535,17 @@ export function App() {
           <InputSearch className="max-w-80" />
         </div>
       </ShowComponent>
+      <ShowComponent
+        title="Progress Bar"
+        component={ProgressBar}
+        propsDef={{
+          percentage: {
+            type: "string",
+            default: 50,
+            optional: false,
+          },
+        }}
+      />
     </div>
   );
 }
