@@ -2,7 +2,7 @@ import { INPUT_VARIANTS, ERROR_TEXT_CLASSES } from "./input.const";
 import { InputFieldProps } from "./input.types";
 import clsx from "clsx";
 
-export default function InputField({
+export function Input({
   variant = "default",
   label,
   errorMessage,
