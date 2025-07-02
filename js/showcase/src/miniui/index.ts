@@ -14,9 +14,9 @@ export namespace MiniUI {
   export type MaybeSignal<T> = T | (() => T);
 
   export type Component<P = {}> = (
-    props?: P,
+    props: P,
     ...children: MiniUI.Node[]
-  ) => HTMLElement;
+  ) => MiniUI.Node;
 
   export type ExtendedHTMLElementTagMap = JSX.IntrinsicElements;
 
@@ -42,7 +42,7 @@ export namespace MiniUI {
     | Node[]
     | string
     | globalThis.Node
-    | Signal<globalThis.Node>
+    | Signal<Node>
     | WeakRef<globalThis.Node>;
 
   export type MapToSignals<P> = {
