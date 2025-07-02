@@ -69,6 +69,10 @@ export function createSignal<T>(value: T): MiniUI.WritableSignal<T> {
   return alienSignal<T>(value);
 }
 
+export function createEffect(fn: () => void): void {
+  effect(fn);
+}
+
 export function renderH(parent: HTMLElement, node: MiniUI.Node) {
   appendChildren(parent, [node]);
 }
