@@ -383,7 +383,7 @@ export function App() {
           },
           className: {
             type: "string",
-            default: "min-w-50 min-h-50"
+            default: "min-w-50 min-h-50",
           },
           onClick: {
             type: "callback",
