@@ -1,17 +1,23 @@
 @layer components {
   .rustlanges-card {
-    @apply border-1 shadow-brutal bg-light rounded-lg border-black p-4;
-    @apply dark:bg-neutral-800;
+    @apply bg-light border-1 shadow-brutal rounded-lg border-black p-4;
+    @apply dark:bg-neutral-900;
   }
 
   .rustlanges-card--clickable {
-    @apply cursor-pointer disabled:pointer-events-none;
+    @apply cursor-pointer;
+
+    @variant hover {
+      @apply shadow-rb-violet-700 border-violet-700;
+      @apply dark:border-primary-600 dark:shadow-rb-primary-600;
+    }
 
     @apply active:shadow-none;
-    @apply hover:shadow-rb-violet-700 hover:border-violet-700;
-    @apply disabled:border-neutral-400 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:shadow-none;
+  }
 
-    @apply hover:dark:border-primary-600 hover:dark:shadow-rb-primary-600;
-    @apply dark:disabled:border-neutral-10 dark:disabled:shadow-none;
+  .rustlanges-card--disabled {
+    @apply pointer-events-none shadow-none;
+    @apply border-neutral-200;
+    @apply dark:border-neutral-600;
   }
 }

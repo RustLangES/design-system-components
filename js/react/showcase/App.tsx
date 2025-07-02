@@ -377,8 +377,13 @@ export function App() {
             type: "boolean",
             default: false,
           },
+          disabled: {
+            type: "boolean",
+            default: false,
+          },
           className: {
             type: "string",
+            default: "min-w-50 min-h-50"
           },
         }}
         component={Card}
