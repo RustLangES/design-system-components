@@ -14,7 +14,7 @@ export namespace MiniUI {
     [SIGNAL]: typeof SIGNAL;
   }
 
-  export type MaybeSignal<T> = Signal<T> | T;
+  export type MaybeSignal<T> = T | (() => T);
 
   export type Component<P = {}> = (
     props?: P,
@@ -245,4 +245,17 @@ function renderSignal(signal: () => MiniUI.Node, parent: Node | null = null) {
   });
 
   return node!;
+}
+
+export function Show(
+  { when }: { when: MiniUI.Signal<boolean> },
+  ...children: MiniUI.Node[]
+): MiniUI.Node {
+  return h(
+    "div",
+    {
+      style: () => (when() ? "display: contents;" : "display: none;"),
+    },
+    ...children
+  );
 }
