@@ -1,4 +1,4 @@
-import { h, MiniUI } from "../miniui";
+import { h, MiniUI } from "./miniui";
 
 export type ErrorStack = {
   line: number;

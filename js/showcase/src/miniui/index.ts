@@ -18,14 +18,20 @@ export namespace MiniUI {
     ...children: MiniUI.Node[]
   ) => MiniUI.Node;
 
+  export type GetNodeElement<K extends HTMLElementType> =
+    NonNullable<JSX.IntrinsicElements[K]["onClick"]> extends JSX.EventHandlerUnion<any, any, infer Event>
+      ? Event extends JSX.EventHandler<infer Node, any> ? Node : Event
+      : NonNullable<JSX.IntrinsicElements[K]["onClick"]>;
+
   export type ExtendedHTMLElementTagMap = JSX.IntrinsicElements;
 
   export type HTMLElementType = keyof ExtendedHTMLElementTagMap;
   export type HTMLElementProps<K extends HTMLElementType> = Partial<
     OmitNeverValue<
-      {
-        use: (ref: JSX.IntrinsicElements[K]) => void;
-      } & MapToSignals<
+      & {
+        use: (ref: GetNodeElement<K>) => void;
+      }
+      & MapToSignals<
         Omit<
           JSX.IntrinsicElements[K],
           | "class"
@@ -71,8 +77,8 @@ export function createSignal<T>(value: T): MiniUI.WritableSignal<T> {
   return alienSignal<T>(value);
 }
 
-export function createEffect(fn: () => void): void {
-  effect(fn);
+export function createEffect(fn: () => void): () => void {
+  return effect(fn);
 }
 
 export function renderH(parent: HTMLElement, node: MiniUI.Node) {
@@ -153,9 +159,11 @@ export function h(
   };
 
   if (typeof props === "object" && props != null) {
-    for (const [propKey, propValue] of Object.entries(
-      props as Record<string, unknown>
-    )) {
+    for (
+      const [propKey, propValue] of Object.entries(
+        props as Record<string, unknown>,
+      )
+    ) {
       if (propKey === "use" && typeof propValue === "function") {
         propValue(elem.deref());
       } else if (isSignal(propValue) && !propKey.startsWith("on")) {
@@ -205,7 +213,6 @@ function appendChildren(node: Node, children: MiniUI.Node[]) {
     } else if (typeof child === "function") {
       renderSignal(child, node);
     } else {
-      console.log(child);
       node.appendChild(child);
     }
   }
@@ -245,7 +252,7 @@ function renderSignal(signal: () => MiniUI.Node, parent: Node | null = null) {
       parent.replaceChild(next_node, node);
       node = next_node;
     } else if (node instanceof Element) {
-      node.replaceWith(next_node)
+      node.replaceWith(next_node);
       node = next_node;
     } else {
       parent?.appendChild(next_node);
@@ -265,6 +272,25 @@ export function Show(
     {
       style: () => (when() ? "display: contents;" : "display: none;"),
     },
-    ...children
+    ...children,
   );
+}
+
+export type MatchProps<
+  Cases extends Record<string, MiniUI.Component<P>>,
+  Keys extends keyof Cases,
+  P extends {} = {},
+> =
+  & { value: Keys; cases: Cases }
+  & ({} extends NonNullable<P> ? { props?: NonNullable<P> }
+    : { props: NonNullable<P> });
+
+export function Match<
+  P extends {},
+  Cases extends Record<string, MiniUI.Component<P>>,
+  Keys extends keyof Cases,
+>({ value, props, cases }: MatchProps<Cases, Keys, P>): MiniUI.Node {
+  return () => {
+    return cases[value](props ?? ({} as P));
+  };
 }

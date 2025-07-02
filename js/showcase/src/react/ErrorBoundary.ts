@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { jsxs } from "react/jsx-runtime";
-import { ErrorsDef, ErrorStack } from "../ShowComponent/error";
+import { ErrorsDef, ErrorStack } from "../error";
 
 export function createErrorBoundary(
   render: () => React.ReactNode,
@@ -30,7 +30,7 @@ export class ErrorBoundary extends Component<
   render(): React.ReactNode {
     return this.state?.error
       ? this.props.renderErrors(errorToDef(this.state.error!))
-      : this.props.render();
+      : jsxs(this.props.render, {});
   }
 }
 
