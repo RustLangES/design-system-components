@@ -1,0 +1,39 @@
+@layer components {
+  .rustlanges-input {
+    @apply flex items-center gap-2 px-4 py-2 rounded-xl transition-colors;
+    @apply bg-white border border-black text-black placeholder:text-neutral-500;
+
+    @variant hover {
+      @apply bg-white border border-black text-black placeholder:text-neutral-500;
+    }
+
+    &:has(> :active), &:has(> :focus) {
+      @apply bg-white border border-orange-500 ring-1 ring-orange-500 text-black placeholder:text-neutral-500;
+    }
+
+    @variant has-disabled {
+      @apply bg-neutral-100 border border-neutral-300 text-neutral-400 placeholder:text-neutral-400 cursor-not-allowed;
+    }
+  }
+
+  .rustlanges-input--error {
+    @apply bg-white border border-red-600 text-black placeholder:text-neutral-500;
+  }
+
+  .rustlanges-input__container {
+    @apply flex flex-col gap-1;
+  }
+
+  .rustlanges-input__error {
+    @apply text-sm text-red-600 mt-1;
+  }
+
+  .rustlanges-input__inner {
+    @apply w-full outline-none bg-transparent placeholder:text-inherit;
+    @apply disabled:text-neutral-400;
+  }
+
+  .rustlanges-input__icon {
+    @apply text-neutral-500;
+  }
+}

@@ -1,6 +1,5 @@
-import { INPUT_VARIANTS, ERROR_TEXT_CLASSES } from "./input.const";
-import { InputFieldProps } from "./input.types";
 import clsx from "clsx";
+import { InputFieldProps } from "./input.types";
 
 export function Input({
   errorMessage,
@@ -11,26 +10,23 @@ export function Input({
   ...props
 }: InputFieldProps) {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="rustlanges-input__container">
       <div
         className={clsx(
-          "flex items-center gap-2 px-4 py-2 rounded-xl transition-colors",
-          INPUT_VARIANTS["default"],
-          className
+          "rustlanges-input",
+          hasError && "rustlanges-input--error",
+          className,
         )}
       >
-        {icon && <span className="text-neutral-500">{icon}</span>}
+        {icon && <span className="rustlanges-input__icon">{icon}</span>}
         <input
           disabled={disabled}
-          className={clsx(
-            "w-full outline-none bg-transparent placeholder:text-inherit",
-            { "text-neutral-400": disabled }
-          )}
+          className="rustlanges-input__inner"
           {...props}
         />
       </div>
       {hasError && errorMessage && (
-        <span className={ERROR_TEXT_CLASSES}>{errorMessage}</span>
+        <span className="rustlanges-input__error">{errorMessage}</span>
       )}
     </div>
   );
