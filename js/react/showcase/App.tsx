@@ -5,6 +5,8 @@ import {
   Github,
   Tag,
   Telegram,
+  Input,
+  Location,
   Flap,
   Chip,
   Level,
@@ -523,6 +525,31 @@ export function App() {
             </DropdownTree.End>
           </div>
         </div>
+      </ShowComponent>
+      <ShowComponent
+        title="Input"
+        propsDef={{
+          placeholder: {
+            type: "string",
+            default: "Input",
+          },
+          disabled: {
+            type: "boolean",
+            default: false,
+          },
+          hasError: {
+            type: "boolean",
+            default: false,
+          },
+          errorMessage: {
+            type: "string",
+            default: "Error",
+          },
+        }}
+        component={Input}
+      />
+      <ShowComponent title="Input With Icon">
+        <Input icon={<Location />} placeholder="Input" />
       </ShowComponent>
       <ShowComponent title="Input Search">
         <div className="flex min-h-60 w-full flex-wrap justify-evenly gap-40 p-5">

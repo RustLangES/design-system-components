@@ -5,6 +5,7 @@ export * from "./components/contact-form";
 export * from "./components/chip";
 export * from "./components/tag";
 export * from "./components/flap";
+export * from "./components/input";
 export * from "./components/level";
 export * from "./components/avatar";
 export * from "./components/collaborators";
