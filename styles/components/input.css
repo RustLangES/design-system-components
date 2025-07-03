@@ -1,15 +1,16 @@
 @layer components {
   .rustlanges-input {
-    @apply flex items-center gap-2 px-[10px] py-3 rounded-xl transition-colors;
+    @apply flex items-center gap-2 rounded-xl px-[10px] py-3 transition-colors;
     @apply bg-light border-1 border-black text-black hover:bg-neutral-100;
     @apply dark:bg-neutral-950 dark:text-white dark:hover:bg-neutral-900;
 
-    &:has(> :active), &:has(> :focus) {
+    &:has(> :active),
+    &:has(> :focus) {
       @apply border-primary-500;
     }
 
     @variant has-disabled {
-      @apply bg-neutral-100 border-neutral-400 text-neutral-600 cursor-not-allowed;
+      @apply cursor-not-allowed border-neutral-400 bg-neutral-100 text-neutral-600;
       @apply dark:bg-neutral-900 dark:text-neutral-400;
     }
   }
@@ -23,11 +24,11 @@
   }
 
   .rustlanges-input__error {
-    @apply text-sm text-error-800 mt-1 dark:text-error-300;
+    @apply text-error-800 dark:text-error-300 mt-1 text-sm;
   }
 
   .rustlanges-input__inner {
-    @apply w-full outline-none bg-transparent;
+    @apply w-full bg-transparent outline-none;
     @apply placeholder:text-neutral-600 dark:placeholder:text-neutral-400;
     @apply disabled:pointer-events-none disabled:placeholder:text-neutral-400 dark:disabled:placeholder:text-neutral-600;
   }

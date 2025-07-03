@@ -526,24 +526,28 @@ export function App() {
           </div>
         </div>
       </ShowComponent>
-      <ShowComponent title="Input" propsDef={{
-        placeholder: {
-          type: "string",
-          default: "Input",
-        },
-        disabled: {
-          type: "boolean",
-          default: false,
-        },
-        hasError: {
-          type: "boolean",
-          default: false,
-        },
-        errorMessage: {
-          type: "string",
-          default: "Error",
-        },
-      }} component={Input} />
+      <ShowComponent
+        title="Input"
+        propsDef={{
+          placeholder: {
+            type: "string",
+            default: "Input",
+          },
+          disabled: {
+            type: "boolean",
+            default: false,
+          },
+          hasError: {
+            type: "boolean",
+            default: false,
+          },
+          errorMessage: {
+            type: "string",
+            default: "Error",
+          },
+        }}
+        component={Input}
+      />
       <ShowComponent title="Input With Icon">
         <Input icon={<Location />} placeholder="Input" />
       </ShowComponent>

@@ -15,7 +15,7 @@ export function Input({
         className={clsx(
           "rustlanges-input",
           hasError && "rustlanges-input--error",
-          className,
+          className
         )}
       >
         {icon && <span className="rustlanges-input__icon">{icon}</span>}
