@@ -1,23 +1,21 @@
 @layer components {
   .rustlanges-input {
-    @apply flex items-center gap-2 px-4 py-2 rounded-xl transition-colors;
-    @apply bg-white border border-black text-black placeholder:text-neutral-500;
-
-    @variant hover {
-      @apply bg-white border border-black text-black placeholder:text-neutral-500;
-    }
+    @apply flex items-center gap-2 px-[10px] py-3 rounded-xl transition-colors;
+    @apply bg-light border-1 border-black text-black hover:bg-neutral-100;
+    @apply dark:bg-neutral-950 dark:text-white dark:hover:bg-neutral-900;
 
     &:has(> :active), &:has(> :focus) {
-      @apply bg-white border border-orange-500 ring-1 ring-orange-500 text-black placeholder:text-neutral-500;
+      @apply border-primary-500;
     }
 
     @variant has-disabled {
-      @apply bg-neutral-100 border border-neutral-300 text-neutral-400 placeholder:text-neutral-400 cursor-not-allowed;
+      @apply bg-neutral-100 border-neutral-400 text-neutral-600 cursor-not-allowed;
+      @apply dark:bg-neutral-900 dark:text-neutral-400;
     }
   }
 
   .rustlanges-input--error {
-    @apply bg-white border border-red-600 text-black placeholder:text-neutral-500;
+    @apply border-error-600;
   }
 
   .rustlanges-input__container {
@@ -25,15 +23,20 @@
   }
 
   .rustlanges-input__error {
-    @apply text-sm text-red-600 mt-1;
+    @apply text-sm text-error-800 mt-1 dark:text-error-300;
   }
 
   .rustlanges-input__inner {
-    @apply w-full outline-none bg-transparent placeholder:text-inherit;
-    @apply disabled:text-neutral-400;
+    @apply w-full outline-none bg-transparent;
+    @apply placeholder:text-neutral-600 dark:placeholder:text-neutral-400;
+    @apply disabled:pointer-events-none disabled:placeholder:text-neutral-400 dark:disabled:placeholder:text-neutral-600;
   }
 
   .rustlanges-input__icon {
-    @apply text-neutral-500;
+    @apply text-neutral-600;
+
+    &:has(+ :disabled) {
+      @apply text-neutral-400;
+    }
   }
 }

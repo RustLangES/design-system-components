@@ -527,6 +527,10 @@ export function App() {
         </div>
       </ShowComponent>
       <ShowComponent title="Input" propsDef={{
+        placeholder: {
+          type: "string",
+          default: "Input",
+        },
         disabled: {
           type: "boolean",
           default: false,
