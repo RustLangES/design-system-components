@@ -3,8 +3,8 @@ import { InputFieldProps } from "./input.types";
 import clsx from "clsx";
 
 export function Input({
-  variant = "default",
   errorMessage,
+  hasError = !!errorMessage,
   icon,
   disabled,
   className,
@@ -15,21 +15,21 @@ export function Input({
       <div
         className={clsx(
           "flex items-center gap-2 px-4 py-2 rounded-xl transition-colors",
-          INPUT_VARIANTS[variant],
+          INPUT_VARIANTS["default"],
           className
         )}
       >
         {icon && <span className="text-neutral-500">{icon}</span>}
         <input
-          disabled={variant === "inactive" || disabled}
+          disabled={disabled}
           className={clsx(
             "w-full outline-none bg-transparent placeholder:text-inherit",
-            { "text-neutral-400": variant === "inactive" }
+            { "text-neutral-400": disabled }
           )}
           {...props}
         />
       </div>
-      {variant === "error" && errorMessage && (
+      {hasError && errorMessage && (
         <span className={ERROR_TEXT_CLASSES}>{errorMessage}</span>
       )}
     </div>

@@ -526,93 +526,22 @@ export function App() {
           </div>
         </div>
       </ShowComponent>
-      <ShowComponent title="Labels">
-        <div className="mx-auto max-w-4xl space-y-6 py-10">
-          <div>
-            <label className="mb-2 block text-sm font-semibold text-black">
-              Default
-            </label>
-            <div className="flex gap-4">
-              <Input placeholder="Input" variant="default" className="w-full" />
-              <Input
-                placeholder="Input"
-                variant="default"
-                icon={<Location />}
-                className="w-full"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-semibold text-black">
-              Hover
-            </label>
-            <div className="flex gap-4">
-              <Input placeholder="Input" variant="hover" className="w-full" />
-              <Input
-                placeholder="Input"
-                variant="hover"
-                icon={<Location />}
-                className="w-full"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-semibold text-black">
-              Pressed/Activo
-            </label>
-            <div className="flex gap-4">
-              <Input placeholder="Input" variant="active" className="w-full" />
-              <Input
-                placeholder="Input"
-                variant="active"
-                icon={<Location />}
-                className="w-full"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-semibold text-black">
-              Inactivo
-            </label>
-            <div className="flex gap-4">
-              <Input
-                placeholder="Input"
-                variant="inactive"
-                className="w-full"
-              />
-              <Input
-                placeholder="Input"
-                variant="inactive"
-                icon={<Location />}
-                className="w-full"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-semibold text-black">
-              Error
-            </label>
-            <div className="flex gap-4">
-              <Input
-                placeholder="Input"
-                variant="error"
-                errorMessage="Mensaje de error"
-                className="w-full"
-              />
-              <Input
-                placeholder="Input"
-                variant="error"
-                icon={<Location />}
-                errorMessage="Mensaje de error"
-                className="w-full"
-              />
-            </div>
-          </div>
-        </div>
+      <ShowComponent title="Input" propsDef={{
+        disabled: {
+          type: "boolean",
+          default: false,
+        },
+        hasError: {
+          type: "boolean",
+          default: false,
+        },
+        errorMessage: {
+          type: "string",
+          default: "Error",
+        },
+      }} component={Input} />
+      <ShowComponent title="Input With Icon">
+        <Input icon={<Location />} placeholder="Input" />
       </ShowComponent>
       <ShowComponent title="Input Search">
         <div className="flex min-h-60 w-full flex-wrap justify-evenly gap-40 p-5">
