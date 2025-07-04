@@ -40,7 +40,7 @@ export namespace MiniUI {
           >
           | keyof JSX.CustomEventHandlersLowerCase<ExtendedHTMLElementTagMap[K]>
         > & {
-          class: string | string[];
+          class: string | (string | boolean)[];
         }
       >
     >
@@ -152,7 +152,7 @@ export function h(
         ref.removeAttribute(name);
       }
     } else if (name === "class" && Array.isArray(value)) {
-      ref.setAttribute("class", value.join(" "));
+      ref.setAttribute("class", value.filter(v => !!v).join(" "));
     } else {
       ref.setAttribute(name, `${value}`);
     }
