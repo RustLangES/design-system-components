@@ -1,7 +1,7 @@
 import { ShowcaseDef } from ".";
 import { normalizeProps, ShowcaseField } from "./field";
 import { ChevronDown } from "./icons";
-import { createSignal, h, MiniUI, renderAsElement } from "./miniui";
+import { createSignal, h, MiniUI } from "./miniui";
 import { renderErrors } from "./error";
 
 const registeredCases: InternalCase<unknown>[] = [];
@@ -146,7 +146,7 @@ function ShowCaseDef<TComponent, TNode>(
     props.map(prop => [prop.displayName, createSignal(prop.default)])
   );
 
-  const inputs = renderAsElement(
+  const inputs = (
     <div
       class={[
         "w-full pb-2 pr-2",

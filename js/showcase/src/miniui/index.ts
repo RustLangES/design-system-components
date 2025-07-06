@@ -85,15 +85,8 @@ export function createEffect(fn: () => void): () => void {
 }
 
 export function renderH(parent: HTMLElement, node: MiniUI.Node) {
+  parent.innerHTML = "";
   appendChildren(parent, [node]);
-}
-
-export function renderAsElement(node: MiniUI.Node): globalThis.Node {
-  if (typeof node === "function") {
-    return renderSignal(node);
-  } else {
-    return renderSignal(() => node);
-  }
 }
 
 export function h<K extends MiniUI.HTMLElementType>(
@@ -198,7 +191,7 @@ function isFragment(value: unknown): value is typeof h {
   return value === h;
 }
 
-function appendChildren(node: Node, children: MiniUI.Node[]) {
+export function appendChildren(node: Node, children: MiniUI.Node[]) {
   for (const child of children) {
     if (child instanceof WeakRef) {
       const childRef = child.deref();

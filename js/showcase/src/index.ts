@@ -1,5 +1,5 @@
 import { getRegisteredCases, ShowCase } from "./case";
-import { MiniUI, renderH } from "./miniui";
+import { appendChildren, MiniUI } from "./miniui";
 import { ErrorsDef } from "./error";
 
 export * from "./case";
@@ -16,7 +16,7 @@ export interface ShowcaseDef<TComponent, TNode> extends ShowcaseConfigDef {
     props: Record<string, MiniUI.Signal<unknown>>;
     events: Record<string, MiniUI.Signal<void>>;
   }): TNode;
-  attach(node: Node): TNode;
+  attach(node: MiniUI.Node): TNode;
   createErrorBoundary(
     render: () => TNode,
     renderErrors: (errors: ErrorsDef) => TNode
@@ -33,13 +33,12 @@ export function createShowcase<TComponent, TNode>(
     throw "No root element";
   }
 
-  for (const caseDef of getRegisteredCases()) {
-    renderH(
-      root,
+  appendChildren(root, [
+    getRegisteredCases().map(caseDef =>
       ShowCase({
         showcaseDef,
         caseDef,
       })
-    );
-  }
+    ),
+  ]);
 }

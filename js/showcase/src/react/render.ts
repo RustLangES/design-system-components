@@ -1,7 +1,7 @@
 import React, { useEffect, useSyncExternalStore } from "react";
 import { Fragment, jsxs } from "react/jsx-runtime";
 import ReactDOM from "react-dom/client";
-import { createEffect, MiniUI } from "../miniui";
+import { createEffect, MiniUI, renderH } from "../miniui";
 
 export function instiate<P extends {}>(
   node: (p: P) => React.ReactNode,
@@ -28,10 +28,10 @@ export function renderNode(node: React.ReactNode): globalThis.Node {
   return root;
 }
 
-export function attach(node: Node): React.ReactNode {
+export function attach(node: MiniUI.Node): React.ReactNode {
   return jsxs("div", {
     style: { display: "contents" },
-    ref: (elem: HTMLElement) => elem?.appendChild(node),
+    ref: (elem: HTMLElement) => elem && renderH(elem, node),
   });
 }
 

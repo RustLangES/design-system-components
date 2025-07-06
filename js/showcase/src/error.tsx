@@ -27,9 +27,9 @@ export function renderError(error: ErrorStack): MiniUI.Node {
 
 export function renderErrors(error: ErrorsDef): MiniUI.Node {
   return (
-    <div class="contents">
+    <>
       <span class="text-xl font-bold">{error.message}</span>
       {error.stack.map(renderError)}
-    </div>
+    </>
   );
 }
