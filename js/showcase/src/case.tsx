@@ -101,11 +101,15 @@ export function ShowCase<TComponent, TNode>({
     renderer = () => ShowCaseDef(caseDef.def, showcaseDef);
   }
 
+  const caseFailed = createSignal(true);
+
   return (
     <details
-      class={[
-        "shadow-brutal details-content:flex mx-auto mb-5 px-3 py-2 max-w-case",
-        "border-1 rounded-sm border-black dark:bg-neutral-900",
+      class={() => [
+        "shadow-brutal details-content:flex max-w-case mx-auto mb-5 px-3 py-2",
+        "border-1 rounded-sm border-black",
+        !caseFailed() && "bg-light dark:bg-neutral-900",
+        caseFailed() && "bg-error-400 dark:bg-error-600",
       ]}
     >
       <summary
@@ -121,16 +125,25 @@ export function ShowCase<TComponent, TNode>({
       </summary>
       <div
         class={() => [
-          isDefRenderer && "w-full flex gap-2 flex-col items-center",
-          !isDefRenderer && "flex justify-center items-center pt-2"
+          "flex",
+          !caseFailed() &&
+            isDefRenderer &&
+            "w-full flex-col items-center gap-2",
+          !caseFailed() && !isDefRenderer && "items-center justify-center pt-2",
+          caseFailed() && "flex-col",
         ]}
       >
         {showcaseDef.renderNode(
           showcaseDef.createErrorBoundary(
-            renderer,
-            (errors) =>
-              showcaseDef.attach(renderAsElement(renderErrors(errors))),
-          ),
+            () => {
+              caseFailed(false);
+              return renderer();
+            },
+            errors => {
+              caseFailed(true);
+              return showcaseDef.attach(renderErrors(errors));
+            }
+          )
         )}
       </div>
     </details>
