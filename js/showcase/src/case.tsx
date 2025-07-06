@@ -95,17 +95,19 @@ export function ShowCase<TComponent, TNode>({
   caseDef: InternalCase<TComponent>;
 }): MiniUI.Node {
   let renderer: () => TNode;
+  let isDefRenderer = false;
   if (caseDef.kind === "render") {
     renderer = () => showcaseDef.instiate(caseDef.render, {});
   } else {
+    isDefRenderer = true;
     renderer = () => ShowCaseDef(caseDef.def, showcaseDef);
   }
 
   return (
     <details
       class={[
-        "shadow-brutal details-content:flex mb-5 px-3 py-2 dark:bg-neutral-900",
-        "border-1 rounded-sm border-black",
+        "shadow-brutal details-content:flex mx-auto mb-5 px-3 py-2 max-w-case",
+        "border-1 rounded-sm border-black dark:bg-neutral-900",
       ]}
     >
       <summary
@@ -119,7 +121,12 @@ export function ShowCase<TComponent, TNode>({
           <ChevronDown />
         </span>
       </summary>
-      <div class="flex flex-col gap-5 sm:flex-row">
+      <div
+        class={() => [
+          isDefRenderer && "w-full flex gap-2 flex-col items-center",
+          !isDefRenderer && "flex justify-center items-center pt-2"
+        ]}
+      >
         {showcaseDef.renderNode(
           showcaseDef.createErrorBoundary(
             renderer,
@@ -144,8 +151,9 @@ function ShowCaseDef<TComponent, TNode>(
   const inputs = renderAsElement(
     <div
       class={[
-        "flex w-full max-w-xs flex-col gap-2 pr-2 pt-2",
-        "border-r-1 border-r-gray-300",
+        "w-full pr-2 pb-2",
+        "grid grid-cols-1 case:!grid-cols-2 gap-2",
+        "border-b-1 border-b-gray-300",
       ]}
     >
       {...props.map((propDef) => (

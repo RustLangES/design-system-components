@@ -30,7 +30,7 @@ export function renderNode(node: React.ReactNode): globalThis.Node {
 
 export function attach(node: Node): React.ReactNode {
   return jsxs("div", {
-    styles: "display: contents;",
+    style: { display: "contents" },
     ref: (elem: HTMLElement) => elem?.appendChild(node),
   });
 }

@@ -207,8 +207,10 @@ export function ShowcaseFieldString({
     : (
       <textarea
         class={[
-          "border-1 border-black h-[1.7rem] min-h-[1.7rem] w-[150px] rounded-sm px-1",
-          "text-black dark:text-white",
+          "pt-1",
+          "h-[1.7rem] min-h-[1.7rem] w-[150px] max-w-[150px] min-w-[150px]",
+          "border-1 border-black rounded-sm px-1",
+          "text-black dark:text-white text-base",
           "bg-light dark:bg-neutral-950",
         ]}
         use={(ref) => {

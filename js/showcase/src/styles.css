@@ -1,5 +1,10 @@
 @import "@rustlanges/styles";
 
+@theme {
+  --breakpoint-case: 40rem;
+  --container-case: calc(var(--container-xs) * 2);
+}
+
 html {
   @apply bg-light dark:bg-dark text-black dark:text-white;
 }
