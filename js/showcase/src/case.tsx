@@ -10,41 +10,39 @@ export function getRegisteredCases(): InternalCase<unknown>[] {
   return registeredCases;
 }
 
-export type PropDef =
-  & {
-    displayName?: string;
-    disabled?: boolean;
-    hidden?: boolean;
-    optional?: boolean;
-  }
-  & (
-    | {
+export type PropDef = {
+  displayName?: string;
+  disabled?: boolean;
+  hidden?: boolean;
+  optional?: boolean;
+} & (
+  | {
       kind: "raw";
       value: unknown;
       default?: any;
       options?: never[];
     }
-    | {
+  | {
       kind: "boolean";
       default?: boolean;
       options?: never[];
     }
-    | {
+  | {
       kind: "function";
       default?: boolean;
       options?: never[];
     }
-    | {
+  | {
       kind: "number";
       default?: number;
       options?: number[];
     }
-    | {
+  | {
       kind: "string";
       default?: string;
       options?: string[];
     }
-  );
+);
 
 export type PropKind = PropDef["kind"];
 
@@ -55,22 +53,22 @@ export interface CaseDef<TComponent> {
 
 export type InternalCase<TComponent> =
   | {
-    title: string;
-    kind: "render";
-    render: TComponent;
-  }
+      title: string;
+      kind: "render";
+      render: TComponent;
+    }
   | {
-    title: string;
-    kind: "def";
-    def: CaseDef<TComponent>;
-  };
+      title: string;
+      kind: "def";
+      def: CaseDef<TComponent>;
+    };
 
 export function registerCase<TNode>(title: string, def: CaseDef<TNode>): void;
 export function registerCase<TNode>(title: string, render: () => TNode): void;
 
 export function registerCase<TNode>(
   title: string,
-  defOrRender: CaseDef<TNode> | (() => TNode),
+  defOrRender: CaseDef<TNode> | (() => TNode)
 ): void {
   if (typeof defOrRender === "function") {
     registeredCases.push({
@@ -141,28 +139,28 @@ export function ShowCase<TComponent, TNode>({
 
 function ShowCaseDef<TComponent, TNode>(
   def: CaseDef<TComponent>,
-  showcaseDef: ShowcaseDef<TComponent, TNode>,
+  showcaseDef: ShowcaseDef<TComponent, TNode>
 ): TNode {
   const props = normalizeProps(def.props);
   const signals = Object.fromEntries(
-    props.map((prop) => [prop.displayName, createSignal(prop.default)]),
+    props.map(prop => [prop.displayName, createSignal(prop.default)])
   );
 
   const inputs = renderAsElement(
     <div
       class={[
-        "w-full pr-2 pb-2",
-        "grid grid-cols-1 case:!grid-cols-2 gap-2",
+        "w-full pb-2 pr-2",
+        "case:!grid-cols-2 grid grid-cols-1 gap-2",
         "border-b-1 border-b-gray-300",
       ]}
     >
-      {...props.map((propDef) => (
+      {...props.map(propDef => (
         <ShowcaseField
           {...propDef}
           valueSignal={signals[propDef.displayName]}
         />
       ))}
-    </div>,
+    </div>
   );
 
   return showcaseDef.instiate(showcaseDef.renderCaseSplitted as TComponent, {

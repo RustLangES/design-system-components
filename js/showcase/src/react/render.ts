@@ -5,7 +5,7 @@ import { createEffect, MiniUI } from "../miniui";
 
 export function instiate<P extends {}>(
   node: (p: P) => React.ReactNode,
-  props: P,
+  props: P
 ): React.ReactNode {
   return jsxs(node, props);
 }
@@ -36,19 +36,21 @@ export function attach(node: Node): React.ReactNode {
 }
 
 let isFirstUpdate = true;
-export function renderCaseSplitted(
-  { inputs, component, props }: {
-    inputs: React.ReactNode;
-    component: (p: unknown) => React.ReactNode;
-    props: Record<string, MiniUI.Signal<unknown>>;
-    events: Record<string, MiniUI.Signal<void>>;
-  },
-): React.ReactNode {
+export function renderCaseSplitted({
+  inputs,
+  component,
+  props,
+}: {
+  inputs: React.ReactNode;
+  component: (p: unknown) => React.ReactNode;
+  props: Record<string, MiniUI.Signal<unknown>>;
+  events: Record<string, MiniUI.Signal<void>>;
+}): React.ReactNode {
   let reactProps: Record<string, any> = {};
 
   for (const [propName, propValue] of Object.entries(props)) {
     reactProps[propName] = useSyncExternalStore(
-      (callback) => {
+      callback => {
         return createEffect(() => {
           propValue(); // track
 
@@ -62,7 +64,7 @@ export function renderCaseSplitted(
         });
       },
       () => propValue(),
-      () => propValue(),
+      () => propValue()
     );
   }
 
@@ -71,9 +73,6 @@ export function renderCaseSplitted(
   });
 
   return jsxs(Fragment, {
-    children: [
-      inputs,
-      jsxs(component, reactProps),
-    ],
+    children: [inputs, jsxs(component, reactProps)],
   });
 }

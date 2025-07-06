@@ -19,8 +19,12 @@ export namespace MiniUI {
   ) => MiniUI.Node;
 
   export type GetNodeElement<K extends HTMLElementType> =
-    NonNullable<JSX.IntrinsicElements[K]["onClick"]> extends JSX.EventHandlerUnion<any, any, infer Event>
-      ? Event extends JSX.EventHandler<infer Node, any> ? Node : Event
+    NonNullable<
+      JSX.IntrinsicElements[K]["onClick"]
+    > extends JSX.EventHandlerUnion<any, any, infer Event>
+      ? Event extends JSX.EventHandler<infer Node, any>
+        ? Node
+        : Event
       : NonNullable<JSX.IntrinsicElements[K]["onClick"]>;
 
   export type ExtendedHTMLElementTagMap = JSX.IntrinsicElements;
@@ -28,16 +32,15 @@ export namespace MiniUI {
   export type HTMLElementType = keyof ExtendedHTMLElementTagMap;
   export type HTMLElementProps<K extends HTMLElementType> = Partial<
     OmitNeverValue<
-      & {
+      {
         use: (ref: GetNodeElement<K>) => void;
-      }
-      & MapToSignals<
+      } & MapToSignals<
         Omit<
           JSX.IntrinsicElements[K],
           | "class"
           | keyof JSX.CustomEventHandlersNamespaced<
-            ExtendedHTMLElementTagMap[K]
-          >
+              ExtendedHTMLElementTagMap[K]
+            >
           | keyof JSX.CustomEventHandlersLowerCase<ExtendedHTMLElementTagMap[K]>
         > & {
           class: string | (string | boolean)[];
@@ -55,17 +58,17 @@ export namespace MiniUI {
     | WeakRef<globalThis.Node>;
 
   export type MapToSignals<P> = {
-    [K in keyof P]: EventListener extends P[K] ? P[K]
-      : P[K] extends (...args: infer _) => infer __ ? never
-      : MaybeSignal<P[K]>;
+    [K in keyof P]: EventListener extends P[K]
+      ? P[K]
+      : P[K] extends (...args: infer _) => infer __
+        ? never
+        : MaybeSignal<P[K]>;
   };
 
   type OmitNeverValue<Base> = {
-    [
-      Key in keyof Base & {} as [Base[Key]] extends [never] | [undefined]
-        ? never
-        : Key
-    ]: Base[Key];
+    [Key in keyof Base & {} as [Base[Key]] extends [never] | [undefined]
+      ? never
+      : Key]: Base[Key];
   };
 }
 
@@ -128,7 +131,7 @@ export function h(
   const elem = new WeakRef(
     SVGElements.has(elemType)
       ? document.createElementNS("http://www.w3.org/2000/svg", elemType)
-      : document.createElement(elemType),
+      : document.createElement(elemType)
   );
 
   let effects: Array<() => void> = [];
@@ -139,7 +142,7 @@ export function h(
       fn(ref);
     } else {
       // Stop all attached effects and clear it
-      effects.forEach((stop) => stop());
+      effects.forEach(stop => stop());
       effects = [];
     }
   };
@@ -159,22 +162,20 @@ export function h(
   };
 
   if (typeof props === "object" && props != null) {
-    for (
-      const [propKey, propValue] of Object.entries(
-        props as Record<string, unknown>,
-      )
-    ) {
+    for (const [propKey, propValue] of Object.entries(
+      props as Record<string, unknown>
+    )) {
       if (propKey === "use" && typeof propValue === "function") {
         propValue(elem.deref());
       } else if (isSignal(propValue) && !propKey.startsWith("on")) {
         effects.push(
           effect(() => {
-            refGuard((ref) => {
+            refGuard(ref => {
               const attrValue = propValue();
 
               setAttribute(ref, propKey, attrValue);
             });
-          }),
+          })
         );
       } else if (typeof propValue === "function") {
         const eventName = propKey.substring(2).toLowerCase();
@@ -272,7 +273,7 @@ export function Show(
     {
       style: () => (when() ? "display: contents;" : "display: none;"),
     },
-    ...children,
+    ...children
   );
 }
 
@@ -280,10 +281,9 @@ export type MatchProps<
   Cases extends Record<string, MiniUI.Component<P>>,
   Keys extends keyof Cases,
   P extends {} = {},
-> =
-  & { value: Keys; cases: Cases }
-  & ({} extends NonNullable<P> ? { props?: NonNullable<P> }
-    : { props: NonNullable<P> });
+> = { value: Keys; cases: Cases } & ({} extends NonNullable<P>
+  ? { props?: NonNullable<P> }
+  : { props: NonNullable<P> });
 
 export function Match<
   P extends {},

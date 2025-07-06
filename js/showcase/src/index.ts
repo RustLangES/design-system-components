@@ -19,12 +19,12 @@ export interface ShowcaseDef<TComponent, TNode> extends ShowcaseConfigDef {
   attach(node: Node): TNode;
   createErrorBoundary(
     render: () => TNode,
-    renderErrors: (errors: ErrorsDef) => TNode,
+    renderErrors: (errors: ErrorsDef) => TNode
   ): TNode;
 }
 
 export function createShowcase<TComponent, TNode>(
-  showcaseDef: ShowcaseDef<TComponent, TNode>,
+  showcaseDef: ShowcaseDef<TComponent, TNode>
 ) {
   const root = document.getElementById("root");
 
@@ -39,7 +39,7 @@ export function createShowcase<TComponent, TNode>(
       ShowCase({
         showcaseDef,
         caseDef,
-      }),
+      })
     );
   }
 }
