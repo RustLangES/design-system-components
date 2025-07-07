@@ -1,6 +1,7 @@
 import { getRegisteredCases, ShowCase } from "./case";
 import { appendChildren, MiniUI } from "./miniui";
 import { ErrorsDef } from "./error";
+import { ThemeSwitch } from "./theme";
 
 export * from "./case";
 
@@ -34,7 +35,8 @@ export function createShowcase<TComponent, TNode>(
   }
 
   appendChildren(root, [
-    getRegisteredCases().map(caseDef =>
+    ThemeSwitch(),
+    ...getRegisteredCases().map(caseDef =>
       ShowCase({
         showcaseDef,
         caseDef,
