@@ -1,5 +1,5 @@
 import { ShowcaseDef } from ".";
-import { normalizeProps, ShowcaseField } from "./field";
+import { normalizeProps, prepareProps, ShowcaseField } from "./field";
 import { ChevronDown } from "./icons";
 import { createSignal, h, MiniUI } from "./miniui";
 import { renderErrors } from "./error";
@@ -25,6 +25,11 @@ export type PropDef = {
   | {
       kind: "boolean";
       default?: boolean;
+      options?: never[];
+    }
+  | {
+      kind: "callback";
+      default?: any;
       options?: never[];
     }
   | {
@@ -154,10 +159,11 @@ function ShowCaseDef<TComponent, TNode>(
   def: CaseDef<TComponent>,
   showcaseDef: ShowcaseDef<TComponent, TNode>
 ): TNode {
-  const props = normalizeProps(def.props);
-  const signals = Object.fromEntries(
-    props.map(prop => [prop.displayName, createSignal(prop.default)])
-  );
+  const {
+    defs: propDefs,
+    componentProps,
+    componentEvents,
+  } = prepareProps(def.props);
 
   const inputs = (
     <div
@@ -167,19 +173,14 @@ function ShowCaseDef<TComponent, TNode>(
         "border-b-1 border-b-gray-300",
       ]}
     >
-      {...props.map(propDef => (
-        <ShowcaseField
-          {...propDef}
-          valueSignal={signals[propDef.displayName]}
-        />
-      ))}
+      {...propDefs.map(propDef => <ShowcaseField {...propDef} />)}
     </div>
   );
 
   return showcaseDef.instiate(showcaseDef.renderCaseSplitted as TComponent, {
     inputs: showcaseDef.attach(inputs),
     component: def.component,
-    props: signals,
-    events: {},
+    props: componentProps,
+    events: componentEvents,
   });
 }

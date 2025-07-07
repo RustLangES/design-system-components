@@ -6,6 +6,7 @@ const PROP_KIND_DEFAULTS: { [K in PropKind]: any } = {
   raw: undefined,
   string: "",
   boolean: false,
+  callback: () => {},
   number: 0,
   function: () => {},
 };
@@ -43,6 +44,55 @@ export function normalizeProps(
   return Object.entries(props).map(([propName, propDef]) =>
     normalizeProp(propName, propDef)
   );
+}
+
+export function prepareProps(props: CaseDef<unknown>["props"]): {
+  defs: ShowcaseFieldProps[];
+  componentProps: Record<string, MiniUI.Signal<unknown>>;
+  componentEvents: Record<string, MiniUI.Signal<void>>;
+} {
+  const normalizedProps = normalizeProps(props);
+
+  const defs: ShowcaseFieldProps[] = [];
+  const componentProps: [string, MiniUI.Signal<unknown>][] = [];
+  const componentEvents: [string, MiniUI.Signal<void>][] = [];
+
+  for (const propDef of normalizedProps) {
+    if (propDef.kind === "callback") {
+      const valueSignal = createSignal(false as unknown);
+
+      let timeout: NodeJS.Timeout;
+      createEffect(() => {
+        if (timeout) clearTimeout(timeout);
+        if (valueSignal()) timeout = setTimeout(() => valueSignal(false), 100);
+      });
+
+      defs.push({
+        ...propDef,
+        valueSignal,
+      });
+      componentEvents.push([
+        propDef.displayName,
+        () => {
+          valueSignal(true);
+        },
+      ]);
+    } else {
+      const valueSignal = createSignal(propDef.default);
+
+      defs.push({
+        ...propDef,
+        valueSignal,
+      });
+      componentProps.push([propDef.displayName, valueSignal]);
+    }
+  }
+
+  return {
+    defs,
+    componentProps: Object.fromEntries(componentProps),
+    componentEvents: Object.fromEntries(componentEvents),
+  };
 }
 
 export type ShowcaseFieldProps = Required<PropDef> & {
@@ -89,6 +139,7 @@ export function ShowcaseField(fieldDef: ShowcaseFieldProps) {
         }}
         cases={{
           boolean: ShowcaseFieldBoolean,
+          callback: ShowcaseFieldCallback,
           function: ShowcaseFieldFunction,
           number: ShowcaseFieldNumber,
           raw: () => [],
@@ -98,15 +149,6 @@ export function ShowcaseField(fieldDef: ShowcaseFieldProps) {
     </div>
   );
 }
-
-// TODO: Callback field
-//
-// <p
-//   class={"border-1 shadow-brutal h-[1.7rem] min-w-[150px] rounded-sm px-1 text-center " +
-//     (props.value ? "bg-green-400" : "")}
-// >
-//   Callback
-// </p>
 
 export type ShowcaseTypeFieldProps = ShowcaseFieldProps & {
   modified: MiniUI.WritableSignal<boolean>;
@@ -145,6 +187,23 @@ export function ShowcaseFieldFunction(): MiniUI.Node {
       ]}
       value="function"
     />
+  );
+}
+
+export function ShowcaseFieldCallback({
+  valueSignal,
+}: ShowcaseTypeFieldProps): MiniUI.Node {
+  return (
+    <p
+      class={() => [
+        "border-1 shadow-brutal",
+        "h-[1.7rem] min-w-[150px] px-1 py-1",
+        "rounded-sm text-center text-base",
+        (valueSignal() as boolean) && "bg-green-400",
+      ]}
+    >
+      Callback
+    </p>
   );
 }
 

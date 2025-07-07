@@ -40,6 +40,7 @@ export function renderCaseSplitted({
   inputs,
   component,
   props,
+  events,
 }: {
   inputs: React.ReactNode;
   component: (p: unknown) => React.ReactNode;
@@ -66,6 +67,10 @@ export function renderCaseSplitted({
       () => propValue(),
       () => propValue()
     );
+  }
+
+  for (const [eventName, eventValue] of Object.entries(events)) {
+    reactProps[eventName] = eventValue;
   }
 
   useEffect(() => {
