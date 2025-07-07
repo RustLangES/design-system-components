@@ -15,6 +15,7 @@ registerCase("Button", {
     disabled: "boolean",
     icon: "function",
     className: "string",
+    onClick: "callback",
   },
   component: Button,
 });
