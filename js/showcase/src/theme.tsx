@@ -32,7 +32,13 @@ createEffect(() => {
 
 export function ThemeSwitch() {
   return (
-    <div class={["max-w-case mx-auto mb-5 px-3 py-2", "flex justify-end"]}>
+    <div
+      class={[
+        "max-w-case mx-auto mb-5 px-3 py-2",
+        "flex justify-end",
+        "sticky top-3",
+      ]}
+    >
       <select onChange={e => theme(e.currentTarget.value)}>
         <option selected={isSystemTheme()} value="system">
           System
