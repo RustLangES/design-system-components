@@ -14,7 +14,6 @@ registerCase("Button", {
     },
     disabled: "boolean",
     icon: "icon",
-    className: "string",
     onClick: "callback",
   },
   component: Button,
