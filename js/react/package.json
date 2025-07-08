@@ -25,7 +25,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b ./tsconfig.lib.json && vite build && npm run check:tsc && npm run build:tailwindcss",
+    "build": "tsc -b ./tsconfig.lib.json && vite build && pnpm run check:tsc && pnpm run build:tailwindcss",
+    "build:showcase": "BUILD_SHOWCASE=1 NODE_ENV=development pnpm run build",
     "build:tailwindcss": "npx @tailwindcss/cli -i lib/styles.css -o dist/styles.css --minify",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && npm run check:tsc",
     "check:tsc": "tsc --noEmit -p tsconfig.lib.json",
