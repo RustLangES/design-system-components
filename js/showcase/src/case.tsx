@@ -1,5 +1,5 @@
 import { ShowcaseDef } from ".";
-import { normalizeProps, prepareProps, ShowcaseField } from "./field";
+import { prepareProps, ShowcaseField } from "./field";
 import { ChevronDown } from "./icons";
 import { createSignal, h, MiniUI } from "./miniui";
 import { renderErrors } from "./error";
@@ -34,6 +34,11 @@ export type PropDef = {
     }
   | {
       kind: "function";
+      default?: boolean;
+      options?: never[];
+    }
+  | {
+      kind: "icon";
       default?: boolean;
       options?: never[];
     }
@@ -163,7 +168,7 @@ function ShowCaseDef<TComponent, TNode>(
     defs: propDefs,
     componentProps,
     componentEvents,
-  } = prepareProps(def.props);
+  } = prepareProps(def.props, showcaseDef);
 
   const inputs = (
     <div

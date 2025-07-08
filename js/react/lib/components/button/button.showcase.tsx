@@ -13,7 +13,7 @@ registerCase("Button", {
       default: "Botón",
     },
     disabled: "boolean",
-    icon: "function",
+    icon: "icon",
     className: "string",
     onClick: "callback",
   },

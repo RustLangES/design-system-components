@@ -1,3 +1,4 @@
+import { ShowcaseDef } from ".";
 import { CaseDef, PropDef, PropKind } from "./case";
 import { Reset } from "./icons";
 import { createEffect, createSignal, h, Match, MiniUI, Show } from "./miniui";
@@ -7,6 +8,7 @@ const PROP_KIND_DEFAULTS: { [K in PropKind]: any } = {
   string: "",
   boolean: false,
   callback: () => {},
+  icon: void 0,
   number: 0,
   function: () => {},
 };
@@ -46,7 +48,10 @@ export function normalizeProps(
   );
 }
 
-export function prepareProps(props: CaseDef<unknown>["props"]): {
+export function prepareProps(
+  props: CaseDef<unknown>["props"],
+  showcaseDef: ShowcaseDef<unknown, unknown>
+): {
   defs: ShowcaseFieldProps[];
   componentProps: Record<string, MiniUI.Signal<unknown>>;
   componentEvents: Record<string, MiniUI.Signal<void>>;
@@ -70,6 +75,7 @@ export function prepareProps(props: CaseDef<unknown>["props"]): {
       defs.push({
         ...propDef,
         valueSignal,
+        showcaseDef,
       });
       componentEvents.push([
         propDef.displayName,
@@ -83,6 +89,7 @@ export function prepareProps(props: CaseDef<unknown>["props"]): {
       defs.push({
         ...propDef,
         valueSignal,
+        showcaseDef,
       });
       componentProps.push([propDef.displayName, valueSignal]);
     }
@@ -97,6 +104,7 @@ export function prepareProps(props: CaseDef<unknown>["props"]): {
 
 export type ShowcaseFieldProps = Required<PropDef> & {
   valueSignal: MiniUI.WritableSignal<unknown>;
+  showcaseDef: ShowcaseDef<unknown, unknown>;
 };
 
 export function ShowcaseField(fieldDef: ShowcaseFieldProps) {
@@ -141,6 +149,7 @@ export function ShowcaseField(fieldDef: ShowcaseFieldProps) {
           boolean: ShowcaseFieldBoolean,
           callback: ShowcaseFieldCallback,
           function: ShowcaseFieldFunction,
+          icon: ShowcaseFieldIcon,
           number: ShowcaseFieldNumber,
           raw: () => [],
           string: ShowcaseFieldString,
@@ -204,6 +213,43 @@ export function ShowcaseFieldCallback({
     >
       Callback
     </p>
+  );
+}
+
+export function ShowcaseFieldIcon({
+  valueSignal,
+  modified,
+  showcaseDef,
+}: ShowcaseTypeFieldProps): MiniUI.Node {
+  const valueToNamed: Map<unknown, string> = new Map(
+    Object.entries(showcaseDef.icons).map(([name, comp]) => [comp, name])
+  );
+
+  return (
+    <select
+      value="none"
+      use={ref => {
+        createEffect(() => {
+          ref.value = valueToNamed.get(valueSignal()) ?? "none";
+        });
+      }}
+      onChange={e => {
+        modified(true);
+        valueSignal(showcaseDef.icons[e.currentTarget.value] ?? void 0);
+      }}
+    >
+      <option selected value="none">
+        None
+      </option>
+      {Object.entries(showcaseDef.icons).map(([optionName, optionValue]) => (
+        <option
+          selected={() => optionValue === valueSignal()}
+          value={optionName}
+        >
+          {optionName}
+        </option>
+      ))}
+    </select>
   );
 }
 

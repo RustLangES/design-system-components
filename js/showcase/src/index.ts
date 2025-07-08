@@ -5,9 +5,13 @@ import { ThemeSwitch } from "./theme";
 
 export * from "./case";
 
-export interface ShowcaseConfigDef {}
+export interface ShowcaseConfigDef<TNode> {
+  icons?: Record<string, TNode>;
+}
 
-export interface ShowcaseDef<TComponent, TNode> extends ShowcaseConfigDef {
+export interface ShowcaseDef<TComponent, TNode>
+  extends ShowcaseConfigDef<TNode> {
+  icons: Record<string, TNode>;
   instiate(node: TComponent, props: unknown): TNode;
   render(node: TComponent): Node;
   renderNode(node: TNode): Node;
