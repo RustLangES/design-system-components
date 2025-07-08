@@ -47,7 +47,7 @@ export function renderCaseSplitted({
   props: Record<string, MiniUI.Signal<unknown>>;
   events: Record<string, MiniUI.Signal<void>>;
 }): React.ReactNode {
-  let reactProps: Record<string, any> = {};
+  const reactProps: Record<string, any> = {};
 
   for (const [propName, propValue] of Object.entries(props)) {
     reactProps[propName] = useSyncExternalStore(

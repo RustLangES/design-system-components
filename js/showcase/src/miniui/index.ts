@@ -195,7 +195,7 @@ export function appendChildren(node: Node, children: MiniUI.Node[]) {
   for (const child of children) {
     if (child instanceof WeakRef) {
       const childRef = child.deref();
-      childRef && node.appendChild(childRef);
+      if (childRef) node.appendChild(childRef);
     } else if (typeof child === "boolean") {
       if (child) {
         node.appendChild(document.createTextNode(`${child}`));
@@ -221,7 +221,7 @@ function renderSignal(signal: () => MiniUI.Node, parent: Node | null = null) {
 
     if (value instanceof WeakRef) {
       const childRef = value.deref();
-      !childRef && console.error("[MiniUI] rendering removed element");
+      if (!childRef) console.error("[MiniUI] rendering removed element");
       next_node = childRef!;
     } else if (typeof value === "boolean") {
       if (value) {
