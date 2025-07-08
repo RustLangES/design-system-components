@@ -6,13 +6,7 @@ registerCase("Chip", {
     variant: {
       kind: "string",
       default: "featured",
-      options: [
-        "featured",
-        "numeric",
-        "description",
-        "location",
-        "small",
-      ],
+      options: ["featured", "numeric", "description", "location", "small"],
     },
     label: {
       kind: "string",

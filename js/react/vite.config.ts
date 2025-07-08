@@ -8,7 +8,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 const shouldBuildShowcase = process.env.BUILD_SHOWCASE === "1";
 
-shouldBuildShowcase && console.log("==================\n BUILDING SHOWCASE \n==================");
+shouldBuildShowcase &&
+  console.log("==================\n BUILDING SHOWCASE \n==================");
 
 // https://vitejs.dev/config/
 export default defineConfig({

@@ -111,7 +111,7 @@ registerCase("Dropdown Tree", () => {
           title={tree.title}
           variant="default"
         >
-          {tree.subjects.map((subject) => (
+          {tree.subjects.map(subject => (
             <DropdownTree.Subject
               level={subject.level}
               state={subject.state}
@@ -119,13 +119,13 @@ registerCase("Dropdown Tree", () => {
               name={tree.title}
               id={subject.title}
             >
-              {subject.topics.map((topic) => (
+              {subject.topics.map(topic => (
                 <DropdownTree.Topic
                   level={topic.level}
                   state={topic.state}
                   title={topic.title}
                 >
-                  {topic.subtopics?.map((subtopic) => (
+                  {topic.subtopics?.map(subtopic => (
                     <DropdownTree.SubTopic
                       level={subtopic.level}
                       state={subtopic.state}
@@ -138,8 +138,8 @@ registerCase("Dropdown Tree", () => {
           ))}
         </DropdownTree.Start>
         <DropdownTree.End as="a" href="" title="Continúa aprendiendo">
-          Conoce todos nuestros <strong>proyectos Open Source</strong>{" "}
-          en los que puedes contribuir y potenciar tu aprendizaje 🚀
+          Conoce todos nuestros <strong>proyectos Open Source</strong> en los
+          que puedes contribuir y potenciar tu aprendizaje 🚀
         </DropdownTree.End>
       </div>
 
@@ -150,15 +150,15 @@ registerCase("Dropdown Tree", () => {
           title={tree.title}
           variant="extended"
         >
-          {tree.subjects.map((subject) => (
+          {tree.subjects.map(subject => (
             <Fragment>
-              {subject.topics.map((topic) => (
+              {subject.topics.map(topic => (
                 <DropdownTree.Topic
                   level={topic.level}
                   state={topic.state}
                   title={topic.title}
                 >
-                  {topic.subtopics?.map((subtopic) => (
+                  {topic.subtopics?.map(subtopic => (
                     <DropdownTree.SubTopic
                       level={subtopic.level}
                       state={subtopic.state}
@@ -176,15 +176,15 @@ registerCase("Dropdown Tree", () => {
           title="Manejo de errores"
           variant="extended"
         >
-          {tree.subjects.map((subject) => (
+          {tree.subjects.map(subject => (
             <Fragment>
-              {subject.topics.map((topic) => (
+              {subject.topics.map(topic => (
                 <DropdownTree.Topic
                   level={topic.level}
                   state={topic.state}
                   title={topic.title}
                 >
-                  {topic.subtopics?.map((subtopic) => (
+                  {topic.subtopics?.map(subtopic => (
                     <DropdownTree.SubTopic
                       level={subtopic.level}
                       state={subtopic.state}
@@ -197,8 +197,8 @@ registerCase("Dropdown Tree", () => {
           ))}
         </DropdownTree.Start>
         <DropdownTree.End as="a" href="" title="Continúa aprendiendo">
-          Conoce todos nuestros <strong>proyectos Open Source</strong>{" "}
-          en los que puedes contribuir y potenciar tu aprendizaje 🚀
+          Conoce todos nuestros <strong>proyectos Open Source</strong> en los
+          que puedes contribuir y potenciar tu aprendizaje 🚀
         </DropdownTree.End>
       </div>
     </div>

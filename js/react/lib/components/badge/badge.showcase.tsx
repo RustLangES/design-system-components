@@ -19,5 +19,5 @@ registerCase("Badge", {
       optional: false,
     },
   },
-  component: Badge
+  component: Badge,
 });
