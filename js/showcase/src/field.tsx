@@ -30,7 +30,7 @@ function normalizeProp(
   }
 
   return {
-    default: PROP_KIND_DEFAULTS[prop.kind],
+    default: prop.optional ? undefined : PROP_KIND_DEFAULTS[prop.kind],
     displayName: propName,
     disabled: false,
     hidden: false,

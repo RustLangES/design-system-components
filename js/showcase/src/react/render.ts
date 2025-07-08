@@ -67,6 +67,11 @@ export function renderCaseSplitted({
       () => propValue(),
       () => propValue()
     );
+
+    // Don't send undefined props
+    if (reactProps[propName] === undefined) {
+      delete reactProps[propName];
+    }
   }
 
   for (const [eventName, eventValue] of Object.entries(events)) {
