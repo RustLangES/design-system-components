@@ -81,7 +81,6 @@
 
   /* Fonts */
   --text-xxs: 10px;
-  --text-caption: 12px;
   --text-caption--font-weight: 400;
   --text-caption--letter-spacing: 0em;
   --text-caption--line-height: 16px;
@@ -125,6 +124,8 @@
   --font-monospace-body: monospace;
 
   /* Border radiuses */
+
+  --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-DEFAULT: 16px;

@@ -1,0 +1,35 @@
+@layer components {
+  .rustlanges-progress-bar__container {
+    @apply h-[33px] w-full;
+  }
+
+  .rustlanges-progress-bar {
+    @apply relative h-2.5 w-full rounded-xl border border-black;
+    @apply bg-neutral-100 dark:bg-neutral-900;
+  }
+  .rustlanges-progress-bar__fill {
+    @apply absolute left-0 h-full;
+    @apply border-r border-r-black;
+    @apply rounded-l-xl;
+    @apply transition-all duration-1000;
+    @apply bg-primary-500;
+  }
+  .rustlanges-progress-bar__percentage {
+    @apply absolute -top-6;
+    @apply flex items-center gap-1;
+    @apply h-fit w-fit;
+    @apply px-1 py-0.5;
+    @apply text-primary-500;
+    @apply border border-black;
+    @apply rounded-l-xs rounded-tr-xs;
+    @apply transition-all duration-1000;
+    @apply bg-white dark:bg-neutral-900;
+  }
+
+  .rustlanges-progress-bar__fill--limit {
+    @apply rounded-r-xl border-none;
+  }
+  .rustlanges-progress-bar__percentage--invert {
+    @apply rounded-r-xs rounded-bl-none;
+  }
+}
