@@ -206,7 +206,7 @@ export function ShowcaseFieldCallback({
     <p
       class={() => [
         "border-1 shadow-brutal",
-        "h-[1.7rem] min-w-[150px] px-1 py-1",
+        "h-[1.7rem] min-w-[150px] px-1",
         "rounded-sm text-center text-base",
         (valueSignal() as boolean) && "bg-green-400",
       ]}
@@ -310,7 +310,6 @@ export function ShowcaseFieldString({
   ) : (
     <textarea
       class={[
-        "pt-1",
         "h-[1.7rem] min-h-[1.7rem] w-[150px] min-w-[150px] max-w-[150px]",
         "border-1 rounded-sm border-black px-1",
         "text-base text-black dark:text-white",
