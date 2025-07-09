@@ -1,18 +1,11 @@
-import ReactDOM from "react-dom/client";
-import React from "react";
+import { setupShowcase } from "@rustlanges/showcase/react";
+import * as icons from "../lib/icons";
+
+import "@rustlanges/showcase/styles.css";
 import "./styles.css";
 
-import { App } from "./App";
+import "../lib/showcases";
 
-const root = document.getElementById("root");
-
-if (!root) {
-  alert("No root element");
-  throw "No root element";
-}
-
-ReactDOM.createRoot(root).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+setupShowcase({
+  icons,
+});

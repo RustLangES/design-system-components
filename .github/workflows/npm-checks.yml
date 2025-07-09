@@ -34,8 +34,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build showcase
+        run: pnpm build:showcase-lib
+
       - name: Run lint on all packages
-        run: pnpm -r lint
+        run: pnpm lint
 
       - name: Run format check on all packages
-        run: pnpm -r fmt:check
+        run: pnpm fmt:check

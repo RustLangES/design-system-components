@@ -1,0 +1,11 @@
+@custom-variant dark {
+  &:where(.rustlanges-theme-dark, .rustlanges-theme-dark *) {
+    @slot;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:where(.rustlanges-theme-system, .rustlanges-theme-system *) {
+      @slot;
+    }
+  }
+}
