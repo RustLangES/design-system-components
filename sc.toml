@@ -1,0 +1,11 @@
+[git]
+skip_preview = true
+skip_emojis = true
+
+[[scopes]]
+name = "leptos"
+description = "The leptos components related"
+
+[[scopes]]
+name = "react"
+description = "The react components related"
