@@ -1,6 +1,5 @@
 import { withAs } from "@/utils/hoc";
 import { cn } from "@/utils/tw-merge";
-import { TAG_VARIANTS } from "./tag.const";
 
 type TagProps = {
   label?: string;
@@ -13,8 +12,8 @@ export const Tag = withAs(
     return (
       <Component
         className={cn([
-          selected ? TAG_VARIANTS.selected : TAG_VARIANTS.default,
-          "grid h-7 cursor-pointer place-items-center rounded-[20px] border px-2 text-xs font-semibold transition",
+          selected ? "rustlanges-tag--selected" : "rustlanges-tag--default",
+          "rustlanges-tag",
           className,
         ])}
         {...rest}

@@ -12,12 +12,7 @@ export const Chip = (props: ChipProps) => {
   const { label, variant = "featured", className, ...attr } = props;
   return (
     <div
-      className={cn(
-        ...variants[variant],
-        "flex w-fit cursor-default items-center justify-center gap-1 transition",
-        "[&>svg]:size-3.5",
-        className
-      )}
+      className={cn(variants[variant], "rustlanges-chip", className)}
       {...attr}
     >
       {icons[variant] ? React.createElement(icons[variant]) : null}

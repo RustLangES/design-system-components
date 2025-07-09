@@ -17,21 +17,14 @@ export const Avatar = withAs(
     return (
       <Component
         {...rest}
-        className={cn([
-          "grid aspect-square place-items-center overflow-hidden rounded-full border object-cover",
-          className,
-        ])}
+        className={cn(["rustlanges-avatar", className])}
         style={{
           width: size,
           height: size,
           ...style,
         }}
       >
-        <img
-          className="aspect-square h-full w-full"
-          src={avatarUrl}
-          alt={alt}
-        />
+        <img className="rustlanges-avatar__img" src={avatarUrl} alt={alt} />
       </Component>
     );
   }

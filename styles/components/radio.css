@@ -1,0 +1,13 @@
+@layer components {
+  .rustlanges-radio {
+    @apply shadow-rb-black aspect-square appearance-none transition;
+    @apply flex size-4 items-center justify-center rounded-full border border-black;
+    @apply dark:bg-dark bg-white;
+    @apply checked:after:bg-primary-500;
+
+    @variant after {
+      @apply absolute size-2 rounded-full transition;
+      @apply bg-gray dark:bg-neutral-500;
+    }
+  }
+}

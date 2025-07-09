@@ -16,9 +16,8 @@ export const Button = withAs((Component, props: ButtonProps) => {
   return (
     <Component
       className={cn(
-        ...variants[variant],
-        "text-button flex h-12 w-fit cursor-pointer items-center justify-center gap-2.5 px-8 transition disabled:cursor-not-allowed",
-        "[&>svg]:size-6",
+        variants[variant],
+        "text-button rustlanges-button",
         className
       )}
       {...attr}

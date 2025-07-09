@@ -1,0 +1,9 @@
+@layer components {
+  .rustlanges-avatar {
+    @apply grid aspect-square place-items-center overflow-hidden rounded-full border object-cover;
+  }
+
+  .rustlanges-avatar__img {
+    @apply aspect-square size-full;
+  }
+}

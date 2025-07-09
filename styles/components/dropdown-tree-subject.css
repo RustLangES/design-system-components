@@ -1,0 +1,32 @@
+@layer component {
+  .rustlanges-dropdown-tree-subject {
+    @apply shadow-brutal relative ml-6 flex items-center rounded-xl border border-black;
+    @apply bg-light;
+    @apply dark:bg-dark;
+
+    & > summary {
+      @apply relative grid w-full grid-cols-[auto_1fr_auto] items-center gap-2 px-4 py-2.5 marker:hidden;
+      @apply [&>*:first-child]:col-span-3;
+
+      & > input[type="radio"] {
+        @apply absolute -left-6 z-10;
+      }
+
+      & > svg {
+        @apply duration-400 size-6 text-neutral-950 transition;
+        @apply dark:text-neutral-50;
+      }
+    }
+
+    &[open] > summary > svg {
+      @apply -rotate-180;
+    }
+  }
+  .rustlanges-dropdown-tree-subject__title {
+    @apply text-neutral-950 dark:text-neutral-50;
+  }
+
+  .rustlanges-dropdown-tree-subject--extended {
+    @apply dark:bg-secondary-950 bg-secondary-50;
+  }
+}

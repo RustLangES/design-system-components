@@ -1,0 +1,9 @@
+@layer components {
+  .rustlanges-collaborators {
+    @apply flex h-12 w-full items-center justify-between;
+  }
+
+  .rustlanges-collaborators__avatars {
+    @apply flex w-fit items-center;
+  }
+}

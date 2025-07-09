@@ -1,0 +1,50 @@
+@layer components {
+  .rustlanges-badge {
+    @apply flex w-fit items-center gap-1 rounded-full border-[0.8px] border-black px-2;
+
+    font-size: 10px;
+    @variant desktop {
+      font-size: 12px;
+    }
+  }
+
+  .rustlanges-badge__dot {
+    @apply size-1 rounded-full;
+  }
+
+  .rustlanges-badge--type-default {
+    @apply px-0! size-4 justify-center [&>span]:hidden;
+  }
+
+  .rustlanges-badge--type-numeric {
+    @apply flex-row-reverse;
+  }
+
+  .rustlanges-badge--variant-completed {
+    @apply bg-success-100 text-success-600 [&>div]:bg-success-600;
+    @variant dark {
+      @apply bg-success-950 text-success-400 [&>div]:bg-success-600;
+    }
+  }
+
+  .rustlanges-badge--variant-reading {
+    @apply bg-warning-100 text-warning-500 [&>div]:bg-warning-500;
+    @variant dark {
+      @apply bg-warning-950 text-warning-300 [&>div]:bg-warning-300;
+    }
+  }
+
+  .rustlanges-badge--variant-pending {
+    @apply bg-error-100 text-error-600 [&>div]:bg-error-600;
+    @variant dark {
+      @apply bg-error-950 text-error-300 [&>div]:bg-error-300;
+    }
+  }
+
+  .rustlanges-badge--variant-unread {
+    @apply bg-neutral-100 text-neutral-500 [&>div]:bg-neutral-500;
+    @variant dark {
+      @apply bg-neutral-950 text-neutral-300 [&>div]:bg-neutral-300;
+    }
+  }
+}

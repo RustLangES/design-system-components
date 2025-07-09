@@ -1,0 +1,46 @@
+@layer components {
+  .rustlanges-chip {
+    @apply flex w-fit cursor-default items-center justify-center gap-1 transition;
+    @apply [&>svg]:size-3.5;
+  }
+
+  .rustlanges-chip--featured {
+    @apply rounded-[20px] border;
+    @apply bg-primary-400 border-black text-black;
+    @apply min-h-[32px];
+    @apply text-sm;
+    @apply p-[4px] px-[12px];
+  }
+
+  .rustlanges-chip--numeric {
+    @apply rounded-[20px] border;
+    @apply bg-primary-200 border-black text-black;
+    @apply min-h-[32px];
+    @apply text-sm;
+    @apply p-[4px] px-[12px];
+  }
+
+  .rustlanges-chip--description {
+    @apply rounded-[20px] border;
+    @apply bg-secondary-200 border-black text-black;
+    @apply min-h-[32px];
+    @apply text-sm;
+    @apply p-[4px] px-[12px];
+  }
+
+  .rustlanges-chip--location {
+    @apply rounded-[20px] border;
+    @apply bg-secondary-200 border-black text-black;
+    @apply min-h-[24px];
+    @apply text-sm;
+    @apply p-[2px] px-[12px];
+  }
+
+  .rustlanges-chip--small {
+    @apply rounded-[20px] border;
+    @apply bg-secondary-200 border-black text-black;
+    @apply min-h-[22px];
+    @apply text-xs;
+    @apply p-[2px] px-[8px];
+  }
+}

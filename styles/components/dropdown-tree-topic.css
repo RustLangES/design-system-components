@@ -1,0 +1,26 @@
+@layer component {
+  .rustlanges-dropdown-tree-topic {
+    @apply w-full;
+
+    &:last-child > summary {
+      @apply border-b-transparent;
+    }
+
+    & > summary {
+      @apply grid w-full grid-cols-[auto_1fr_auto_auto] items-center gap-2 border-y border-black px-3 py-4 marker:hidden;
+
+      & > svg {
+        @apply duration-400 size-6 text-neutral-950 transition;
+        @apply dark:text-neutral-50;
+      }
+    }
+
+    &[open] > summary > svg {
+      @apply -rotate-180;
+    }
+  }
+
+  .rustlanges-dropdown-tree-topic__title {
+    @apply text-neutral-950 dark:text-neutral-50;
+  }
+}

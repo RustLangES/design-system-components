@@ -23,7 +23,9 @@ export function ShowComponentContainer(
         </span>
       </summary>
       <div
-        className={"flex flex-col gap-5 sm:flex-row " + props.contentClassName}
+        className={
+          "flex w-full flex-col gap-5 sm:flex-row" + props.contentClassName
+        }
       >
         {props.children}
       </div>

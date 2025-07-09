@@ -4,7 +4,3 @@
 html {
   background: var(--color-gray-300);
 }
-
-@utility shadow-brutal {
-  box-shadow: 2px 2px 0px #000;
-}

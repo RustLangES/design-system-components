@@ -1,0 +1,40 @@
+@layer components {
+  .rustlanges-flap {
+    @apply relative flex justify-center gap-2;
+    @apply h-6 w-20 px-5;
+
+    @variant desktop {
+      @apply h-[47.5px] w-[167.5px] px-8;
+    }
+  }
+
+  .rustlanges-flap__svg {
+    @apply desktop:px-3 absolute left-0 top-0 z-0 h-full w-full px-1;
+  }
+
+  .rustlanges-flap--highlight {
+    @apply text-primary-400;
+  }
+
+  .rustlanges-flap--numeric {
+    @apply text-primary-200;
+  }
+
+  .rustlanges-flap--descriptive {
+    @apply text-secondary-400;
+  }
+
+  .rustlanges-flap__view {
+    @apply z-10 flex h-fit w-full items-center justify-center gap-2 text-center font-medium text-neutral-950;
+    @apply desktop:pt-1;
+    @apply [&>svg]:h-3 [&>svg]:w-3;
+  }
+
+  .rustlanges-flap__view--icon {
+    @apply desktop:*:even:block pt-[3px] *:even:hidden;
+  }
+
+  .rustlanges-flap__view-text {
+    @apply desktop:pt-0 line-clamp-1 pt-px;
+  }
+}

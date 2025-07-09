@@ -1,0 +1,20 @@
+@layer components {
+  .rustlanges-tag {
+    @apply grid h-7 cursor-pointer place-items-center rounded-[20px] border px-2 text-xs font-semibold transition;
+  }
+
+  .rustlanges-tag--default {
+    @apply bg-light border-black text-black;
+
+    @variant dark {
+      @apply border-neutral-50 bg-neutral-950 text-neutral-50;
+    }
+  }
+  .rustlanges-tag--selected {
+    @apply bg-secondary-100 border-secondary-600 text-secondary-600;
+
+    @variant dark {
+      @apply bg-primary-950 border-primary-500 text-primary-500;
+    }
+  }
+}

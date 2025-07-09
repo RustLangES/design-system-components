@@ -20,7 +20,7 @@
     // Path aliases
     "baseUrl": "./lib",
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./*"]
     },
 
     /* Linting */

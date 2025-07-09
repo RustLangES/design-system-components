@@ -1,0 +1,22 @@
+@layer components {
+  .rustlanges-level {
+    @apply rounded-xl border border-black px-2 leading-[150%];
+    @apply desktop:text-sm text-xxs;
+  }
+
+  .rustlanges-level--n1 {
+    @apply bg-primary-100;
+  }
+
+  .rustlanges-level--n2 {
+    @apply bg-primary-300;
+  }
+
+  .rustlanges-level--n3 {
+    @apply bg-primary-500;
+  }
+
+  .rustlanges-level--op {
+    @apply bg-secondary-400;
+  }
+}

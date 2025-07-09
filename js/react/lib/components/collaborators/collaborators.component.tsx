@@ -24,8 +24,8 @@ export const Collaborators = ({
   const hasMaxCollaborators = numberOfCollaborators > MAX_COLLABORATORS;
   const extraCollaborators = numberOfCollaborators - MAX_COLLABORATORS;
   return (
-    <div className="flex h-12 w-full items-center justify-between">
-      <div className="flex w-fit items-center">
+    <div className="rustlanges-collaborators">
+      <div className="rustlanges-collaborators__avatars">
         {collaborators.slice(0, MAX_COLLABORATORS).map((collaborator, idx) => {
           const space = idx ? 12 : 0;
           return (

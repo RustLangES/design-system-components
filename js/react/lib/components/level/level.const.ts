@@ -1,8 +1,8 @@
 export const LEVEL_VARIANTS = {
-  n1: "bg-primary-100",
-  n2: "bg-primary-300",
-  n3: "bg-primary-500",
-  op: "bg-secondary-400",
+  n1: "rustlanges-level--n1",
+  n2: "rustlanges-level--n2",
+  n3: "rustlanges-level--n3",
+  op: "rustlanges-level--op",
 };
 
 export const LEVEL_LABELS = {
