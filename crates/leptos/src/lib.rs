@@ -2,6 +2,7 @@ pub(crate) use tailwind_fuse::tw_merge as tw;
 
 pub mod avatar;
 pub mod button;
+pub mod icons;
 pub mod radio;
 pub mod tag;
 
