@@ -5,6 +5,7 @@
     "js/react"
   ],
   "scripts": {
+    "build:showcase-lib": "pnpm run -r --filter \"*showcase\" build",
     "lint": "pnpm run -r lint",
     "fmt": "npx prettier --write .",
     "fmt:check": "npx prettier --check ."
