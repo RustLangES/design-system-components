@@ -12,6 +12,10 @@
       "types": "./dist/src/react/index.d.ts",
       "default": "./dist/react/index.js"
     },
+    "./vue": {
+      "types": "./dist/src/vue/index.d.ts",
+      "default": "./dist/vue/index.js"
+    },
     "./styles.css": {
       "default": "./dist/styles.css"
     }
@@ -32,7 +36,8 @@
   },
   "peerDependencies": {
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "vue": "^3.5.17"
   },
   "devDependencies": {
     "@eslint/js": "^9.28.0",
