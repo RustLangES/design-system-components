@@ -747,6 +747,7 @@ name = "leptos-components"
 version = "0.1.0"
 dependencies = [
  "leptos",
+ "rustlanges-components-core",
  "tailwind_fuse",
 ]
 
@@ -1271,6 +1272,12 @@ name = "rustlanges-components"
 version = "0.1.0"
 dependencies = [
  "leptos-components",
+
+[[package]]
+name = "rustlanges-components-core"
+version = "0.1.0"
+dependencies = [
+ "constcat",
 ]
 
 [[package]]
