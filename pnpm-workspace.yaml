@@ -1,6 +1,7 @@
 packages:
   - js/react
   - js/showcase
+  - js/vue
   - styles
 onlyBuiltDependencies:
   - "@parcel/watcher"
