@@ -13,12 +13,15 @@ const PROP_KIND_DEFAULTS: { [K in PropKind]: any } = {
   function: () => {},
 };
 
+type NormalizedProps = Required<PropDef> & { id: string; };
+
 function normalizeProp(
   propName: string,
   prop: CaseDef<unknown>["props"][string]
-): Required<PropDef> {
+): NormalizedProps {
   if (typeof prop === "string") {
     return {
+      id: propName,
       displayName: propName,
       kind: prop,
       disabled: false,
@@ -26,10 +29,11 @@ function normalizeProp(
       options: [],
       default: PROP_KIND_DEFAULTS[prop],
       optional: true,
-    } satisfies Required<PropDef>;
+    } satisfies NormalizedProps;
   }
 
   return {
+    id: propName,
     default: prop.optional ? undefined : PROP_KIND_DEFAULTS[prop.kind],
     displayName: propName,
     disabled: false,
@@ -37,12 +41,12 @@ function normalizeProp(
     optional: true,
     options: [],
     ...prop,
-  } satisfies Required<PropDef>;
+  } satisfies NormalizedProps;
 }
 
 export function normalizeProps(
   props: CaseDef<unknown>["props"]
-): Required<PropDef>[] {
+): NormalizedProps[] {
   return Object.entries(props).map(([propName, propDef]) =>
     normalizeProp(propName, propDef)
   );
@@ -78,7 +82,7 @@ export function prepareProps(
         showcaseDef,
       });
       componentEvents.push([
-        propDef.displayName,
+        propDef.id,
         () => {
           valueSignal(true);
         },
@@ -91,7 +95,7 @@ export function prepareProps(
         valueSignal,
         showcaseDef,
       });
-      componentProps.push([propDef.displayName, valueSignal]);
+      componentProps.push([propDef.id, valueSignal]);
     }
   }
 

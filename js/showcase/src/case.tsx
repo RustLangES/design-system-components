@@ -15,6 +15,7 @@ export type PropDef = {
   disabled?: boolean;
   hidden?: boolean;
   optional?: boolean;
+  isSlot?: boolean;
 } & (
   | {
       kind: "raw";
