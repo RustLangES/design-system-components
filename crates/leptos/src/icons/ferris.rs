@@ -1,4 +1,4 @@
-use leptos::{IntoView, component, view};
+use leptos::prelude::*;
 
 #[component]
 fn Ferris(#[prop(into, optional, default = 24)] size: u32) -> impl IntoView {

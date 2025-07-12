@@ -1,4 +1,4 @@
-use leptos::{IntoView, component, view};
+use leptos::prelude::*;
 
 #[component]
 fn Youtube(#[prop(into, optional, default = 24)] size: u32) -> impl IntoView {
