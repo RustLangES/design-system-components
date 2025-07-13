@@ -1,7 +1,6 @@
 import {
   ConcreteComponent,
   createApp,
-  DefineComponent,
   defineComponent,
   VNode,
   h as vueH,
