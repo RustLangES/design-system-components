@@ -21,7 +21,7 @@ export default defineConfig({
     tailwindcss(),
     !shouldBuildShowcase &&
       dts({
-        tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
+        tsconfigPath: resolve(__dirname, "tsconfig.app.json"),
       }),
   ],
   resolve: {
@@ -45,7 +45,11 @@ export default defineConfig({
             // https://rollupjs.org/configuration-options/#input
             glob
               .sync("lib/**/*.{ts,vue}", {
-                ignore: ["lib/**/*.showcase.{ts,vue}", "lib/**/*.d.ts"],
+                ignore: [
+                  "lib/**/*.showcase.{ts,vue}",
+                  "lib/**/*.d.ts",
+                  "lib/showcases.ts",
+                ],
               })
               .map(file => [
                 // 1. The name of the entry point

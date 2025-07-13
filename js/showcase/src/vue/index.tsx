@@ -17,8 +17,8 @@ import {
 } from "./render";
 
 export function setupShowcase(
-  config: ShowcaseConfigDef<(props: any) => VNode> & {
-    showcases: Record<string, DefineComponent>;
+  config: ShowcaseConfigDef<ConcreteComponent<any>> & {
+    showcases: Record<string, ConcreteComponent<any>>;
   }
 ) {
   const virtualElem = document.createElement("div");

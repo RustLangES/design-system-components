@@ -1,5 +1,5 @@
 {
-  "name": "@rustlanges/react",
+  "name": "@rustlanges/vue",
   "private": false,
   "version": "0.0.1",
   "type": "module",
@@ -25,8 +25,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && pnpm run build:tailwindcss",
-    ":build": "tsc -b ./tsconfig.lib.json && vite build && pnpm run check:tsc && pnpm run build:tailwindcss",
+    "build": "pnpm run check:tsc && vite build && pnpm run build:tailwindcss",
     "build:showcase": "BUILD_SHOWCASE=1 NODE_ENV=development pnpm run build",
     "build:tailwindcss": "npx @tailwindcss/cli -i lib/styles.css -o dist/styles.css --minify",
     "lint": "eslint . --ext ts,vue --report-unused-disable-directives --max-warnings 0 && npm run check:tsc",

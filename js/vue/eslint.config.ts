@@ -20,8 +20,6 @@ export default defineConfigWithVueTs([
       },
     },
 
-    // plugins: { "react-refresh": reactRefresh },
-
     rules: {
       "no-sparse-arrays": "off",
       "@typescript-eslint/no-unsafe-function-type": "off",
