@@ -17,7 +17,8 @@ type NormalizedProps = Required<PropDef> & { id: string; };
 
 function normalizeProp(
   propName: string,
-  prop: CaseDef<unknown>["props"][string]
+  prop: CaseDef<unknown>["props"][string],
+  isSlot = false
 ): NormalizedProps {
   if (typeof prop === "string") {
     return {
@@ -26,6 +27,7 @@ function normalizeProp(
       kind: prop,
       disabled: false,
       hidden: false,
+      isSlot,
       options: [],
       default: PROP_KIND_DEFAULTS[prop],
       optional: true,
@@ -38,6 +40,7 @@ function normalizeProp(
     displayName: propName,
     disabled: false,
     hidden: false,
+    isSlot,
     optional: true,
     options: [],
     ...prop,
@@ -45,25 +48,30 @@ function normalizeProp(
 }
 
 export function normalizeProps(
-  props: CaseDef<unknown>["props"]
+  props: CaseDef<unknown>["props"],
+  isSlot = false
 ): NormalizedProps[] {
   return Object.entries(props).map(([propName, propDef]) =>
-    normalizeProp(propName, propDef)
+    normalizeProp(propName, propDef, isSlot)
   );
 }
 
 export function prepareProps(
   props: CaseDef<unknown>["props"],
-  showcaseDef: ShowcaseDef<unknown, unknown>
+  slots: CaseDef<unknown>["slots"],
+  showcaseDef: ShowcaseDef<unknown, unknown>,
 ): {
   defs: ShowcaseFieldProps[];
   componentProps: Record<string, MiniUI.Signal<unknown>>;
+  componentSlots: Record<string, MiniUI.Signal<unknown>>;
   componentEvents: Record<string, MiniUI.Signal<void>>;
 } {
   const normalizedProps = normalizeProps(props);
+  const normalizedSlots = normalizeProps(slots ?? {}, /* isSlot */ true);
 
   const defs: ShowcaseFieldProps[] = [];
   const componentProps: [string, MiniUI.Signal<unknown>][] = [];
+  const componentSlots: [string, MiniUI.Signal<unknown>][] = [];
   const componentEvents: [string, MiniUI.Signal<void>][] = [];
 
   for (const propDef of normalizedProps) {
@@ -99,9 +107,21 @@ export function prepareProps(
     }
   }
 
+  for (const slotDef of normalizedSlots) {
+    const valueSignal = createSignal(slotDef.default);
+
+    defs.push({
+      ...slotDef,
+      valueSignal,
+      showcaseDef,
+    });
+    componentSlots.push([slotDef.id, valueSignal]);
+  }
+
   return {
     defs,
     componentProps: Object.fromEntries(componentProps),
+    componentSlots: Object.fromEntries(componentSlots),
     componentEvents: Object.fromEntries(componentEvents),
   };
 }

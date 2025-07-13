@@ -40,7 +40,7 @@ export type PropDef = {
     }
   | {
       kind: "icon";
-      default?: boolean;
+      default?: any;
       options?: never[];
     }
   | {
@@ -59,6 +59,7 @@ export type PropKind = PropDef["kind"];
 
 export interface CaseDef<TComponent> {
   props: Record<string, Exclude<PropKind, "raw"> | PropDef>;
+  slots?: Record<string, Exclude<PropKind, "raw" | "function" | "callback"> | Exclude<PropDef, { kind: "function" | "callback" }>>;
   component: TComponent;
 }
 
@@ -168,8 +169,9 @@ function ShowCaseDef<TComponent, TNode>(
   const {
     defs: propDefs,
     componentProps,
+    componentSlots,
     componentEvents,
-  } = prepareProps(def.props, showcaseDef);
+  } = prepareProps(def.props, def.slots, showcaseDef);
 
   const inputs = (
     <div
@@ -187,6 +189,7 @@ function ShowCaseDef<TComponent, TNode>(
     inputs: showcaseDef.attach(inputs),
     component: def.component,
     props: componentProps,
+    slots: componentSlots,
     events: componentEvents,
   });
 }

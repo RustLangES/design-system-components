@@ -15,12 +15,7 @@ export interface ShowcaseDef<TComponent, TNode>
   instiate(node: TComponent, props: unknown): TNode;
   render(node: TComponent): Node;
   renderNode(node: TNode): Node;
-  renderCaseSplitted(props: {
-    inputs: TNode;
-    component: TComponent;
-    props: Record<string, MiniUI.Signal<unknown>>;
-    events: Record<string, MiniUI.Signal<void>>;
-  }): TNode;
+  renderCaseSplitted: TComponent;
   attach(node: MiniUI.Node): TNode;
   createErrorBoundary(
     render: () => TNode,
