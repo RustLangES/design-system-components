@@ -1,13 +1,46 @@
-import { h as vueH, VNode } from "vue";
+import {
+  ComponentPublicInstance,
+  defineComponent,
+  h as vueH,
+  VNode,
+} from "vue";
 import { ErrorsDef, ErrorStack } from "../error";
 
 export function createErrorBoundary(
   render: () => VNode,
-  renderErrors: (error: ErrorsDef) => VNode
+  renderErrors: (error: ErrorsDef) => VNode,
 ): VNode {
-  return vueH("div", null, render());
-  // return jsxs(ErrorBoundary, { render, renderErrors });
+  return vueH(ErrorBoundary, { render, renderErrors });
 }
+
+type ErrorBoundary = ComponentPublicInstance<{}, {}, ErrorBoundaryData>;
+type ErrorBoundaryData = {
+  hasError: boolean;
+  errorsDef: ErrorsDef | null;
+};
+const ErrorBoundary = defineComponent<{
+  render: () => VNode;
+  renderErrors: (error: ErrorsDef) => VNode;
+}>({
+  name: "ErrorBoundary",
+  props: ["render", "renderErrors"],
+  data: () => ({
+    hasError: false,
+    errorsDef: null as ErrorsDef | null,
+  } as ErrorBoundaryData),
+  setup({ render, renderErrors }) {
+    return (ctx: ErrorBoundary) =>
+      ctx.$data.hasError && ctx.$data.errorsDef != null
+        ? renderErrors(ctx.$data.errorsDef)
+        : render();
+  },
+  errorCaptured(this: ErrorBoundary, err) {
+    console.log("ERROR CAPTURED", err);
+    this.$data.hasError = true;
+    this.$data.errorsDef = errorToDef(err as Error);
+    return false;
+  },
+});
 
 function errorToDef(error: Error): ErrorsDef {
   const stack: ErrorStack[] = (error.stack?.split?.("\n") ?? [])
@@ -25,8 +58,7 @@ function errorToDef(error: Error): ErrorsDef {
 
       // Ignore all the internal functions of react and vite
       if (
-        source.startsWith("vite/client") ||
-        source.startsWith("react-refresh") ||
+        source.includes("vite/client") ||
         name.includes("/node_modules/") ||
         name.startsWith("__require")
       ) {
@@ -55,6 +87,10 @@ function errorToDef(error: Error): ErrorsDef {
       const [, sourceFile, lineN, columnN] = source.match(
         /^(.+)?(?:t=\d+|v=\w+):(\d+):(\d+)$/
       ) ?? [, source, "", ""];
+
+      if (sourceFile.endsWith("vue.js?")) {
+        return
+      }
 
       return {
         line: parseInt(lineN),
