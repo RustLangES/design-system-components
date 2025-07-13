@@ -3,6 +3,10 @@ skip_preview = true
 skip_emojis = true
 
 [[scopes]]
+name = "rust"
+description = "The rust core library related"
+
+[[scopes]]
 name = "leptos"
 description = "The leptos components related"
 
