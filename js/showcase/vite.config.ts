@@ -24,7 +24,13 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["react", "react/jsx-runtime", "react-dom", "react-dom/client", "vue"],
+      external: [
+        "react",
+        "react/jsx-runtime",
+        "react-dom",
+        "react-dom/client",
+        "vue",
+      ],
       input: Object.fromEntries(
         // https://rollupjs.org/configuration-options/#input
         glob

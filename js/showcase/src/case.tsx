@@ -59,7 +59,11 @@ export type PropKind = PropDef["kind"];
 
 export interface CaseDef<TComponent> {
   props: Record<string, Exclude<PropKind, "raw"> | PropDef>;
-  slots?: Record<string, Exclude<PropKind, "raw" | "function" | "callback"> | Exclude<PropDef, { kind: "function" | "callback" }>>;
+  slots?: Record<
+    string,
+    | Exclude<PropKind, "raw" | "function" | "callback">
+    | Exclude<PropDef, { kind: "function" | "callback" }>
+  >;
   component: TComponent;
 }
 

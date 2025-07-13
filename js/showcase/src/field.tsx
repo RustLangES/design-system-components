@@ -13,7 +13,7 @@ const PROP_KIND_DEFAULTS: { [K in PropKind]: any } = {
   function: () => {},
 };
 
-type NormalizedProps = Required<PropDef> & { id: string; };
+type NormalizedProps = Required<PropDef> & { id: string };
 
 function normalizeProp(
   propName: string,
@@ -59,7 +59,7 @@ export function normalizeProps(
 export function prepareProps(
   props: CaseDef<unknown>["props"],
   slots: CaseDef<unknown>["slots"],
-  showcaseDef: ShowcaseDef<unknown, unknown>,
+  showcaseDef: ShowcaseDef<unknown, unknown>
 ): {
   defs: ShowcaseFieldProps[];
   componentProps: Record<string, MiniUI.Signal<unknown>>;
