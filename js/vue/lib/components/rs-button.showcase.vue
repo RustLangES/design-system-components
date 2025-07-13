@@ -8,7 +8,7 @@ const props = {
     default: "primary",
     options: ["primary", "secondary", "text", "icon"],
   },
-  onClick: "callback"
+  onClick: "callback",
 };
 const slots = {
   default: {

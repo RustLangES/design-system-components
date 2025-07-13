@@ -8,7 +8,7 @@ import { ErrorsDef, ErrorStack } from "../error";
 
 export function createErrorBoundary(
   render: () => VNode,
-  renderErrors: (error: ErrorsDef) => VNode,
+  renderErrors: (error: ErrorsDef) => VNode
 ): VNode {
   return vueH(ErrorBoundary, { render, renderErrors });
 }
@@ -24,10 +24,11 @@ const ErrorBoundary = defineComponent<{
 }>({
   name: "ErrorBoundary",
   props: ["render", "renderErrors"],
-  data: () => ({
-    hasError: false,
-    errorsDef: null as ErrorsDef | null,
-  } as ErrorBoundaryData),
+  data: () =>
+    ({
+      hasError: false,
+      errorsDef: null as ErrorsDef | null,
+    }) as ErrorBoundaryData,
   setup({ render, renderErrors }) {
     return (ctx: ErrorBoundary) =>
       ctx.$data.hasError && ctx.$data.errorsDef != null
@@ -89,7 +90,7 @@ function errorToDef(error: Error): ErrorsDef {
       ) ?? [, source, "", ""];
 
       if (sourceFile.endsWith("vue.js?")) {
-        return
+        return;
       }
 
       return {
