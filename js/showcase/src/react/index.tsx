@@ -21,7 +21,7 @@ export function setupShowcase(
     ])
   );
 
-  createShowcase<(props: unknown) => React.ReactNode, React.ReactNode>({
+  createShowcase<(props: any) => React.ReactNode, React.ReactNode>({
     ...config,
     icons,
     instiate,

@@ -84,7 +84,7 @@ export function createEffect(fn: () => void): () => void {
   return effect(fn);
 }
 
-export function renderH(parent: HTMLElement, node: MiniUI.Node) {
+export function renderH(parent: Element, node: MiniUI.Node) {
   parent.innerHTML = "";
   appendChildren(parent, [node]);
 }

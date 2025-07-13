@@ -13,53 +13,65 @@ const PROP_KIND_DEFAULTS: { [K in PropKind]: any } = {
   function: () => {},
 };
 
+type NormalizedProps = Required<PropDef> & { id: string };
+
 function normalizeProp(
   propName: string,
-  prop: CaseDef<unknown>["props"][string]
-): Required<PropDef> {
+  prop: CaseDef<unknown>["props"][string],
+  isSlot = false
+): NormalizedProps {
   if (typeof prop === "string") {
     return {
+      id: propName,
       displayName: propName,
       kind: prop,
       disabled: false,
       hidden: false,
+      isSlot,
       options: [],
       default: PROP_KIND_DEFAULTS[prop],
       optional: true,
-    } satisfies Required<PropDef>;
+    } satisfies NormalizedProps;
   }
 
   return {
+    id: propName,
     default: prop.optional ? undefined : PROP_KIND_DEFAULTS[prop.kind],
     displayName: propName,
     disabled: false,
     hidden: false,
+    isSlot,
     optional: true,
     options: [],
     ...prop,
-  } satisfies Required<PropDef>;
+  } satisfies NormalizedProps;
 }
 
 export function normalizeProps(
-  props: CaseDef<unknown>["props"]
-): Required<PropDef>[] {
+  props: CaseDef<unknown>["props"],
+  isSlot = false
+): NormalizedProps[] {
   return Object.entries(props).map(([propName, propDef]) =>
-    normalizeProp(propName, propDef)
+    normalizeProp(propName, propDef, isSlot)
   );
 }
 
 export function prepareProps(
   props: CaseDef<unknown>["props"],
+  slots: CaseDef<unknown>["slots"],
   showcaseDef: ShowcaseDef<unknown, unknown>
 ): {
   defs: ShowcaseFieldProps[];
   componentProps: Record<string, MiniUI.Signal<unknown>>;
+  componentSlots: Record<string, MiniUI.Signal<unknown>>;
   componentEvents: Record<string, MiniUI.Signal<void>>;
 } {
   const normalizedProps = normalizeProps(props);
+  const normalizedSlots = normalizeProps(slots ?? {}, /* isSlot */ true);
 
   const defs: ShowcaseFieldProps[] = [];
   const componentProps: [string, MiniUI.Signal<unknown>][] = [];
+  const componentSlots: [string, MiniUI.Signal<unknown>][] = [];
   const componentEvents: [string, MiniUI.Signal<void>][] = [];
 
   for (const propDef of normalizedProps) {
@@ -78,7 +90,7 @@ export function prepareProps(
         showcaseDef,
       });
       componentEvents.push([
-        propDef.displayName,
+        propDef.id,
         () => {
           valueSignal(true);
         },
@@ -91,13 +103,25 @@ export function prepareProps(
         valueSignal,
         showcaseDef,
       });
-      componentProps.push([propDef.displayName, valueSignal]);
+      componentProps.push([propDef.id, valueSignal]);
     }
+  }
+
+  for (const slotDef of normalizedSlots) {
+    const valueSignal = createSignal(slotDef.default);
+
+    defs.push({
+      ...slotDef,
+      valueSignal,
+      showcaseDef,
+    });
+    componentSlots.push([slotDef.id, valueSignal]);
   }
 
   return {
     defs,
     componentProps: Object.fromEntries(componentProps),
+    componentSlots: Object.fromEntries(componentSlots),
     componentEvents: Object.fromEntries(componentEvents),
   };
 }
