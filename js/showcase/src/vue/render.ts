@@ -4,6 +4,7 @@ import {
   defineComponent,
   Fragment,
   h as vueH,
+  isRef,
   Ref,
   VNode,
 } from "vue";
@@ -76,19 +77,46 @@ export const renderCaseSplitted = defineComponent<{
       outProps[eventName] = eventValue;
     }
 
+    let manualTrigger: () => void;
+    const manualTriggerRef = customRef((track, trigger) => {
+      manualTrigger = trigger;
+      return {
+        get: () => track(),
+        set: () => undefined,
+      };
+    });
+
+    for (const slotSignal of Object.values(slots)) {
+      createEffect(() => {
+        slotSignal();
+        manualTrigger();
+      });
+    }
+
     return () =>
-      vueH(Fragment, null, [
-        inputs,
-        vueH(
-          component,
-          outProps,
-          Object.fromEntries(
-            Object.entries(slots).map(([slotName, slotSignal]) => [
-              slotName,
-              () => slotSignal(),
-            ])
-          )
-        ),
-      ]);
+      vueH(
+        Fragment,
+        {
+          manualTrigger: manualTriggerRef.value,
+        },
+        [
+          inputs,
+          vueH(
+            component,
+            Object.fromEntries(
+              Object.entries(outProps).map(([propName, propRef]) => [
+                propName,
+                isRef(propRef) ? propRef.value : propRef,
+              ])
+            ),
+            Object.fromEntries(
+              Object.entries(slots).map(([slotName, slotSignal]) => [
+                slotName,
+                () => slotSignal(),
+              ])
+            )
+          ),
+        ]
+      );
   },
 });
