@@ -7,6 +7,7 @@ pub mod card;
 pub mod chip;
 pub mod flap;
 pub mod icons;
+pub mod input;
 pub mod level;
 pub mod progress_bar;
 pub mod radio;
@@ -23,6 +24,7 @@ pub mod prelude {
     pub use crate::card::Card;
     pub use crate::chip::{Chip, Variant as ChipVariant};
     pub use crate::flap::Flap;
+    pub use crate::input::Input;
     pub use crate::level::{Level, Variant as LevelVariant};
     pub use crate::progress_bar::ProgressBar;
     pub use crate::tag::Tag;
