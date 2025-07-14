@@ -1,20 +1,18 @@
-use leptos::prelude::{Children, ClassAttribute};
+use components_core::{BASE_CLASS, concat};
+use leptos::prelude::*;
 use leptos::{IntoView, component, view};
-use tailwind_fuse::{AsTailwindClass, TwVariant};
 
 #[component]
 pub fn Tag(
     #[prop(into)] label: String,
     #[prop(into, optional)] selected: bool,
-    #[prop] class: impl AsTailwindClass,
+    #[prop(into, optional)] class: String,
 ) -> impl IntoView {
     let class = crate::tw!(
-        selected.then_some(
-            "bg-secondary-100 border-secondary-600 text-secondary-600 dark:bg-primary-950 dark:border-primary-500 dark:text-primary-500",
-        ).or_else(|| Some(
-            "bg-light text-black border-black dark:bg-neutral-950 dark:text-neutral-50 dark:border-neutral-50",
-        )),
-        "grid h-7 cursor-pointer place-items-center rounded-[20px] border px-2 text-xs font-semibold transition",
+        selected
+            .then_some(concat!(BASE_CLASS, "-tag--selected"),)
+            .or_else(|| Some(concat!(BASE_CLASS, "-tag--default"),)),
+        concat!(BASE_CLASS, "-tag"),
         class
     );
 

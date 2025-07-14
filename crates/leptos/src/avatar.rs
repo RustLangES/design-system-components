@@ -1,22 +1,22 @@
-use leptos::prelude::{Children, ClassAttribute};
-use leptos::{IntoView, component, view};
-use tailwind_fuse::{AsTailwindClass, TwVariant};
+use components_core::{BASE_CLASS, concat};
+use leptos::prelude::*;
 
 #[component]
 pub fn Avatar(
     #[prop(into)] url: String,
     #[prop(into, optional)] alt: Option<String>,
-    #[prop(into, optional, default = "32")] size: Option<i32>,
-    #[prop] class: impl AsTailwindClass,
+    #[prop(into, optional, default = Some(32))] size: Option<i32>,
+    #[prop(into, optional)] class: String,
 ) -> impl IntoView {
-    let class = crate::tw!(
-        "grid aspect-square place-items-center overflow-hidden rounded-full border object-cover",
-        class
-    );
+    let class = crate::tw!(concat!(BASE_CLASS, "-avatar"), class);
 
     view! {
-        <div class={class}>
-            <img class="aspect-square h-full w-full" src={url} alt={alt} />
+        <div
+            class={class}
+            style:width={size.map(|size| format!("{size}px"))}
+            style:height={size.map(|size| format!("{size}px"))}
+        >
+            <img class="rustlanges-avatar__img" src={url} alt={alt} />
         </div>
     }
 }
