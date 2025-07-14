@@ -13,9 +13,9 @@ def main [
     } | str join "\n"
 
     let use_content = $files | each {|file|
-        let name = ($file | path basename | str replace ".tsx" "") | str snake-case
+        let name = ($file | path basename | str replace ".tsx" "")
 
-        if $rust { $"pub use ($name)::*;" } else { "" }
+        if $rust { $"pub use ($name | str snake-case)::($name | str pascal-case);" } else { "" }
     } | str join "\n"
 
 
@@ -35,7 +35,7 @@ def main [
         let rust_content = r#'use leptos::prelude::*;
 
 #[component]
-fn $name(#[prop(into, optional, default = 24)] size: u32) -> impl IntoView {
+pub fn $name(#[prop(into, optional, default = 24)] size: u32) -> impl IntoView {
     view! {
         <svg
             width={size}

@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 #[component]
-fn ArrowDown(#[prop(into, optional, default = 24)] size: u32) -> impl IntoView {
+pub fn ArrowDown(#[prop(into, optional, default = 24)] size: u32) -> impl IntoView {
     view! {
         <svg
             width={size}
