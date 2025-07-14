@@ -59,8 +59,12 @@ export def "send query issues" [--dry, --verbose] : nothing -> record {
   send query (query issues) --dry=$dry --verbose=$verbose | get -i organization.repository.issues
 }
 
-export def "send query react-components-issues" [--dry, --verbose] : nothing -> record {
-  send query (query react-components-issues) --dry=$dry --verbose=$verbose | get -i organization.repository.issues
+export def "send query all-new-components-issues" [--dry, --verbose] : nothing -> record {
+  send query (query all-new-components-issues) --dry=$dry --verbose=$verbose
+  | get -i organization.repository.issues
+  | rename --column {state:isOpen}
+  | update isOpen {$in == "OPEN"}
+  | update labels {get name}
 }
 
 export def "send query org-project-fields" [--dry, --verbose] : nothing -> record {
@@ -99,18 +103,24 @@ $"
 "
 }
 
-export def "query react-components-issues" [] {
+export def "query all-new-components-issues" [] {
 $"
-  organization\(login: ($REPO_OWNER)) {
-    repository\(name: ($REPO_NAME)) {
-      issues\(states: CLOSED, first: 19, filterBy: { labels: \"New Component\" }) {
-        nodes {
-          title
-          body
+organization\(login: ($REPO_OWNER)) {
+  repository\(name: ($REPO_NAME)) {
+    id
+    issues\(first: 100, labels: [\"New Component\"]) {
+      nodes {
+        title
+        state
+        labels\(first: 5) {
+          nodes {
+            name
+          }
         }
       }
     }
   }
+}
 "
 }
 
