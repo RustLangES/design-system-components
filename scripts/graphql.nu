@@ -11,10 +11,15 @@ export def "flatten nodes" [] : [
   $input
   | columns
   | reduce --fold $input {|c, acc| 
-    if ($acc | get $c | get -i nodes) == null {
-      $acc | update $c {flatten nodes}
-    } else {
-      $acc | update $c {flatten|flatten}
+    $acc
+    | update $c {
+      if ($in | describe) !~ "table|record" {
+        $in
+      } else if ($in | get -i nodes) == null {
+        flatten nodes
+      } else {
+        flatten|flatten|flatten nodes
+      }
     }
   }
 }
