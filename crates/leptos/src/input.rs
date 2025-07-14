@@ -2,6 +2,10 @@ use components_core::{BASE_CLASS, concat};
 use leptos::prelude::*;
 use leptos::{IntoView, component, view};
 
+mod search;
+
+pub use search::{Filter, InputSearch};
+
 #[component]
 pub fn Input(
     #[prop(into)] has_error: ReadSignal<bool>,
