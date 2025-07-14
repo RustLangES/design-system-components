@@ -3,6 +3,7 @@ pub(crate) use tailwind_fuse::tw_merge as tw;
 pub mod avatar;
 pub mod badge;
 pub mod button;
+pub mod card;
 pub mod flap;
 pub mod icons;
 pub mod radio;
@@ -16,6 +17,7 @@ pub mod prelude {
     pub use crate::avatar::Avatar;
     pub use crate::badge::{Badge, Type as BadgeType, Variant as BadgeVariant};
     pub use crate::button::{Button, Variant as ButtonVariant};
+    pub use crate::card::Card;
     pub use crate::flap::Flap;
     pub use crate::tag::Tag;
 
