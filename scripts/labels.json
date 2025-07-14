@@ -1,0 +1,66 @@
+[
+  {
+    "id": "LA_kwDOOz1xQs8AAAACBv2ThQ",
+    "name": "bug"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACBv2TiQ",
+    "name": "documentation"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACBv2TjA",
+    "name": "duplicate"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACBv2Tjg",
+    "name": "enhancement"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACBv2Tkg",
+    "name": "good first issue"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACBv2TlQ",
+    "name": "help wanted"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACBv2TmA",
+    "name": "invalid"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACBv2TnA",
+    "name": "question"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACBv2Tnw",
+    "name": "wontfix"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACC0j8LQ",
+    "name": "React"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACC0j-QA",
+    "name": "Leptos"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACC0kAiA",
+    "name": "Vue"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACC0kDNQ",
+    "name": "SolidJS"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACC0kGtQ",
+    "name": "Svelte"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACC0kMvQ",
+    "name": "New Component"
+  },
+  {
+    "id": "LA_kwDOOz1xQs8AAAACC0kT3g",
+    "name": "New Support"
+  }
+]
