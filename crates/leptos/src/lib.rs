@@ -6,6 +6,7 @@ pub mod button;
 pub mod card;
 pub mod flap;
 pub mod icons;
+pub mod progress_bar;
 pub mod radio;
 pub mod tag;
 
@@ -19,6 +20,7 @@ pub mod prelude {
     pub use crate::button::{Button, Variant as ButtonVariant};
     pub use crate::card::Card;
     pub use crate::flap::Flap;
+    pub use crate::progress_bar::ProgressBar;
     pub use crate::tag::Tag;
 
     pub use crate::radio::Radio as InputRadio;
