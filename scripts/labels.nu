@@ -28,8 +28,12 @@ const RENAME_FROM_LIST = {
   Solid: SolidJS
 }
 
-export def rename_from_list [name:string] : nothing -> string {
-  $RENAME_FROM_LIST | get -i $name | default $name
+export def rename_from_list [name:string --reverse] : nothing -> string {
+  if $reverse {
+    $RENAME_FROM_LIST | transpose a b | as record b a | get -i $name | default $name
+  } else {
+    $RENAME_FROM_LIST | get -i $name | default $name
+  }
 }
 
 def main [] {
