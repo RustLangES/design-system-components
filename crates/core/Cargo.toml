@@ -1,0 +1,7 @@
+[package]
+name = "rustlanges-components-core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+constcat = "0.6.1"
