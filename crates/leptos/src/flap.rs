@@ -3,6 +3,8 @@ use leptos::prelude::*;
 use leptos::{IntoView, component, view};
 use tailwind_fuse::{AsTailwindClass, TwVariant};
 
+use crate::icons::StarBold;
+
 #[derive(TwVariant, PartialEq)]
 pub enum Variant {
     #[tw(default, class = "text-primary-400")]
@@ -41,7 +43,7 @@ pub fn Flap(
                     (variant == Variant::Highlight).then_some(concat!(BASE_CLASS, "-flap__view--icon")),
                 )}
             >
-            {(variant == Variant::Highlight).then_some(view! { <> </> })}
+                {(variant == Variant::Highlight).then_some(view! { <StarBold /> })}
                 <span class={concat!("text-paragraph-2 ", BASE_CLASS, "-flap__view-text")}>
                     {label.clone()}
                 </span>
