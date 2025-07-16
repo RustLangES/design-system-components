@@ -1,0 +1,147 @@
+[
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlFk",
+    "name": "Title",
+    "dataType": "TITLE"
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlFo",
+    "name": "Assignees",
+    "dataType": "ASSIGNEES"
+  },
+  {
+    "__typename": "ProjectV2SingleSelectField",
+    "id": "PVTSSF_lADOBHON284A7coizgvvlFs",
+    "name": "Status",
+    "options": [
+      {
+        "id": "f75ad846",
+        "name": "Backlog"
+      },
+      {
+        "id": "61e4505c",
+        "name": "Ready"
+      },
+      {
+        "id": "47fc9ee4",
+        "name": "In progress"
+      },
+      {
+        "id": "df73e18b",
+        "name": "In review"
+      },
+      {
+        "id": "98236657",
+        "name": "Done"
+      }
+    ]
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlFw",
+    "name": "Labels",
+    "dataType": "LABELS"
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlF0",
+    "name": "Linked pull requests",
+    "dataType": "LINKED_PULL_REQUESTS"
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlF4",
+    "name": "Milestone",
+    "dataType": "MILESTONE"
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlF8",
+    "name": "Repository",
+    "dataType": "REPOSITORY"
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlGE",
+    "name": "Reviewers",
+    "dataType": "REVIEWERS"
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlGI",
+    "name": "Parent issue",
+    "dataType": "PARENT_ISSUE"
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlGM",
+    "name": "Sub-issues progress",
+    "dataType": "SUB_ISSUES_PROGRESS"
+  },
+  {
+    "__typename": "ProjectV2SingleSelectField",
+    "id": "PVTSSF_lADOBHON284A7coizgvvlIw",
+    "name": "Priority",
+    "options": [
+      {
+        "id": "79628723",
+        "name": "P0"
+      },
+      {
+        "id": "0a877460",
+        "name": "P1"
+      },
+      {
+        "id": "da944a9c",
+        "name": "P2"
+      }
+    ]
+  },
+  {
+    "__typename": "ProjectV2SingleSelectField",
+    "id": "PVTSSF_lADOBHON284A7coizgvvlI0",
+    "name": "Size",
+    "options": [
+      {
+        "id": "6c6483d2",
+        "name": "XS"
+      },
+      {
+        "id": "f784b110",
+        "name": "S"
+      },
+      {
+        "id": "7515a9f1",
+        "name": "M"
+      },
+      {
+        "id": "817d0097",
+        "name": "L"
+      },
+      {
+        "id": "db339eb2",
+        "name": "XL"
+      }
+    ]
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlI4",
+    "name": "Estimate",
+    "dataType": "NUMBER"
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlI8",
+    "name": "Start date",
+    "dataType": "DATE"
+  },
+  {
+    "__typename": "ProjectV2Field",
+    "id": "PVTF_lADOBHON284A7coizgvvlJA",
+    "name": "End date",
+    "dataType": "DATE"
+  }
+]
