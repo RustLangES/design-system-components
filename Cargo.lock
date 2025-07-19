@@ -194,6 +194,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f67855af358fcb20fac58f9d714c94e2b228fe5694c1c9b4ead4a366343eda1b"
 
 [[package]]
+name = "constcat"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "136d3e02915a2cea4d74caa8681e2d44b1c3254bdbf17d11d41d587ff858832c"
+
+[[package]]
 name = "convert_case"
 version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -747,6 +753,7 @@ name = "leptos-components"
 version = "0.1.0"
 dependencies = [
  "leptos",
+ "rustlanges-components-core",
  "tailwind_fuse",
 ]
 
@@ -1271,6 +1278,14 @@ name = "rustlanges-components"
 version = "0.1.0"
 dependencies = [
  "leptos-components",
+ "rustlanges-components-core",
+]
+
+[[package]]
+name = "rustlanges-components-core"
+version = "0.1.0"
+dependencies = [
+ "constcat",
 ]
 
 [[package]]
