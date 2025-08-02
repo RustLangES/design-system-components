@@ -6,4 +6,7 @@ edition = "2024"
 [dependencies]
 leptos = { version = "0.8.2", default-features = false }
 components-core = { package = "rustlanges-components-core", version = "0.1.0", path = "../core" }
-tailwind_fuse = { version = "0.3", features = ["variant", "tailwind_fuse_macro"] }
+tailwind_fuse = { version = "0.3", features = [
+    "variant",
+    "tailwind_fuse_macro",
+] }

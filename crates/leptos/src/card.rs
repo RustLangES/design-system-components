@@ -3,7 +3,7 @@ use leptos::prelude::*;
 
 #[component]
 pub fn Card(
-    #[prop(into)] child: Children,
+    children: Children,
     #[prop(into, optional)] class: String,
     #[prop(into, optional, default = false)] clickable: bool,
     #[prop(into, optional, default = false)] disabled: bool,
@@ -17,7 +17,7 @@ pub fn Card(
 
     view! {
         <div class={class}>
-            {child()}
+            {children()}
         </div>
     }
 }

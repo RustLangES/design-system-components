@@ -28,7 +28,7 @@ pub fn Input(
                 {icon.map(|icon| view! { <span class={concat!(BASE_CLASS, "-input__icon")}>{icon()}</span> })}
                 <input
                     class={concat!(BASE_CLASS, "-input__inner")}
-                    disabled=disabled
+                    disabled=disabled.get()
                 />
             </div>
             {has_error.get().then_some(
