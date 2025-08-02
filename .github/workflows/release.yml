@@ -1,0 +1,99 @@
+name: Detect and Publish Packages
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  detect-changes:
+    name: Detect modified packages
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect mode
+        id: detect-mode
+        run: |
+          echo "manual=${{ github.event_name == 'workflow_dispatch' }}" >> "$GITHUB_OUTPUT"
+
+      - name: Determine projects to publish
+        id: set-matrix
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            matrix='["js/react", "js/vue", "styles", "crates/core", "crates/leptos"]'
+          else
+            CHANGED=$(git diff --name-only origin/main HEAD)
+            declare -a packages
+
+            while read -r file; do
+              [[ "$file" == js/react/* ]] && packages+=("js/react")
+              [[ "$file" == js/vue/* ]] && packages+=("js/vue")
+              [[ "$file" == styles/* ]] && packages+=("styles")
+              [[ "$file" == crates/core/* ]] && packages+=("crates/core")
+              [[ "$file" == crates/leptos/* ]] && packages+=("crates/leptos")
+            done <<< "$CHANGED"
+
+            unique=($(echo "${packages[@]}" | tr ' ' '\n' | sort -u | jq -R . | jq -s .))
+            matrix=$(jq -c . <<< "$unique")
+          fi
+
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  publish:
+    name: Publish Changed Projects
+    needs: detect-changes
+    runs-on: ubuntu-latest
+    if: needs.detect-changes.outputs.matrix != '[]'
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: startsWith(matrix.package, 'js/') || matrix.package == 'styles'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: Setup pnpm
+        if: startsWith(matrix.package, 'js/') || matrix.package == 'styles'
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Setup Rust
+        if: startsWith(matrix.package, 'crates/')
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install deps (JS)
+        if: startsWith(matrix.package, 'js/') || matrix.package == 'styles'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and Publish JS
+        if: startsWith(matrix.package, 'js/') || matrix.package == 'styles'
+        run: |
+          cd "${{ matrix.package }}"
+          pnpm run build
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish Rust crate
+        if: startsWith(matrix.package, 'crates/')
+        run: |
+          cd "${{ matrix.package }}"
+          cargo publish --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
