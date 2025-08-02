@@ -13,6 +13,7 @@ export const Badge = withAs(
     const displayValue = () => {
       if (type !== "numeric") return BADGE_TEXT[variant];
       if (count > LIMIT_NUMERIC) return `+${LIMIT_NUMERIC}`;
+      if (!count && type === "numeric") return "0";
       return count;
     };
 
