@@ -1,7 +1,9 @@
 [package]
 name = "rustlanges-components"
+description = "RustLangES components library"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 
 [lib]
 path = "crates/lib.rs"
@@ -13,5 +15,5 @@ leptos = ["leptos-components"]
 members = [ "crates/core", "crates/leptos" ]
 
 [dependencies]
-components-core = { package = "rustlanges-components-core", version = "0.1.0", path = "./crates/core" }
-leptos-components = { path = "./crates/leptos", optional = true }
+components-core = { package = "rustlanges-components-core", version = "0.1", path = "./crates/core" }
+leptos-components = { path = "./crates/leptos", version = "0.1", optional = true }

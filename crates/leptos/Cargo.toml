@@ -1,10 +1,12 @@
 [package]
 name = "leptos-components"
+description = "RustLangES leptos components"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 
 [dependencies]
-leptos = { version = "0.8.2", default-features = false }
+leptos = { version = "0.8", default-features = false }
 components-core = { package = "rustlanges-components-core", version = "0.1.0", path = "../core" }
 tailwind_fuse = { version = "0.3", features = [
     "variant",
