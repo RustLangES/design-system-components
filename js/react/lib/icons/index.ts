@@ -18,6 +18,7 @@ export { Roadmap } from "./roadmap";
 export { Share } from "./share";
 export { StarBold } from "./star-bold";
 export { SunLine } from "./sun-line";
+export { SunMoon } from "./sun-moon";
 export { Telegram } from "./telegram";
 export { Twitter } from "./twitter";
 export { Youtube } from "./youtube";

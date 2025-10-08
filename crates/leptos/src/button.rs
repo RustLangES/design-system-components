@@ -1,5 +1,5 @@
 use components_core::{BASE_CLASS, concat};
-use leptos::prelude::*;
+use leptos::{ev::MouseEvent, prelude::*};
 
 #[derive(Default, Debug, PartialEq)]
 pub enum Variant {
@@ -10,20 +10,25 @@ pub enum Variant {
     Icon,
 }
 
-#[component(transparent)]
+#[component]
 pub fn Button(
     #[prop(into, optional)] variant: Variant,
-    #[prop(into, optional)] label: String,
     #[prop(into, optional)] class: String,
-    icon: View<impl IntoView + Send + Sync>,
+    on_click: impl FnMut(MouseEvent) + 'static,
+    #[prop(into, optional)] icon: Option<AnyView>,
+    #[prop(into, optional)] label: Option<String>
 ) -> impl IntoView {
-    let var = format!("{}{variant:?}", concat!(BASE_CLASS, "-button", "--"));
+    let var = format!(
+        "{}{}",
+        concat!(BASE_CLASS, "-button", "--"),
+        format!("{variant:?}").to_lowercase()
+    );
     let class = crate::tw!("text-button", var, concat!(BASE_CLASS, "-button"), class);
 
     view! {
-        <button class={class}>
+        <button class={class} on:click=on_click>
             {(variant != Variant::Icon).then_some(label)}
-            {(variant == Variant::Icon).then(|| icon.into_view())}
+            {icon.into_view()}
         </button>
     }
 }
