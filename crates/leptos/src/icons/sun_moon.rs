@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 #[component]
-pub fn Close(
+pub fn SunMoon(
     #[prop(into, optional, default = 24)] size: i32,
     #[prop(into, default = "".to_string())] class: String,
 ) -> impl IntoView {
@@ -14,7 +14,7 @@ pub fn Close(
             xmlns="http://www.w3.org/2000/svg"
         >
             <path
-                d="M7 7L17 17M7 17L17 7"
+                d="M0 0h24v24H0z"
                 fill="currentColor"
             />
         </svg>
