@@ -31,7 +31,7 @@ jobs:
             matrix='["js/react", "js/vue", "styles", "crates/core", "crates/leptos"]'
           else
             CHANGED=$(git diff --name-only origin/main HEAD)
-            declare -a packages
+            packages=()
 
             while read -r file; do
               [[ "$file" == js/react/* ]] && packages+=("js/react")
@@ -41,11 +41,12 @@ jobs:
               [[ "$file" == crates/leptos/* ]] && packages+=("crates/leptos")
             done <<< "$CHANGED"
 
-            unique=($(echo "${packages[@]}" | tr ' ' '\n' | sort -u | jq -R . | jq -s .))
-            matrix=$(jq -c . <<< "$unique")
-          fi
+            matrix=$(printf "%s\n" "${packages[@]}" \
+              | sort -u \
+              | jq -R . \
+              | jq -s -c .)
 
-          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+            echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
   publish:
     name: Publish Changed Projects
