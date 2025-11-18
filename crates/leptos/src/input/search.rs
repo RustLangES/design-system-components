@@ -15,7 +15,7 @@ pub struct Filter {
 pub fn InputSearch(
     #[prop(into, optional)] filters: Option<Vec<Filter>>,
     #[prop(into, optional)] active_filters: Vec<Filter>,
-    #[prop(into)] on_change_filter: Callback<Vec<Filter>, ()>,
+    #[prop(into)] on_change_filter: Callback<(Vec<Filter>,), ()>,
 ) -> impl IntoView {
     let (filter_modal, set_filter_modal) = signal(false);
     let has_filter = filters.as_ref().map_or(false, |f| !f.is_empty());
@@ -27,14 +27,14 @@ pub fn InputSearch(
             if !is_selected {
                 let mut new_filters = active_filters.clone();
                 new_filters.push(filter);
-                on_change_filter.run(new_filters);
+                on_change_filter.run((new_filters,));
             } else {
                 let new_filters = active_filters
                     .iter()
                     .filter(|f| f.value != filter.value)
                     .cloned()
                     .collect();
-                on_change_filter.run(new_filters);
+                on_change_filter.run((new_filters,));
             }
         }
     };

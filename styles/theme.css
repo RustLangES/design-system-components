@@ -1,6 +1,6 @@
 @theme static {
   /* ----- Breakpoints ----- */
-  --breakpoint-desktop: 360px;
+  --breakpoint-desktop: 640px;
 
   /* ------ Colors ------ */
   --color-primary-50: #fff6ed;

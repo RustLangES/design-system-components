@@ -92,7 +92,7 @@
     line-height: 160%;
     letter-spacing: 0.28%;
 
-    @apply desktop:text-[16px];
+    @apply mobile:text-[14px] desktop:text-[16px];
   }
 
   .text-caption {
