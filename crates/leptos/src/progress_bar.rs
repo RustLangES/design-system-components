@@ -37,7 +37,7 @@ pub fn ProgressBar(#[prop(into)] percentage: ReadSignal<usize>) -> impl IntoView
                     style:left={progress_in_min_limit.then_some(percentage_str.clone()).unwrap_or_else(|| "auto".into())}
                 >
                     {percentage_str.clone()}
-                    <Ferris size=15u32 />
+                    <Ferris size=15 />
                 </span>
                 <div
                     class=max_limit_class

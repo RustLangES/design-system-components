@@ -53,7 +53,7 @@ pub fn InputSearch(
                     has_filter.then_some(concat!(BASE_CLASS, "-input-search--filter"))
                 )
             >
-                <SearchIcon size=24u32 />
+                <SearchIcon size=24 />
                 <input
                     type="text"
                     placeholder="Buscar"
@@ -64,7 +64,7 @@ pub fn InputSearch(
             <div class=concat!(BASE_CLASS, "-input-search__filter")>
                 {has_filter.then(|| view! {
                     <button on:click=move |_| set_filter_modal.update(|v| *v = !*v) tabindex="0">
-                        <FilterIcon size=24u32 />
+                        <FilterIcon size=24 />
                     </button>
                 })}
                 <div

@@ -45,8 +45,9 @@ jobs:
               | sort -u \
               | jq -R . \
               | jq -s -c .)
-
-            echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          fi
+          
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
   publish:
     name: Publish Changed Projects

@@ -16,7 +16,7 @@ pub fn Button(
     #[prop(into, optional)] class: String,
     on_click: impl FnMut(MouseEvent) + 'static,
     #[prop(into, optional)] icon: Option<AnyView>,
-    #[prop(into, optional)] label: Option<String>
+    #[prop(into, optional)] label: Option<String>,
 ) -> impl IntoView {
     let var = format!(
         "{}{}",
