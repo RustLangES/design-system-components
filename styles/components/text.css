@@ -5,7 +5,7 @@
     line-height: 125%;
     letter-spacing: 0.32%;
 
-    @apply desktop:text-[48px];
+    @apply mobile:text-[22px] desktop:text-[48px];
   }
 
   .text-h2 {
