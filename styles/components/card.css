@@ -22,11 +22,12 @@
   }
 
   .rustlanges-card--resource > svg {
-    filter: drop-shadow(0px 0px 0px #000000) drop-shadow(4px 4px 0px #000000) url(#inset-shadow);
-    @apply w-full h-auto;
+    filter: drop-shadow(0px 0px 0px #000000) drop-shadow(4px 4px 0px #000000)
+      url(#inset-shadow);
+    @apply h-auto w-full;
   }
 
   .rustlanges-card--resource-body {
-    @apply absolute inset-0 flex justify-center items-center p-10;
+    @apply absolute inset-0 flex items-center justify-center p-10;
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@rustlanges/styles",
   "private": false,
-  "version": "0.0.4",
+  "version": "0.0.9",
   "type": "module",
   "exports": {
     ".": "./tailwindcss.css",
