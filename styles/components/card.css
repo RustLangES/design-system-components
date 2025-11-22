@@ -20,4 +20,13 @@
     @apply border-neutral-200;
     @apply dark:border-neutral-600;
   }
+
+  .rustlanges-card--resource > svg {
+    filter: drop-shadow(0px 0px 0px #000000) drop-shadow(4px 4px 0px #000000) url(#inset-shadow);
+    @apply w-full h-auto;
+  }
+
+  .rustlanges-card--resource-body {
+    @apply absolute inset-0 flex justify-center items-center p-10;
+  }
 }

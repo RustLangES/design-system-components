@@ -32,14 +32,14 @@ pub fn Chip(
 ) -> impl IntoView {
     let class = crate::tw!(
         concat!(BASE_CLASS, "-chip"),
-        format!("{BASE_CLASS}-chip--{variant:?}"),
+        format!("{BASE_CLASS}-chip--{variant:?}").to_lowercase(),
         class
     );
 
     view! {
         <div class=class>
             {variant.icon()}
-            {(variant != Variant::Numeric).then_some(format!("#{label}")).unwrap_or(label)}
+            {(variant == Variant::Numeric).then_some(format!("#{label}")).unwrap_or(label)}
         </div>
     }
 }

@@ -11,6 +11,9 @@ export type CardProps = PropsWithChildren & {
 export const Card = withAs((Component, props: CardProps) => {
   const { clickable = false, disabled = false, className, ...attr } = props;
 
+  // TODO: Add parity with the leptos version | e.g. variants like 'normal' and 'resource'
+  // TODO: If 'resource', add the svg of the card with the drop shadow effect
+
   return (
     <Component
       className={cn(
