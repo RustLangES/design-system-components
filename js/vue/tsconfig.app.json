@@ -19,9 +19,11 @@
     "jsx": "react-jsx",
 
     // Path aliases
-    "baseUrl": "./lib",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./lib/*"],
+      "@rustlanges/showcase/vue": ["../showcase/dist/src/vue/index.d.ts"],
+      "@rustlanges/showcase/styles.css": ["../showcase/dist/styles.css"]
     },
 
     /* Linting */

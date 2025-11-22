@@ -28,6 +28,8 @@ export default defineConfig({
     alias: {
       "@rustlanges/vue/styles.css": resolve(__dirname, "lib/styles.css"),
       "@rustlanges/vue": resolve(__dirname, "lib/index.ts"),
+      "@rustlanges/showcase/vue": resolve(__dirname, "../showcase/dist/vue/index.js"),
+      "@rustlanges/showcase/styles.css": resolve(__dirname, "../showcase/dist/styles.css"),
       "@": resolve(__dirname, "./lib"),
     },
   },
