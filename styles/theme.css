@@ -1,6 +1,7 @@
 @theme static {
   /* ----- Breakpoints ----- */
-  --breakpoint-desktop: 640px;
+  --breakpoint-tablet: 40rem;
+  --breakpoint-desktop: 80rem;
 
   /* ------ Colors ------ */
   --color-primary-50: #fff6ed;
@@ -96,6 +97,10 @@
   --text-body-bold--font-weight: 500;
   --text-body-bold--letter-spacing: 0em;
   --text-body-bold--line-height: 20px;
+  --text-heading-4: 16px;
+  --text-heading-4--font-weight: 400;
+  --text-heading-4--letter-spacing: 0em;
+  --text-heading-4--line-height: 28px;
   --text-heading-3: 18px;
   --text-heading-3--font-weight: 500;
   --text-heading-3--letter-spacing: 0em;
@@ -118,6 +123,7 @@
   --font-caption-bold: Inter;
   --font-body: Inter;
   --font-body-bold: Inter;
+  --font-heading-4: Inter;
   --font-heading-3: Inter;
   --font-heading-2: Inter;
   --font-heading-1: Inter;
