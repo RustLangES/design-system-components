@@ -12,7 +12,11 @@ pub fn Input(
     #[prop(into)] disabled: ReadSignal<bool>,
     #[prop(into, optional)] class: String,
     #[prop(into, optional)] error_message: String,
-    #[prop(into)] icon: Option<Children>,
+    #[prop(into, optional)] placeholder: String,
+    #[prop(into, optional, default = "text".to_string())] r#type: String,
+    #[prop(into, optional)] name: String,
+    #[prop(into, optional)] value: String,
+    #[prop(into, optional)] icon: Option<Children>,
 ) -> impl IntoView {
     let input_class = crate::tw!(
         concat!(BASE_CLASS, "-input"),
@@ -29,6 +33,10 @@ pub fn Input(
                 <input
                     class={concat!(BASE_CLASS, "-input__inner")}
                     disabled=disabled.get()
+                    placeholder=placeholder
+                    name=name
+                    r#type=r#type
+                    value=value
                 />
             </div>
             {has_error.get().then_some(

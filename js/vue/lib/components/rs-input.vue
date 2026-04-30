@@ -6,18 +6,26 @@ defineOptions({ inheritAttrs: false });
 
 const props = withDefaults(
   defineProps<{
+    modelValue?: string | number;
     hasError?: boolean;
     errorMessage?: string;
     disabled?: boolean;
+    type?: string;
     placeholder?: string;
   }>(),
   {
+    modelValue: undefined,
     hasError: undefined,
     errorMessage: undefined,
     disabled: false,
+    type: "text",
     placeholder: undefined,
   }
 );
+
+const emit = defineEmits<{
+  (e: "update:modelValue", value: string): void;
+}>();
 
 const attrs = useAttrs();
 
@@ -32,6 +40,10 @@ const wrapperClass = computed(() =>
     attrs.class as string | undefined
   )
 );
+
+const onInput = (event: Event) => {
+  emit("update:modelValue", (event.target as HTMLInputElement).value);
+};
 </script>
 
 <template>
@@ -41,9 +53,13 @@ const wrapperClass = computed(() =>
         <slot name="icon" />
       </span>
       <input
+        v-bind="$attrs"
         class="rustlanges-input__inner"
+        :type="type"
+        :value="modelValue"
         :disabled="disabled"
         :placeholder="placeholder"
+        @input="onInput"
       />
     </div>
     <span v-if="showError && errorMessage" class="rustlanges-input__error">

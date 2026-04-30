@@ -10,11 +10,13 @@ type Option = { label: string; value: string };
 
 const props = withDefaults(
   defineProps<{
+    modelValue?: string;
     filters?: Option[];
     activeFilters?: Option[];
     placeholder?: string;
   }>(),
   {
+    modelValue: "",
     filters: () => [],
     activeFilters: () => [],
     placeholder: "Buscar",
@@ -22,6 +24,7 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
+  (e: "update:modelValue", value: string): void;
   (e: "changeFilter", value: Option[]): void;
 }>();
 
@@ -68,6 +71,10 @@ const toggleFilters = () => {
 const closeFilters = () => {
   if (hasFilter.value) filterOpen.value = false;
 };
+
+const onInput = (event: Event) => {
+  emit("update:modelValue", (event.target as HTMLInputElement).value);
+};
 </script>
 
 <template>
@@ -75,10 +82,13 @@ const closeFilters = () => {
     <label :class="labelClass">
       <RsSearch :width="24" :height="24" />
       <input
+        v-bind="$attrs"
         type="text"
         :placeholder="placeholder"
+        :value="modelValue"
         class="text-caption"
         @click="closeFilters"
+        @input="onInput"
       />
     </label>
     <div class="rustlanges-input-search__filter">

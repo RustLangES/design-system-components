@@ -3,8 +3,8 @@ import Showcase from "@rustlanges/showcase/vue";
 import RsDropdown from "./rs-dropdown.vue";
 
 const props = {
-  onChange: "callback",
-  value: {
+  "onUpdate:modelValue": "callback",
+  modelValue: {
     kind: "string",
     default: "completed",
     options: ["completed", "pending", "reading", "unread"],

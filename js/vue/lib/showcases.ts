@@ -10,3 +10,7 @@ export { default as DropdownShowcase } from "./components/rs-dropdown.showcase.v
 export { default as ProgressBarShowcase } from "./components/rs-progress-bar.showcase.vue";
 export { default as InputSearchShowcase } from "./components/rs-input-search.showcase.vue";
 export { default as CalendarShowcase } from "./components/rs-calendar.showcase.vue";
+export { default as LevelShowcase } from "./components/rs-level.showcase.vue";
+export { default as RadioShowcase } from "./components/rs-radio.showcase.vue";
+export { default as ContactFormShowcase } from "./components/rs-contact-form.showcase.vue";
+export { default as DropdownTreeShowcase } from "./components/dropdown-tree/dropdown-tree.showcase.vue";

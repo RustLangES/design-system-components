@@ -39,13 +39,25 @@ const DROPDOWN_OPTIONS: Array<{ label: string; value: BadgeVariant }> = [
 
 type BadgeVariant = keyof typeof BADGE_TEXT;
 
-const props = defineProps<{
-  value: BadgeVariant;
-}>();
+const props = withDefaults(
+  defineProps<{
+    modelValue?: BadgeVariant;
+    value?: BadgeVariant;
+  }>(),
+  {
+    modelValue: undefined,
+    value: undefined,
+  }
+);
 
 const emit = defineEmits<{
   (e: "change", value: BadgeVariant): void;
+  (e: "update:modelValue", value: BadgeVariant): void;
 }>();
+
+const current = computed<BadgeVariant>(
+  () => props.modelValue ?? props.value ?? "unread"
+);
 
 const open = ref(false);
 
@@ -55,12 +67,13 @@ const toggle = () => {
 
 const select = (value: BadgeVariant) => {
   emit("change", value);
+  emit("update:modelValue", value);
   open.value = false;
 };
 
 const triggerClass = computed(() => [
   "text-paragraph-2 rustlanges-dropdown__view",
-  ...DROPDOWN_STATUS_VARIANTS[props.value],
+  ...DROPDOWN_STATUS_VARIANTS[current.value],
 ]);
 
 const contentClass = computed(() => [
@@ -70,7 +83,7 @@ const contentClass = computed(() => [
     : "rustlanges-dropdown__content--closed",
 ]);
 
-const triggerText = computed(() => BADGE_TEXT[props.value]);
+const triggerText = computed(() => BADGE_TEXT[current.value]);
 </script>
 
 <template>

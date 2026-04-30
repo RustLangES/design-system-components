@@ -7,7 +7,7 @@ const props = withDefaults(
   defineProps<{
     label?: string;
     selected?: boolean;
-    as?: "span" | "button" | "a";
+    as?: "span" | "button" | "a" | "li";
   }>(),
   {
     label: undefined,
@@ -16,6 +16,10 @@ const props = withDefaults(
   }
 );
 
+const emit = defineEmits<{
+  (e: "update:selected", value: boolean): void;
+}>();
+
 const attrs = useAttrs();
 
 const className = computed(() => [
@@ -23,10 +27,19 @@ const className = computed(() => [
   props.selected ? "rustlanges-tag--selected" : "rustlanges-tag--default",
   attrs.class,
 ]);
+
+const onClick = () => {
+  emit("update:selected", !props.selected);
+};
 </script>
 
 <template>
-  <component :is="as" :class="className">
-    {{ label }}
+  <component
+    :is="as"
+    v-bind="$attrs"
+    :class="className"
+    @click="onClick"
+  >
+    <slot>{{ label }}</slot>
   </component>
 </template>

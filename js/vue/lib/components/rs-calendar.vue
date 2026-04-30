@@ -40,9 +40,17 @@ const props = withDefaults(
   }
 );
 
+type CalendarValue = Date | Record<string, Date> | RangeDate | null;
+
 const emit = defineEmits<{
-  (e: "change", value: Date | Record<string, Date> | RangeDate | null): void;
+  (e: "change", value: CalendarValue): void;
+  (e: "update:value", value: CalendarValue): void;
 }>();
+
+const emitValue = (value: CalendarValue) => {
+  emit("change", value);
+  emit("update:value", value);
+};
 
 const month = ref<Date>(props.defaultMonth ?? new Date());
 
@@ -77,8 +85,8 @@ const isSelected = (date: Date): boolean => {
 
 const onSelectDay = (date: Date) => {
   if (props.type === "single") {
-    if (props.value && isSelected(date)) emit("change", null);
-    else emit("change", date);
+    if (props.value && isSelected(date)) emitValue(null);
+    else emitValue(date);
     return;
   }
   if (props.type === "multiple") {
@@ -87,17 +95,17 @@ const onSelectDay = (date: Date) => {
     const updated = { ...current };
     if (updated[key]) delete updated[key];
     else updated[key] = date;
-    emit("change", updated);
+    emitValue(updated);
     return;
   }
   // range
   const { start, end } = props.value ?? {};
   if (!start || (start && end)) {
-    emit("change", { start: date });
+    emitValue({ start: date });
   } else if (date < start) {
-    emit("change", { start: date, end: start });
+    emitValue({ start: date, end: start });
   } else {
-    emit("change", { start, end: date });
+    emitValue({ start, end: date });
   }
 };
 

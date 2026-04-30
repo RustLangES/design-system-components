@@ -9,9 +9,8 @@ const single = ref<Date | null>(null);
 <template>
   <Showcase name="Calendar">
     <RsCalendar
+      v-model:value="single"
       type="single"
-      :value="single"
-      @change="(v: Date | null) => (single = v)"
     />
   </Showcase>
 </template>
