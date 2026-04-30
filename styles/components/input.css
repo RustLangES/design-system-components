@@ -3,20 +3,26 @@
     @apply flex items-center gap-2 rounded-xl px-[10px] py-3 transition-colors;
     @apply bg-light border-1 border-black text-black hover:bg-neutral-100;
     @apply dark:bg-neutral-950 dark:text-white dark:hover:bg-neutral-900;
+    @apply dark:border-neutral-800;
 
-    &:has(> :active),
-    &:has(> :focus) {
-      @apply border-primary-500;
+    &:has(> :focus-visible),
+    &:has(> :focus),
+    &:has(> :active:not(:disabled)) {
+      @apply border-primary-500 dark:border-primary-500;
     }
 
     @variant has-disabled {
-      @apply cursor-not-allowed border-neutral-400 bg-neutral-100 text-neutral-600;
-      @apply dark:bg-neutral-900 dark:text-neutral-400;
+      @apply cursor-not-allowed border-neutral-300 bg-neutral-100 text-neutral-600;
+      @apply hover:bg-neutral-100;
+      @apply dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400;
+      @apply dark:hover:bg-neutral-900;
     }
   }
 
-  .rustlanges-input--error {
-    @apply border-error-600;
+  .rustlanges-input--error,
+  .rustlanges-input--error:has(> :focus),
+  .rustlanges-input--error:has(> :active) {
+    @apply border-error-600 dark:border-error-500;
   }
 
   .rustlanges-input__container {
@@ -24,7 +30,7 @@
   }
 
   .rustlanges-input__error {
-    @apply text-error-800 dark:text-error-300 mt-1 text-sm;
+    @apply text-error-600 dark:text-error-300 mt-1 text-sm;
   }
 
   .rustlanges-input__inner {
@@ -34,10 +40,10 @@
   }
 
   .rustlanges-input__icon {
-    @apply text-neutral-600;
+    @apply text-neutral-600 dark:text-neutral-400;
 
     &:has(+ :disabled) {
-      @apply text-neutral-400;
+      @apply text-neutral-400 dark:text-neutral-600;
     }
   }
 }
