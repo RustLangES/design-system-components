@@ -28,8 +28,16 @@ import RsDropdownTreeEnd from "./rs-dropdown-tree-end.vue";
             state="completed"
             title="Subtópico"
           />
-          <RsDropdownTreeSubTopic level="n1" state="reading" title="Subtópico" />
-          <RsDropdownTreeSubTopic level="n1" state="pending" title="Subtópico" />
+          <RsDropdownTreeSubTopic
+            level="n1"
+            state="reading"
+            title="Subtópico"
+          />
+          <RsDropdownTreeSubTopic
+            level="n1"
+            state="pending"
+            title="Subtópico"
+          />
         </RsDropdownTreeTopic>
         <RsDropdownTreeEnd title="Continúa aprendiendo">
           Conoce todos nuestros proyectos Open Source.

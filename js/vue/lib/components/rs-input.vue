@@ -29,9 +29,7 @@ const emit = defineEmits<{
 
 const attrs = useAttrs();
 
-const showError = computed(
-  () => props.hasError ?? Boolean(props.errorMessage)
-);
+const showError = computed(() => props.hasError ?? Boolean(props.errorMessage));
 
 const wrapperClass = computed(() =>
   clsx(

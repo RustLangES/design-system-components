@@ -119,11 +119,7 @@ const containerClass = [
 <template>
   <div :class="containerClass">
     <div class="flex items-center justify-between">
-      <RsButton
-        class="size-7 border-2"
-        variant="icon"
-        @click="handlePrev"
-      >
+      <RsButton class="size-7 border-2" variant="icon" @click="handlePrev">
         <template #icon>
           <RsArrowLeft />
         </template>
@@ -131,22 +127,14 @@ const containerClass = [
       <p class="flex-1 text-center text-sm font-medium capitalize">
         {{ formattedMonth }} {{ formattedYear }}
       </p>
-      <RsButton
-        class="size-7 border-2"
-        variant="icon"
-        @click="handleNext"
-      >
+      <RsButton class="size-7 border-2" variant="icon" @click="handleNext">
         <template #icon>
           <RsArrowRight />
         </template>
       </RsButton>
     </div>
     <ul class="grid grid-cols-7 text-center" role="grid">
-      <li
-        v-for="day in WEEK_DAYS"
-        :key="day"
-        class="mb-1.5 min-w-9 text-xs"
-      >
+      <li v-for="day in WEEK_DAYS" :key="day" class="mb-1.5 min-w-9 text-xs">
         {{ day.slice(0, 2) }}
       </li>
       <li

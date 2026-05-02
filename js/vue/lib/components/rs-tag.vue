@@ -34,12 +34,7 @@ const onClick = () => {
 </script>
 
 <template>
-  <component
-    :is="as"
-    v-bind="$attrs"
-    :class="className"
-    @click="onClick"
-  >
+  <component :is="as" v-bind="$attrs" :class="className" @click="onClick">
     <slot>{{ label }}</slot>
   </component>
 </template>

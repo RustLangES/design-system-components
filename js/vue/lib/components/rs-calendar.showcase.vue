@@ -8,9 +8,6 @@ const single = ref<Date | null>(null);
 
 <template>
   <Showcase name="Calendar">
-    <RsCalendar
-      v-model:value="single"
-      type="single"
-    />
+    <RsCalendar v-model:value="single" type="single" />
   </Showcase>
 </template>

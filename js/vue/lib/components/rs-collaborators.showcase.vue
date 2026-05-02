@@ -10,9 +10,13 @@ const collaborator = {
 
 const sourceUrl = "https://github.com/RustLangES/design-system-components";
 
-const fourCollaborators = Array.from({ length: 4 }, () => ({ ...collaborator }));
+const fourCollaborators = Array.from({ length: 4 }, () => ({
+  ...collaborator,
+}));
 const singleCollaborator = [collaborator];
-const sevenCollaborators = Array.from({ length: 7 }, () => ({ ...collaborator }));
+const sevenCollaborators = Array.from({ length: 7 }, () => ({
+  ...collaborator,
+}));
 </script>
 
 <template>

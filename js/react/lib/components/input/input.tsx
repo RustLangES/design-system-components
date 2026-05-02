@@ -16,12 +16,7 @@ export const Input = forwardRef<HTMLInputElement, InputFieldProps>(
     ref
   ) {
     return (
-      <div
-        className={clsx(
-          "rustlanges-input__container",
-          containerClassName
-        )}
-      >
+      <div className={clsx("rustlanges-input__container", containerClassName)}>
         <div
           className={clsx(
             "rustlanges-input",
