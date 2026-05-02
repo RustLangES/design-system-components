@@ -1,1 +1,10 @@
 export { default as RsLocation } from "./rs-location.vue";
+export { default as RsStarBold } from "./rs-star-bold.vue";
+export { default as RsGithub } from "./rs-github.vue";
+export { default as RsSearch } from "./rs-search.vue";
+export { default as RsFilter } from "./rs-filter.vue";
+export { default as RsArrowDown } from "./rs-arrow-down.vue";
+export { default as RsArrowUp } from "./rs-arrow-up.vue";
+export { default as RsArrowLeft } from "./rs-arrow-left.vue";
+export { default as RsArrowRight } from "./rs-arrow-right.vue";
+export { default as RsFerris } from "./rs-ferris.vue";

@@ -8,13 +8,15 @@ const variants = {
 
 type ButtonVariants = keyof typeof variants;
 
-const { variant } = defineProps<{
+const { variant, as } = defineProps<{
   variant?: ButtonVariants;
+  as?: "button" | "a";
 }>();
 </script>
 
 <template>
-  <button
+  <component
+    :is="as ?? 'button'"
     :class="[
       variants[variant ?? 'primary'] ?? variants.primary,
       'text-button rustlanges-button',
@@ -23,5 +25,5 @@ const { variant } = defineProps<{
   >
     <slot v-if="variant !== 'icon'" />
     <slot name="icon" />
-  </button>
+  </component>
 </template>

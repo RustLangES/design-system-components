@@ -12,6 +12,14 @@
     @apply p-[4px] px-[12px];
   }
 
+  .rustlanges-chip--official {
+    @apply rounded-[20px] border;
+    @apply bg-secondary-400 border-black text-black;
+    @apply min-h-[32px];
+    @apply text-sm;
+    @apply p-[4px] px-[12px];
+  }
+
   .rustlanges-chip--numeric {
     @apply rounded-[20px] border;
     @apply bg-primary-200 border-black text-black;

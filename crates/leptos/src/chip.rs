@@ -8,6 +8,7 @@ use crate::icons::{Location, StarBold};
 pub enum Variant {
     #[default]
     Featured,
+    Official,
     Numeric,
     Description,
     Location,
