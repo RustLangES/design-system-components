@@ -32,7 +32,7 @@
     "directory": "styles"
   },
   "scripts": {
-    "build": "npx @tailwindcss/cli -i tailwindcss.css -o /var/mnt/Basura/Projects/RustLangES.github.io/node_modules/@rustlanges/styles/dist/bundled.css --minify"
+    "build": "npx @tailwindcss/cli -i tailwindcss.css -o ../../RustLangES.github.io/node_modules/@rustlanges/styles/dist/bundled.css --minify"
   },
   "peerDependencies": {
     "tailwindcss": "^4.1.8"
