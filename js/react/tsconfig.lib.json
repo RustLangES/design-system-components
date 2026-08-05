@@ -24,5 +24,9 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["lib"],
-  "exclude": ["lib/**/*.showcase.tsx", "lib/**/*.showcase.ts", "lib/showcases.ts"]
+  "exclude": [
+    "lib/**/*.showcase.tsx",
+    "lib/**/*.showcase.ts",
+    "lib/showcases.ts"
+  ]
 }
