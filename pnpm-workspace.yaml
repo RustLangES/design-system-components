@@ -3,6 +3,11 @@ packages:
   - js/showcase
   - js/vue
   - styles
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  '@tailwindcss/oxide': true
+  esbuild: true
 onlyBuiltDependencies:
   - "@parcel/watcher"
   - "@swc/core"
