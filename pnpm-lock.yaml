@@ -9,11 +9,11 @@ importers:
   .:
     devDependencies:
       prettier:
-        specifier: 3.5.3
-        version: 3.5.3
+        specifier: 3.9.6
+        version: 3.9.6
       prettier-plugin-tailwindcss:
-        specifier: 0.6.12
-        version: 0.6.12(prettier@3.5.3)
+        specifier: 0.8.1
+        version: 0.8.1(prettier@3.9.6)
 
   js/react:
     dependencies:
@@ -183,11 +183,11 @@ importers:
         specifier: file:../../styles
         version: link:../../styles
       '@tailwindcss/cli':
-        specifier: ^4.1.8
-        version: 4.1.8
+        specifier: ^4.3.3
+        version: 4.3.3
       '@tailwindcss/vite':
-        specifier: ^4.1.8
-        version: 4.1.8(vite@6.3.5(@types/node@22.15.29)(jiti@2.4.2)(lightningcss@1.30.1))
+        specifier: ^4.3.3
+        version: 4.3.3(vite@6.3.5(@types/node@22.15.29)(jiti@2.4.2)(lightningcss@1.30.1))
       '@tsconfig/node22':
         specifier: ^22.0.2
         version: 22.0.2
@@ -222,8 +222,8 @@ importers:
         specifier: ^2.4.2
         version: 2.4.2
       tailwindcss:
-        specifier: ^4.1.8
-        version: 4.1.8
+        specifier: ^4.3.3
+        version: 4.3.3
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1191,6 +1191,11 @@ packages:
     resolution: {integrity: sha512-CQ+I8yxNV5/6uGaJjiuymgw0kEQiNKRinYbZXPdx1fk5WgiyReG0VaUx/Xq6aVNSUNJFzxm6o8FNKS5aMaim5A==}
     peerDependencies:
       vite: ^5.2.0 || ^6
+
+  '@tailwindcss/vite@4.3.3':
+    resolution: {integrity: sha512-yYU8cogLeSh/ms2jh8Fj7jaba/EWa7Ja6GoUqYZaraEuCI5YS6ms6ObZgjjedm+jm6XZjdNRWBpPP6Z86oOxcw==}
+    peerDependencies:
+      vite: ^5.2.0 || ^6 || ^7 || ^8
 
   '@tsconfig/node22@22.0.2':
     resolution: {integrity: sha512-Kmwj4u8sDRDrMYRoN9FDEcXD8UpBSaPQQ24Gz+Gamqfm7xxn+GBR7ge/Z7pK8OXNGyUzbSwJj+TH6B+DS/epyA==}
@@ -2379,11 +2384,13 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier-plugin-tailwindcss@0.6.12:
-    resolution: {integrity: sha512-OuTQKoqNwV7RnxTPwXWzOFXy6Jc4z8oeRZYGuMpRyG3WbuR3jjXdQFK8qFBMBx8UHWdHrddARz2fgUenild6aw==}
-    engines: {node: '>=14.21.3'}
+  prettier-plugin-tailwindcss@0.8.1:
+    resolution: {integrity: sha512-iaFMYqDsE4ffdDkn5qup0j5f2aCEBFZrdrZnvu9QKTlWx/iGPeQ4HHu7b7fCPMxeo9nwQBiOAh2nSypdFYWJkw==}
+    engines: {node: '>=20.19'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
+      '@prettier/plugin-hermes': '*'
+      '@prettier/plugin-oxc': '*'
       '@prettier/plugin-pug': '*'
       '@shopify/prettier-plugin-liquid': '*'
       '@trivago/prettier-plugin-sort-imports': '*'
@@ -2391,17 +2398,19 @@ packages:
       prettier: ^3.0
       prettier-plugin-astro: '*'
       prettier-plugin-css-order: '*'
-      prettier-plugin-import-sort: '*'
       prettier-plugin-jsdoc: '*'
       prettier-plugin-marko: '*'
       prettier-plugin-multiline-arrays: '*'
       prettier-plugin-organize-attributes: '*'
       prettier-plugin-organize-imports: '*'
       prettier-plugin-sort-imports: '*'
-      prettier-plugin-style-order: '*'
       prettier-plugin-svelte: '*'
     peerDependenciesMeta:
       '@ianvs/prettier-plugin-sort-imports':
+        optional: true
+      '@prettier/plugin-hermes':
+        optional: true
+      '@prettier/plugin-oxc':
         optional: true
       '@prettier/plugin-pug':
         optional: true
@@ -2415,8 +2424,6 @@ packages:
         optional: true
       prettier-plugin-css-order:
         optional: true
-      prettier-plugin-import-sort:
-        optional: true
       prettier-plugin-jsdoc:
         optional: true
       prettier-plugin-marko:
@@ -2429,13 +2436,11 @@ packages:
         optional: true
       prettier-plugin-sort-imports:
         optional: true
-      prettier-plugin-style-order:
-        optional: true
       prettier-plugin-svelte:
         optional: true
 
-  prettier@3.5.3:
-    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+  prettier@3.9.6:
+    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -3175,14 +3180,14 @@ snapshots:
 
   '@jridgewell/gen-mapping@0.3.12':
     dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.0
+      '@jridgewell/sourcemap-codec': 1.5.5
       '@jridgewell/trace-mapping': 0.3.29
 
   '@jridgewell/gen-mapping@0.3.8':
     dependencies:
       '@jridgewell/set-array': 1.2.1
-      '@jridgewell/sourcemap-codec': 1.5.0
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/sourcemap-codec': 1.5.5
+      '@jridgewell/trace-mapping': 0.3.29
 
   '@jridgewell/remapping@2.3.5':
     dependencies:
@@ -3200,12 +3205,12 @@ snapshots:
   '@jridgewell/trace-mapping@0.3.25':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
-      '@jridgewell/sourcemap-codec': 1.5.0
+      '@jridgewell/sourcemap-codec': 1.5.5
 
   '@jridgewell/trace-mapping@0.3.29':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
-      '@jridgewell/sourcemap-codec': 1.5.0
+      '@jridgewell/sourcemap-codec': 1.5.5
 
   '@microsoft/api-extractor-model@7.30.6(@types/node@22.15.29)':
     dependencies:
@@ -3501,7 +3506,7 @@ snapshots:
   '@tailwindcss/node@4.1.8':
     dependencies:
       '@ampproject/remapping': 2.3.0
-      enhanced-resolve: 5.18.1
+      enhanced-resolve: 5.24.5
       jiti: 2.4.2
       lightningcss: 1.30.1
       magic-string: 0.30.17
@@ -3628,6 +3633,13 @@ snapshots:
       '@tailwindcss/node': 4.1.8
       '@tailwindcss/oxide': 4.1.8
       tailwindcss: 4.1.8
+      vite: 6.3.5(@types/node@22.15.29)(jiti@2.4.2)(lightningcss@1.30.1)
+
+  '@tailwindcss/vite@4.3.3(vite@6.3.5(@types/node@22.15.29)(jiti@2.4.2)(lightningcss@1.30.1))':
+    dependencies:
+      '@tailwindcss/node': 4.3.3
+      '@tailwindcss/oxide': 4.3.3
+      tailwindcss: 4.3.3
       vite: 6.3.5(@types/node@22.15.29)(jiti@2.4.2)(lightningcss@1.30.1)
 
   '@tsconfig/node22@22.0.2': {}
@@ -3926,7 +3938,7 @@ snapshots:
       '@vue/compiler-ssr': 3.5.17
       '@vue/shared': 3.5.17
       estree-walker: 2.0.2
-      magic-string: 0.30.17
+      magic-string: 0.30.21
       postcss: 8.5.6
       source-map-js: 1.2.1
 
@@ -4849,11 +4861,11 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-tailwindcss@0.6.12(prettier@3.5.3):
+  prettier-plugin-tailwindcss@0.8.1(prettier@3.9.6):
     dependencies:
-      prettier: 3.5.3
+      prettier: 3.9.6
 
-  prettier@3.5.3: {}
+  prettier@3.9.6: {}
 
   pretty-ms@9.2.0:
     dependencies:
