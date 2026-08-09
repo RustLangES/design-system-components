@@ -45,7 +45,7 @@
     "@vue/tsconfig": "^0.9.1",
     "@vue/eslint-config-typescript": "^14.9.0",
     "ajv": "^8.20.0",
-    "eslint": "^9.28.0",
+    "eslint": "^10.8.1",
     "eslint-plugin-vue": "^10.10.0",
     "glob": "^13.0.6",
     "globals": "^17.9.0",
