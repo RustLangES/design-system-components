@@ -15,7 +15,6 @@ export default defineConfigWithVueTs([
   vueTsConfigs.recommended,
   {
     languageOptions: {
-
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,

@@ -8,7 +8,6 @@ export default ts.config([
   ts.configs.recommended,
   {
     languageOptions: {
-
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
