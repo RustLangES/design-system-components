@@ -18,14 +18,17 @@ export default defineConfig({
     tailwindcss(),
     !shouldBuildShowcase &&
       dts({
-        tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
+        tsconfigPath: resolve(import.meta.dirname, "tsconfig.lib.json"),
       }),
   ],
   resolve: {
     alias: {
-      "@rustlanges/react/styles.css": resolve(__dirname, "lib/styles.css"),
-      "@rustlanges/react": resolve(__dirname, "lib/index.ts"),
-      "@": resolve(__dirname, "./lib"),
+      "@rustlanges/react/styles.css": resolve(
+        import.meta.dirname,
+        "lib/styles.css"
+      ),
+      "@rustlanges/react": resolve(import.meta.dirname, "lib/index.ts"),
+      "@": resolve(import.meta.dirname, "./lib"),
     },
   },
   build: shouldBuildShowcase
@@ -33,7 +36,7 @@ export default defineConfig({
     : {
         copyPublicDir: false,
         lib: {
-          entry: resolve(__dirname, "lib/index.ts"),
+          entry: resolve(import.meta.dirname, "lib/index.ts"),
           formats: ["es"],
         },
         rollupOptions: {
