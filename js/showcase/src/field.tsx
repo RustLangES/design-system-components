@@ -153,7 +153,7 @@ export function ShowcaseField(fieldDef: ShowcaseFieldProps) {
       </label>
       <Show when={modified}>
         <button
-          class="border-1 shadow-brutal mr-1 flex h-[1.7rem] min-w-[1.7rem] items-center justify-center rounded-sm"
+          class="shadow-brutal mr-1 flex h-[1.7rem] min-w-[1.7rem] items-center justify-center rounded-sm border-1"
           // Ignore label events
           onClick={() => {
             valueSignal(default_);
@@ -193,7 +193,7 @@ export function ShowcaseFieldBoolean({
 }: ShowcaseTypeFieldProps): MiniUI.Node {
   return (
     <button
-      class="border-1 shadow-brutal flex h-[1.7rem] min-w-[1.7rem] cursor-pointer items-center justify-center rounded-sm"
+      class="shadow-brutal flex h-[1.7rem] min-w-[1.7rem] cursor-pointer items-center justify-center rounded-sm border-1"
       onClick={() => {
         modified(true);
         valueSignal(!valueSignal());
@@ -202,7 +202,7 @@ export function ShowcaseFieldBoolean({
       <span
         class={() => [
           valueSignal() ? "block" : "hidden",
-          "rounded-xs h-[1rem] w-[1rem] bg-black",
+          "h-[1rem] w-[1rem] rounded-xs bg-black",
         ]}
       />
     </button>
@@ -214,7 +214,7 @@ export function ShowcaseFieldFunction(): MiniUI.Node {
     <input
       disabled
       class={[
-        "border-1 h-[1.7rem] w-[150px] cursor-not-allowed rounded-sm border-neutral-400 px-1",
+        "h-[1.7rem] w-[150px] cursor-not-allowed rounded-sm border-1 border-neutral-400 px-1",
         "text-neutral-400",
         "bg-neutral-100 dark:bg-neutral-900",
       ]}
@@ -229,7 +229,7 @@ export function ShowcaseFieldCallback({
   return (
     <p
       class={() => [
-        "border-1 shadow-brutal",
+        "shadow-brutal border-1",
         "h-[1.7rem] min-w-[150px] px-1",
         "rounded-sm text-center text-base",
         (valueSignal() as boolean) && "bg-green-400",
@@ -284,7 +284,7 @@ export function ShowcaseFieldNumber({
   return (
     <input
       type="number"
-      class="border-1 shadow-brutal h-[1.7rem] max-w-[150px] rounded-sm px-1"
+      class="shadow-brutal h-[1.7rem] max-w-[150px] rounded-sm border-1 px-1"
       use={ref => {
         createEffect(() => {
           ref.valueAsNumber = valueSignal() as number;
@@ -334,8 +334,8 @@ export function ShowcaseFieldString({
   ) : (
     <textarea
       class={[
-        "h-[1.7rem] min-h-[1.7rem] w-[150px] min-w-[150px] max-w-[150px]",
-        "border-1 rounded-sm border-black px-1",
+        "h-[1.7rem] min-h-[1.7rem] w-[150px] max-w-[150px] min-w-[150px]",
+        "rounded-sm border-1 border-black px-1",
         "text-base text-black dark:text-white",
         "bg-light dark:bg-neutral-950",
       ]}

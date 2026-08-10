@@ -22,7 +22,7 @@
   }
 
   .rustlanges-dropdown__content {
-    @apply absolute left-0 top-full mt-2 w-full transition duration-200;
+    @apply absolute top-full left-0 mt-2 w-full transition duration-200;
   }
 
   .rustlanges-dropdown__content--open {

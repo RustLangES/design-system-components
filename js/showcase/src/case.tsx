@@ -122,8 +122,8 @@ export function ShowCase<TComponent, TNode>({
   return (
     <details
       class={() => [
-        "shadow-brutal details-content:flex max-w-case mx-auto mb-5 px-3 py-2",
-        "border-1 rounded-sm border-black",
+        "shadow-brutal max-w-case mx-auto mb-5 px-3 py-2 details-content:flex",
+        "rounded-sm border-1 border-black",
         !caseFailed() && "bg-light dark:bg-neutral-900",
         caseFailed() && "bg-error-400 dark:bg-error-600",
       ]}
@@ -131,11 +131,11 @@ export function ShowCase<TComponent, TNode>({
       <summary
         class={[
           "flex list-none items-center justify-between pr-3 text-lg marker:hidden",
-          "in-open:border-b-1 border-b-0 border-b-neutral-300 dark:border-b-neutral-700",
+          "border-b-0 border-b-neutral-300 in-open:border-b-1 dark:border-b-neutral-700",
         ]}
       >
         <span class="flex items-center gap-2">{caseDef.title}</span>
-        <span class="in-open:rotate-0 rotate-[-90deg] text-2xl transition">
+        <span class="rotate-[-90deg] text-2xl transition in-open:rotate-0">
           <ChevronDown />
         </span>
       </summary>
@@ -180,7 +180,7 @@ function ShowCaseDef<TComponent, TNode>(
   const inputs = (
     <div
       class={[
-        "w-full pb-2 pr-2",
+        "w-full pr-2 pb-2",
         "case:!grid-cols-2 grid grid-cols-1 gap-2",
         "border-b-1 border-b-gray-300",
       ]}

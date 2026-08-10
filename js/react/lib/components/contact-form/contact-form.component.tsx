@@ -65,9 +65,9 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="@container border-1 shadow-rb-black bg-light w-full max-w-xl rounded-xl border-black p-6 dark:bg-neutral-900"
+      className="shadow-rb-black bg-light @container w-full max-w-xl rounded-xl border-1 border-black p-6 dark:bg-neutral-900"
     >
-      <div className="@md:grid-cols-2 grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 gap-4 @md:grid-cols-2">
         <div>
           <input
             name="name"
@@ -110,7 +110,7 @@ export function ContactForm() {
         <div className="relative">
           <Location
             className={cn(
-              "pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 transform",
+              "pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 transform",
               "text-gray-500 dark:text-gray-400"
             )}
           />
@@ -148,7 +148,7 @@ export function ContactForm() {
       <div className="mt-6">
         <Button
           label="Enviar"
-          className="@md:w-fit @md:float-right w-full"
+          className="w-full @md:float-right @md:w-fit"
           disabled={Object.keys(errors).length > 0}
           {...{ type: "submit" }}
         />

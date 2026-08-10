@@ -15,7 +15,7 @@
       @apply border-primary-500 shadow-rb-primary-500;
     }
     & > input[type="text"] {
-      @apply z-50 h-full flex-1 appearance-none pr-2.5 outline-none transition-all;
+      @apply z-50 h-full flex-1 appearance-none pr-2.5 transition-all outline-none;
       @apply text-dark placeholder:text-neutral-200;
       @variant dark {
         @apply text-light placeholder:text-neutral-400;
@@ -37,7 +37,7 @@
     @apply grid size-11 cursor-pointer place-content-center;
   }
   .rustlanges-input-search-backdrop__content {
-    @apply absolute left-0 top-full z-[99] mt-2 w-full transition duration-200;
+    @apply absolute top-full left-0 z-[99] mt-2 w-full transition duration-200;
   }
 
   .rustlanges-input-search-backdrop__content--open {

@@ -59,7 +59,7 @@ export const Calendar = ({
   return (
     <div
       className={cn([
-        "shadow-rb-black grid gap-4 rounded-[20px] border px-3 pb-10 pt-4",
+        "shadow-rb-black grid gap-4 rounded-[20px] border px-3 pt-4 pb-10",
         "bg-light border-2 border-black text-black",
         "dark:bg-dark dark:border-neutral-950 dark:text-neutral-50",
       ])}

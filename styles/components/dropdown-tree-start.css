@@ -7,7 +7,7 @@
       @apply [&>*:first-child]:col-span-3;
 
       & > svg {
-        @apply duration-400 size-6 text-neutral-950 transition;
+        @apply size-6 text-neutral-950 transition duration-400;
         @apply dark:text-neutral-50;
       }
     }
