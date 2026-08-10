@@ -28,7 +28,7 @@
     "build": "pnpm run build:showcase-deps && pnpm run check:tsc && vite build && pnpm run build:tailwindcss",
     "build:showcase": "BUILD_SHOWCASE=1 NODE_ENV=development pnpm run build",
     "build:showcase-deps": "cd ../showcase && pnpm run build 2>/dev/null || true",
-    "build:tailwindcss": "pnpm exec @tailwindcss/cli -i lib/styles.css -o dist/styles.css --minify",
+    "build:tailwindcss": "pnpm exec tailwindcss -i lib/styles.css -o dist/styles.css --minify",
     "lint": "eslint . --ext ts,vue --report-unused-disable-directives --max-warnings 0 && pnpm run check:tsc",
     "check:tsc": "vue-tsc --build",
     "preview": "vite preview"
