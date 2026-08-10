@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     dts({
-      tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
+      tsconfigPath: resolve(import.meta.dirname, "tsconfig.lib.json"),
     }),
   ],
   build: {
@@ -18,8 +18,8 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: {
-        index: resolve(__dirname, "src/index.ts"),
-        react: resolve(__dirname, "src/react/index.ts"),
+        index: resolve(import.meta.dirname, "src/index.ts"),
+        react: resolve(import.meta.dirname, "src/react/index.ts"),
       },
       formats: ["es"],
     },
