@@ -4,23 +4,27 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import reactHooks from "eslint-plugin-react-hooks";
 import js from "@eslint/js";
 import ts from "typescript-eslint";
-
 export default ts.config([
   js.configs.recommended,
   ts.configs.recommended,
-  reactHooks.configs["recommended-latest"],
   {
     languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
       globals: {
         ...globals.browser,
       },
     },
 
     plugins: {
+      "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
     },
 
     rules: {
+      ...reactHooks.configs["recommended-latest"].rules,
       "no-sparse-arrays": "off",
       "@typescript-eslint/no-unsafe-function-type": "off",
       "react-refresh/only-export-components": [
