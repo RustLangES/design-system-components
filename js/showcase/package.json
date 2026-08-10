@@ -30,14 +30,14 @@
   },
   "scripts": {
     "build": "tsc -b ./tsconfig.lib.json && vite build && npm run check:tsc && npm run build:tailwindcss",
-    "build:tailwindcss": "pnpm exec @tailwindcss/cli -i src/styles.css -o dist/styles.css --minify",
+    "build:tailwindcss": "pnpm exec tailwindcss -i src/styles.css -o dist/styles.css --minify",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && pnpm run check:tsc",
     "check:tsc": "tsc --noEmit -p tsconfig.lib.json"
   },
   "peerDependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "vue": "^3.5.17"
+    "vue": "^3.5.41"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
