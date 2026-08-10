@@ -27,7 +27,7 @@
     "dev": "vite",
     "build": "tsc -b ./tsconfig.lib.json && vite build && pnpm run check:tsc && pnpm run build:tailwindcss",
     "build:showcase": "BUILD_SHOWCASE=1 NODE_ENV=development pnpm run build",
-    "build:tailwindcss": "pnpm exec @tailwindcss/cli -i lib/styles.css -o dist/styles.css --minify",
+    "build:tailwindcss": "pnpm exec tailwindcss -i lib/styles.css -o dist/styles.css --minify",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && pnpm run check:tsc",
     "check:tsc": "tsc --noEmit -p tsconfig.lib.json",
     "preview": "vite preview"
