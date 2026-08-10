@@ -10,6 +10,13 @@
     "composite": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "strict": true,
+    "lib": [
+      "es2024",
+      "ESNext.Array",
+      "ESNext.Collection",
+      "ESNext.Iterator",
+      "ESNext.Promise"
+    ]
   }
 }
