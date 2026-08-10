@@ -45,6 +45,5 @@ pub fn Card(
         }.into_any();
     }
 
-    view! { <div class=class>{children()}</div> }
-    .into_any()
+    view! { <div class=class>{children()}</div> }.into_any()
 }
