@@ -21,22 +21,25 @@ export default defineConfig({
     tailwindcss(),
     !shouldBuildShowcase &&
       dts({
-        tsconfigPath: resolve(__dirname, "tsconfig.app.json"),
+        tsconfigPath: resolve(import.meta.dirname, "tsconfig.app.json"),
       }),
   ],
   resolve: {
     alias: {
-      "@rustlanges/vue/styles.css": resolve(__dirname, "lib/styles.css"),
-      "@rustlanges/vue": resolve(__dirname, "lib/index.ts"),
+      "@rustlanges/vue/styles.css": resolve(
+        import.meta.dirname,
+        "lib/styles.css"
+      ),
+      "@rustlanges/vue": resolve(import.meta.dirname, "lib/index.ts"),
       "@rustlanges/showcase/vue": resolve(
-        __dirname,
+        import.meta.dirname,
         "../showcase/dist/vue/index.js"
       ),
       "@rustlanges/showcase/styles.css": resolve(
-        __dirname,
+        import.meta.dirname,
         "../showcase/dist/styles.css"
       ),
-      "@": resolve(__dirname, "./lib"),
+      "@": resolve(import.meta.dirname, "./lib"),
     },
   },
   build: shouldBuildShowcase
@@ -44,7 +47,7 @@ export default defineConfig({
     : {
         copyPublicDir: false,
         lib: {
-          entry: resolve(__dirname, "lib/index.ts"),
+          entry: resolve(import.meta.dirname, "lib/index.ts"),
           formats: ["es"],
         },
         rollupOptions: {
