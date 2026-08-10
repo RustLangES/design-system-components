@@ -11,12 +11,8 @@ pub fn Avatar(
     let class = crate::tw!(concat!(BASE_CLASS, "-avatar"), class);
 
     view! {
-        <div
-            class={class}
-            style:width={format!("{size}px")}
-            style:height={format!("{size}px")}
-        >
-            <img class="rustlanges-avatar__img" src={url} alt={alt} />
+        <div class=class style:width=format!("{size}px") style:height=format!("{size}px")>
+            <img class="rustlanges-avatar__img" src=url alt=alt />
         </div>
     }
 }

@@ -47,12 +47,10 @@ pub fn InputSearch(
 
     view! {
         <div class=concat!(BASE_CLASS, "-input-search-container")>
-            <label
-                class=crate::tw!(
-                    concat!(BASE_CLASS, "-input-search"),
+            <label class=crate::tw!(
+                concat!(BASE_CLASS, "-input-search"),
                     has_filter.then_some(concat!(BASE_CLASS, "-input-search--filter"))
-                )
-            >
+            )>
                 <SearchIcon size=24 />
                 <input
                     type="text"
@@ -61,39 +59,59 @@ pub fn InputSearch(
                     class="text-caption"
                 />
             </label>
-            <div class=concat!(BASE_CLASS, "-input-search__filter")>
-                {has_filter.then(|| view! {
-                    <button on:click=move |_| set_filter_modal.update(|v| *v = !*v) tabindex="0">
-                        <FilterIcon size=24 />
-                    </button>
-                })}
-                <div
-                    class=crate::tw!(
-                        concat!(BASE_CLASS, "-input-search-backdrop__content"),
+            <div class=concat!(
+                BASE_CLASS,
+                "-input-search__filter",
+            )>
+                {has_filter
+                    .then(|| {
+                        view! {
+                            <button
+                                on:click=move |_| set_filter_modal.update(|v| *v = !*v)
+                                tabindex="0"
+                            >
+                                <FilterIcon size=24 />
+                            </button>
+                        }
+                    })}
+                <div class=crate::tw!(
+                    concat!(BASE_CLASS, "-input-search-backdrop__content"),
                         filter_modal.get().then_some(concat!(BASE_CLASS, "-input-search-backdrop__content--open"))
                             .unwrap_or(concat!(BASE_CLASS, "-input-search-backdrop__content--closed"))
-                    )
-                >
-                    {filter_modal.get().then(|| {
-                        view! {
-                        <ul class=concat!(BASE_CLASS, "-input-search-backdrop__list")>
-                            {filters.map(|filters| filters.iter().map(|filter| {
-                                let is_selected = active_filters.iter().any(|f| f.value == filter.value);
-                                let filter = filter.clone();
-                                let handle_select_filter = handle_select_filter.clone();
-                                view! {
-                                    <li
-                                        on:click=move |_| handle_select_filter(filter.clone(), is_selected)
-                                    >
-                                        <Tag
-                                            selected=is_selected
-                                            label=filter.label.clone()
-                                        />
-                                    </li>
-                                }
-                            }).collect::<Vec<_>>()).unwrap_or_default()}
-                        </ul>
-                    }})}
+                )>
+                    {filter_modal
+                        .get()
+                        .then(|| {
+                            view! {
+                                <ul class=concat!(
+                                    BASE_CLASS,
+                                    "-input-search-backdrop__list",
+                                )>
+                                    {filters
+                                        .map(|filters| {
+                                            filters
+                                                .iter()
+                                                .map(|filter| {
+                                                    let is_selected = active_filters
+                                                        .iter()
+                                                        .any(|f| f.value == filter.value);
+                                                    let filter = filter.clone();
+                                                    let handle_select_filter = handle_select_filter.clone();
+                                                    view! {
+                                                        <li on:click=move |_| handle_select_filter(
+                                                            filter.clone(),
+                                                            is_selected,
+                                                        )>
+                                                            <Tag selected=is_selected label=filter.label.clone() />
+                                                        </li>
+                                                    }
+                                                })
+                                                .collect::<Vec<_>>()
+                                        })
+                                        .unwrap_or_default()}
+                                </ul>
+                            }
+                        })}
                 </div>
             </div>
         </div>

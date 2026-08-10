@@ -34,9 +34,5 @@ pub fn Level(
         class
     );
 
-    view! {
-        <div class=class>
-            {variant}
-        </div>
-    }
+    view! { <div class=class>{variant}</div> }
 }

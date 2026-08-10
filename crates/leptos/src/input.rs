@@ -23,17 +23,20 @@ pub fn Input(
     );
 
     view! {
-        <div class={concat!(BASE_CLASS, "-input__container")}>
+        <div class=concat!(BASE_CLASS, "-input__container")>
             <div class=input_class>
-                {icon.map(|icon| view! { <span class={concat!(BASE_CLASS, "-input__icon")}>{icon()}</span> })}
-                <input
-                    class={concat!(BASE_CLASS, "-input__inner")}
-                    disabled=disabled.get()
-                />
+                {icon
+                    .map(|icon| {
+                        view! { <span class=concat!(BASE_CLASS, "-input__icon")>{icon()}</span> }
+                    })} <input class=concat!(BASE_CLASS, "-input__inner") disabled=disabled.get() />
             </div>
-            {has_error.get().then_some(
-                view! { <span class={concat!(BASE_CLASS, "-input__error")}>{error_message}</span> }
-            )}
+            {has_error
+                .get()
+                .then_some(
+                    view! {
+                        <span class=concat!(BASE_CLASS, "-input__error")>{error_message}</span>
+                    },
+                )}
         </div>
     }
 }

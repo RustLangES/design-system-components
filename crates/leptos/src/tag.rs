@@ -16,9 +16,5 @@ pub fn Tag(
         class
     );
 
-    view! {
-        <div class={class}>
-            {label}
-        </div>
-    }
+    view! { <div class=class>{label}</div> }
 }
