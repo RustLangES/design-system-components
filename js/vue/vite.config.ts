@@ -20,57 +20,61 @@ export default defineConfig({
     vueDevTools(),
     tailwindcss(),
     !shouldBuildShowcase &&
-    dts({
-      tsconfigPath: fileURLToPath(import.meta.resolve("./tsconfig.app.json")),
-    }),
+      dts({
+        tsconfigPath: fileURLToPath(import.meta.resolve("./tsconfig.app.json")),
+      }),
   ],
   resolve: {
     alias: {
-      "@rustlanges/vue/styles.css": fileURLToPath(import.meta.resolve("./lib/styles.css")),
+      "@rustlanges/vue/styles.css": fileURLToPath(
+        import.meta.resolve("./lib/styles.css")
+      ),
       "@rustlanges/vue": fileURLToPath(import.meta.resolve("./lib/index.ts")),
-      "@rustlanges/showcase/vue": fileURLToPath(import.meta
-        .resolve("../showcase/dist/vue/index.js")),
-      "@rustlanges/showcase/styles.css": fileURLToPath(import.meta
-        .resolve("../showcase/dist/styles.css")),
+      "@rustlanges/showcase/vue": fileURLToPath(
+        import.meta.resolve("../showcase/dist/vue/index.js")
+      ),
+      "@rustlanges/showcase/styles.css": fileURLToPath(
+        import.meta.resolve("../showcase/dist/styles.css")
+      ),
       "@": fileURLToPath(import.meta.resolve("./lib")),
     },
   },
   build: shouldBuildShowcase
     ? {}
     : {
-      copyPublicDir: false,
-      lib: {
-        entry: fileURLToPath(import.meta.resolve("./lib/index.ts")),
-        formats: ["es"],
-      },
-      rollupOptions: {
-        external: ["vue"],
-        input: Object.fromEntries(
-          // https://rollupjs.org/configuration-options/#input
-          glob
-            .sync("lib/**/*.{ts,vue}", {
-              ignore: [
-                "lib/**/*.showcase.{ts,vue}",
-                "lib/**/*.d.ts",
-                "lib/showcases.ts",
-              ],
-            })
-            .map(file => [
-              // 1. The name of the entry point
-              // lib/nested/foo.js becomes nested/foo
-              relative(
-                "lib",
-                file.slice(0, file.length - extname(file).length)
-              ),
-              // 2. The absolute path to the entry file
-              // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
-              fileURLToPath(new URL(file, import.meta.url)),
-            ])
-        ),
-        output: {
-          assetFileNames: "assets/[name][extname]",
-          entryFileNames: "[name].js",
+        copyPublicDir: false,
+        lib: {
+          entry: fileURLToPath(import.meta.resolve("./lib/index.ts")),
+          formats: ["es"],
+        },
+        rollupOptions: {
+          external: ["vue"],
+          input: Object.fromEntries(
+            // https://rollupjs.org/configuration-options/#input
+            glob
+              .sync("lib/**/*.{ts,vue}", {
+                ignore: [
+                  "lib/**/*.showcase.{ts,vue}",
+                  "lib/**/*.d.ts",
+                  "lib/showcases.ts",
+                ],
+              })
+              .map(file => [
+                // 1. The name of the entry point
+                // lib/nested/foo.js becomes nested/foo
+                relative(
+                  "lib",
+                  file.slice(0, file.length - extname(file).length)
+                ),
+                // 2. The absolute path to the entry file
+                // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
+                fileURLToPath(new URL(file, import.meta.url)),
+              ])
+          ),
+          output: {
+            assetFileNames: "assets/[name][extname]",
+            entryFileNames: "[name].js",
+          },
         },
       },
-    },
 });
