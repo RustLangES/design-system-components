@@ -32,13 +32,13 @@
     "directory": "styles"
   },
   "scripts": {
-    "build": "npx @tailwindcss/cli -i tailwindcss.css -o ../../node_modules/@rustlanges/styles/dist/bundled.css --minify"
+    "build": "pnpm exec tailwindcss -i tailwindcss.css -o ../../node_modules/@rustlanges/styles/dist/bundled.css --minify"
   },
   "peerDependencies": {
-    "tailwindcss": "^4.1.8"
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.1.8"
+    "@tailwindcss/cli": "^4.3.3"
   },
   "dependencies": {}
 }

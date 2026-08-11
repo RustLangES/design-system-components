@@ -6,7 +6,5 @@ use leptos::{IntoView, component, view};
 pub fn Radio(#[prop(into, optional)] class: String) -> impl IntoView {
     let class = crate::tw!(concat!(BASE_CLASS, "-radio"), class);
 
-    view! {
-        <input type="radio" class={class} />
-    }
+    view! { <input type="radio" class=class /> }
 }

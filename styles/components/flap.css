@@ -9,7 +9,7 @@
   }
 
   .rustlanges-flap__svg {
-    @apply desktop:px-3 absolute left-0 top-0 z-0 h-full w-full px-1;
+    @apply desktop:px-3 absolute top-0 left-0 z-0 h-full w-full px-1;
   }
 
   .rustlanges-flap--highlight {

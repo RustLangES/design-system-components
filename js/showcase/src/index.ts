@@ -9,8 +9,10 @@ export interface ShowcaseConfigDef<TNode> {
   icons?: Record<string, TNode>;
 }
 
-export interface ShowcaseDef<TComponent, TNode>
-  extends ShowcaseConfigDef<TNode> {
+export interface ShowcaseDef<
+  TComponent,
+  TNode,
+> extends ShowcaseConfigDef<TNode> {
   icons: Record<string, TNode>;
   instiate(node: TComponent, props: unknown): TNode;
   render(node: TComponent): Node;

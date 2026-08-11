@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import { extname, relative, resolve } from "node:path";
+import { extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { glob } from "glob";
 import vue from "@vitejs/plugin-vue";
@@ -21,22 +21,22 @@ export default defineConfig({
     tailwindcss(),
     !shouldBuildShowcase &&
       dts({
-        tsconfigPath: resolve(__dirname, "tsconfig.app.json"),
+        tsconfigPath: fileURLToPath(import.meta.resolve("./tsconfig.app.json")),
       }),
   ],
   resolve: {
     alias: {
-      "@rustlanges/vue/styles.css": resolve(__dirname, "lib/styles.css"),
-      "@rustlanges/vue": resolve(__dirname, "lib/index.ts"),
-      "@rustlanges/showcase/vue": resolve(
-        __dirname,
-        "../showcase/dist/vue/index.js"
+      "@rustlanges/vue/styles.css": fileURLToPath(
+        import.meta.resolve("./lib/styles.css")
       ),
-      "@rustlanges/showcase/styles.css": resolve(
-        __dirname,
-        "../showcase/dist/styles.css"
+      "@rustlanges/vue": fileURLToPath(import.meta.resolve("./lib/index.ts")),
+      "@rustlanges/showcase/vue": fileURLToPath(
+        import.meta.resolve("../showcase/dist/vue/index.js")
       ),
-      "@": resolve(__dirname, "./lib"),
+      "@rustlanges/showcase/styles.css": fileURLToPath(
+        import.meta.resolve("../showcase/dist/styles.css")
+      ),
+      "@": fileURLToPath(import.meta.resolve("./lib")),
     },
   },
   build: shouldBuildShowcase
@@ -44,7 +44,7 @@ export default defineConfig({
     : {
         copyPublicDir: false,
         lib: {
-          entry: resolve(__dirname, "lib/index.ts"),
+          entry: fileURLToPath(import.meta.resolve("./lib/index.ts")),
           formats: ["es"],
         },
         rollupOptions: {

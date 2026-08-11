@@ -7,11 +7,11 @@
   "scripts": {
     "build:showcase-lib": "pnpm run -r --filter \"*showcase\" build",
     "lint": "pnpm run -r lint",
-    "fmt": "npx prettier --write .",
-    "fmt:check": "npx prettier --check ."
+    "fmt": "pnpm exec prettier --write .",
+    "fmt:check": "pnpm exec prettier --check ."
   },
   "devDependencies": {
-    "prettier": "3.5.3",
-    "prettier-plugin-tailwindcss": "0.6.12"
+    "prettier": "3.9.6",
+    "prettier-plugin-tailwindcss": "0.8.1"
   }
 }

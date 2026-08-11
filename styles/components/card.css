@@ -1,6 +1,6 @@
 @layer components {
   .rustlanges-card {
-    @apply bg-light border-1 shadow-brutal rounded-lg border-black p-4;
+    @apply bg-light shadow-brutal rounded-lg border-1 border-black p-4;
     @apply dark:bg-neutral-900;
   }
 

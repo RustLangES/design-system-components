@@ -59,11 +59,9 @@ pub fn Badge(
     };
 
     view! {
-        <div
-          class={class}
-        >
-          <div class={concat!(BASE_CLASS, "-badge__dot")} />
-          <span>{display_value}</span>
+        <div class=class>
+            <div class=concat!(BASE_CLASS, "-badge__dot") />
+            <span>{display_value}</span>
         </div>
     }
 }

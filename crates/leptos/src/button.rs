@@ -26,7 +26,7 @@ pub fn Button(
     let class = crate::tw!("text-button", var, concat!(BASE_CLASS, "-button"), class);
 
     view! {
-        <button class={class} on:click=on_click>
+        <button class=class on:click=on_click>
             {(variant != Variant::Icon).then_some(label)}
             {icon.into_view()}
         </button>

@@ -66,9 +66,11 @@ export namespace MiniUI {
   };
 
   type OmitNeverValue<Base> = {
-    [Key in keyof Base & {} as [Base[Key]] extends [never] | [undefined]
-      ? never
-      : Key]: Base[Key];
+    [
+      Key in keyof Base & {} as [Base[Key]] extends [never] | [undefined]
+        ? never
+        : Key
+    ]: Base[Key];
   };
 }
 

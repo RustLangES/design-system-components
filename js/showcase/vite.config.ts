@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import { extname, relative, resolve } from "node:path";
+import { extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { glob } from "glob";
 import dts from "vite-plugin-dts";
@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     dts({
-      tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
+      tsconfigPath: fileURLToPath(import.meta.resolve("./tsconfig.lib.json")),
     }),
   ],
   build: {
@@ -18,8 +18,8 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: {
-        index: resolve(__dirname, "src/index.ts"),
-        react: resolve(__dirname, "src/react/index.ts"),
+        index: fileURLToPath(import.meta.resolve("./src/index.ts")),
+        react: fileURLToPath(import.meta.resolve("./src/react/index.ts")),
       },
       formats: ["es"],
     },

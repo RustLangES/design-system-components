@@ -29,20 +29,21 @@ pub fn ProgressBar(#[prop(into)] percentage: ReadSignal<usize>) -> impl IntoView
     let percentage_str = format!("{percentage}%");
 
     view! {
-        <div class={concat!(BASE_CLASS, "__container")}>
-            <div class={BASE_CLASS}>
+        <div class=concat!(BASE_CLASS, "__container")>
+            <div class=BASE_CLASS>
                 <span
                     class=min_limit_class
-                    style:right={progress_in_min_limit.then_some("auto".to_string()).unwrap_or_else(|| format!("{}%", 100 - percentage))}
-                    style:left={progress_in_min_limit.then_some(percentage_str.clone()).unwrap_or_else(|| "auto".into())}
+                    style:right=progress_in_min_limit
+                        .then_some("auto".to_string())
+                        .unwrap_or_else(|| format!("{}%", 100 - percentage))
+                    style:left=progress_in_min_limit
+                        .then_some(percentage_str.clone())
+                        .unwrap_or_else(|| "auto".into())
                 >
                     {percentage_str.clone()}
                     <Ferris size=15 />
                 </span>
-                <div
-                    class=max_limit_class
-                    style:width=percentage_str
-                />
+                <div class=max_limit_class style:width=percentage_str />
             </div>
         </div>
     }
