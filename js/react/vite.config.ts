@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import { extname, relative, resolve } from "node:path";
+import { extname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { glob } from "glob";
 import react from "@vitejs/plugin-react-swc";
@@ -17,56 +17,53 @@ export default defineConfig({
     react(),
     tailwindcss(),
     !shouldBuildShowcase &&
-      dts({
-        tsconfigPath: resolve(import.meta.dirname, "tsconfig.lib.json"),
-      }),
+    dts({
+      tsconfigPath: fileURLToPath(import.meta.resolve("./tsconfig.lib.json")),
+    }),
   ],
   resolve: {
     alias: {
-      "@rustlanges/react/styles.css": resolve(
-        import.meta.dirname,
-        "lib/styles.css"
-      ),
-      "@rustlanges/react": resolve(import.meta.dirname, "lib/index.ts"),
-      "@": resolve(import.meta.dirname, "./lib"),
+      "@rustlanges/react/styles.css": fileURLToPath(import.meta.resolve("./lib/styles.css")),
+      "@rustlanges/react": fileURLToPath(import.meta.resolve("./lib/index.ts")),
+      "@": fileURLToPath(import.meta.resolve("./lib")),
     },
   },
   build: shouldBuildShowcase
     ? {}
     : {
-        copyPublicDir: false,
-        lib: {
-          entry: resolve(import.meta.dirname, "lib/index.ts"),
-          formats: ["es"],
-        },
-        rollupOptions: {
-          external: ["react", "react/jsx-runtime"],
-          input: Object.fromEntries(
-            // https://rollupjs.org/configuration-options/#input
-            glob
-              .sync("lib/**/*.{ts,tsx}", {
-                ignore: [
-                  "lib/**/*.showcase.{ts,tsx}",
-                  "lib/**/*.d.ts",
-                  "lib/showcases.ts",
-                ],
-              })
-              .map(file => [
-                // 1. The name of the entry point
-                // lib/nested/foo.js becomes nested/foo
-                relative(
-                  "lib",
-                  file.slice(0, file.length - extname(file).length)
-                ),
-                // 2. The absolute path to the entry file
-                // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
-                fileURLToPath(new URL(file, import.meta.url)),
-              ])
-          ),
-          output: {
-            assetFileNames: "assets/[name][extname]",
-            entryFileNames: "[name].js",
-          },
+      copyPublicDir: false,
+      lib: {
+        entry: fileURLToPath(import.meta.resolve("./lib/index.ts")),
+        formats: ["es"],
+      },
+      rollupOptions: {
+        external: ["react", "react/jsx-runtime"],
+        input: Object.fromEntries(
+          // https://rollupjs.org/configuration-options/#input
+          glob
+            .sync("lib/**/*.{ts,tsx}", {
+              ignore: [
+                "lib/**/*.showcase.{ts,tsx}",
+                "lib/**/*.d.ts",
+                "lib/showcases.ts",
+              ],
+            })
+            .map(file => [
+              // 1. The name of the entry point
+              // lib/nested/foo.js becomes nested/foo
+              relative(
+                "lib",
+                file.slice(0, file.length - extname(file).length)
+              ),
+              // 2. The absolute path to the entry file
+              // lib/nested/foo.ts becomes /project/lib/nested/foo.ts
+              fileURLToPath(new URL(file, import.meta.url)),
+            ])
+        ),
+        output: {
+          assetFileNames: "assets/[name][extname]",
+          entryFileNames: "[name].js",
         },
       },
+    },
 });
