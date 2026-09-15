@@ -18,16 +18,18 @@ pub mod inputs {
 }
 
 pub mod prelude {
-    pub use crate::avatar::Avatar;
-    pub use crate::badge::{Badge, Type as BadgeType, Variant as BadgeVariant};
-    pub use crate::button::{Button, Variant as ButtonVariant};
-    pub use crate::card::Card;
-    pub use crate::chip::{Chip, Variant as ChipVariant};
-    pub use crate::flap::Flap;
-    pub use crate::input::{Filter as SearchFilter, Input, InputSearch};
-    pub use crate::level::{Level, Variant as LevelVariant};
-    pub use crate::progress_bar::ProgressBar;
-    pub use crate::tag::Tag;
+    pub use crate::{
+        avatar::Avatar,
+        badge::{Badge, Type as BadgeType, Variant as BadgeVariant},
+        button::{Button, Variant as ButtonVariant},
+        card::Card,
+        chip::{Chip, Variant as ChipVariant},
+        flap::Flap,
+        input::{Filter as SearchFilter, Input, InputSearch},
+        level::{Level, Variant as LevelVariant},
+        progress_bar::ProgressBar,
+        tag::Tag,
+    };
 
     pub use crate::radio::Radio as InputRadio;
 }

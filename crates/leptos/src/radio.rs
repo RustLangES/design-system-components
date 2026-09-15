@@ -1,6 +1,5 @@
 use components_core::{BASE_CLASS, concat};
-use leptos::prelude::ClassAttribute;
-use leptos::{IntoView, component, view};
+use leptos::{IntoView, component, prelude::ClassAttribute, view};
 
 #[component]
 pub fn Radio(#[prop(into, optional)] class: String) -> impl IntoView {
