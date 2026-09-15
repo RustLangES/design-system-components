@@ -1,9 +1,10 @@
 use components_core::{BASE_CLASS, concat};
-use leptos::prelude::*;
-use leptos::{IntoView, component, view};
+use leptos::{IntoView, component, prelude::*, view};
 
-use crate::icons::{Filter as FilterIcon, Search as SearchIcon};
-use crate::tag::Tag;
+use crate::{
+    icons::{Filter as FilterIcon, Search as SearchIcon},
+    tag::Tag,
+};
 
 #[derive(Clone, Debug)]
 pub struct Filter {

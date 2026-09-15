@@ -1,6 +1,5 @@
 use components_core::{BASE_CLASS, concat};
-use leptos::prelude::*;
-use leptos::{IntoView, component, view};
+use leptos::{IntoView, component, prelude::*, view};
 
 const LIMIT_NUMERIC: isize = 9;
 const LIMIT_NUMERIC_NEGATIVE: isize = -9;

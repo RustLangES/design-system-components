@@ -1,6 +1,5 @@
 use components_core::{BASE_CLASS, concat};
-use leptos::prelude::*;
-use leptos::{IntoView, component, view};
+use leptos::{IntoView, component, prelude::*, view};
 
 #[derive(Default, Debug, PartialEq)]
 pub enum Variant {

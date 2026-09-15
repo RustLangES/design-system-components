@@ -1,6 +1,5 @@
 use components_core::concat;
-use leptos::prelude::*;
-use leptos::{IntoView, component, view};
+use leptos::{IntoView, component, prelude::*, view};
 
 use crate::icons::Ferris;
 
