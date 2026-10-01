@@ -28,12 +28,12 @@ The repository is organized as follows:
 
 ## Prerequisites
 
-- Node.js _v22_
-- pnpm _v10_ (package manager)
+- Node.js _v24_
+- pnpm _v11_ (package manager)
 - Basic knowledge of:
   - React _v19_ (for JS components)
   - Tailwind CSS _v4_ (for styling)
-  - TypeScript _v5_ (for typing)
+  - TypeScript _v7_ (for typing)
 
 ## Initial Setup
 
@@ -49,6 +49,9 @@ The repository is organized as follows:
    ```
 
 3. Start the development environment:
+
+Navigate to the folder you want to test, such as the Vue or React folder, and once there, run the following command:
+
    ```bash
    pnpm run dev
    ```
