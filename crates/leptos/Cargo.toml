@@ -6,9 +6,9 @@ edition = "2024"
 license = "MIT"
 
 [dependencies]
-leptos = { version = "0.8", default-features = false }
+leptos = { version = "0.8.21", default-features = false }
 components-core = { workspace = true }
-tailwind_fuse = { version = "0.3", features = [
+tailwind_fuse = { version = "0.3.2", features = [
     "variant",
     "tailwind_fuse_macro",
 ] }
