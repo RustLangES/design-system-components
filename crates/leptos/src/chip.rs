@@ -26,9 +26,11 @@ impl Variant {
 #[component]
 pub fn Chip(
     #[prop(into)] label: String,
+    #[prop(into, optional)] numeric_symbol: Option<String>,
     #[prop(into, optional)] class: String,
     #[prop(into, optional)] variant: Variant,
 ) -> impl IntoView {
+    let numeric_symbol = numeric_symbol.unwrap_or("#".to_string());
     let class = crate::tw!(
         concat!(BASE_CLASS, "-chip"),
         format!("{BASE_CLASS}-chip--{variant:?}").to_lowercase(),
@@ -38,7 +40,7 @@ pub fn Chip(
     view! {
         <div class=class>
             {variant.icon()}
-            {(variant == Variant::Numeric).then_some(format!("#{label}")).unwrap_or(label)}
+            {(variant == Variant::Numeric).then_some(format!("{numeric_symbol}{label}")).unwrap_or(label)}
         </div>
     }
 }
