@@ -4,6 +4,7 @@ mod arrow_left;
 mod arrow_right;
 mod arrow_up;
 mod book;
+mod calendar;
 mod close;
 mod discord;
 mod ferris;
@@ -32,6 +33,7 @@ pub use arrow_left::ArrowLeft;
 pub use arrow_right::ArrowRight;
 pub use arrow_up::ArrowUp;
 pub use book::Book;
+pub use calendar::Calendar;
 pub use close::Close;
 pub use discord::Discord;
 pub use ferris::Ferris;
@@ -63,6 +65,7 @@ pub enum IconVariant {
     ArrowRight,
     ArrowUp,
     Book,
+    Calendar,
     Close,
     Discord,
     Ferris,
@@ -95,6 +98,7 @@ impl IconVariant {
             Self::ArrowRight => view! {<ArrowRight />}.into_any(),
             Self::ArrowUp => view! {<ArrowUp />}.into_any(),
             Self::Book => view! {<Book />}.into_any(),
+            Self::Calendar => view! {<Calendar />}.into_any(),
             Self::Close => view! {<Close />}.into_any(),
             Self::Discord => view! {<Discord />}.into_any(),
             Self::Ferris => view! {<Ferris />}.into_any(),

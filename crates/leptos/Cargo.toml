@@ -12,3 +12,4 @@ tailwind_fuse = { version = "0.3.2", features = [
     "variant",
     "tailwind_fuse_macro",
 ] }
+chrono = { version = "0.4", default-features = false, features = ["clock", "wasmbind"] }

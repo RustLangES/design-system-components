@@ -3,6 +3,7 @@ pub(crate) use tailwind_fuse::tw_merge as tw;
 pub mod avatar;
 pub mod badge;
 pub mod button;
+pub mod calendar;
 pub mod card;
 pub mod chip;
 pub mod flap;
@@ -22,6 +23,7 @@ pub mod prelude {
         avatar::Avatar,
         badge::{Badge, Type as BadgeType, Variant as BadgeVariant},
         button::{Button, Variant as ButtonVariant},
+        calendar::{Calendar, CalendarRange, NaiveDate, Selection as CalendarSelection},
         card::Card,
         chip::{Chip, Variant as ChipVariant},
         flap::Flap,
