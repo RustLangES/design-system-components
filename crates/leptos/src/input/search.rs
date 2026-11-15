@@ -6,7 +6,7 @@ use crate::{
     tag::Tag,
 };
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Filter {
     pub label: String,
     pub value: String,
@@ -15,34 +15,23 @@ pub struct Filter {
 #[component]
 pub fn InputSearch(
     #[prop(into, optional)] filters: Option<Vec<Filter>>,
-    #[prop(into, optional)] active_filters: Vec<Filter>,
-    #[prop(into)] on_change_filter: Callback<(Vec<Filter>,), ()>,
+    #[prop(into, optional)] active_filters: Signal<Vec<Filter>>,
+    #[prop(into, optional)] on_change_filter: Option<Callback<(Vec<Filter>,)>>,
+    #[prop(into, optional)] on_input: Option<Callback<(String,)>>,
 ) -> impl IntoView {
     let (filter_modal, set_filter_modal) = signal(false);
-    let has_filter = filters.as_ref().map_or(false, |f| !f.is_empty());
+    let filters = filters.unwrap_or_default();
+    let has_filter = !filters.is_empty();
 
-    let handle_select_filter = {
-        let active_filters = active_filters.clone();
-
-        move |filter: Filter, is_selected: bool| {
-            if !is_selected {
-                let mut new_filters = active_filters.clone();
-                new_filters.push(filter);
-                on_change_filter.run((new_filters,));
-            } else {
-                let new_filters = active_filters
-                    .iter()
-                    .filter(|f| f.value != filter.value)
-                    .cloned()
-                    .collect();
-                on_change_filter.run((new_filters,));
-            }
+    let handle_select_filter = move |filter: Filter| {
+        let mut new_filters = active_filters.get();
+        if let Some(i) = new_filters.iter().position(|f| f.value == filter.value) {
+            new_filters.remove(i);
+        } else {
+            new_filters.push(filter);
         }
-    };
-
-    let handle_close_on_click_input = move || {
-        if has_filter {
-            set_filter_modal.set(false);
+        if let Some(on_change_filter) = on_change_filter {
+            on_change_filter.run((new_filters,));
         }
     };
 
@@ -56,7 +45,12 @@ pub fn InputSearch(
                 <input
                     type="text"
                     placeholder="Buscar"
-                    on:click=move |_| handle_close_on_click_input()
+                    on:click=move |_| set_filter_modal.set(false)
+                    on:input=move |ev| {
+                        if let Some(on_input) = on_input {
+                            on_input.run((event_target_value(&ev),));
+                        }
+                    }
                     class="text-caption"
                 />
             </label>
@@ -68,51 +62,56 @@ pub fn InputSearch(
                     .then(|| {
                         view! {
                             <button
+                                type="button"
+                                aria-label="Filtrar"
+                                aria-expanded=move || filter_modal.get().to_string()
                                 on:click=move |_| set_filter_modal.update(|v| *v = !*v)
-                                tabindex="0"
                             >
                                 <FilterIcon size=24 />
                             </button>
                         }
                     })}
-                <div class=crate::tw!(
-                    concat!(BASE_CLASS, "-input-search-backdrop__content"),
-                        filter_modal.get().then_some(concat!(BASE_CLASS, "-input-search-backdrop__content--open"))
-                            .unwrap_or(concat!(BASE_CLASS, "-input-search-backdrop__content--closed"))
-                )>
-                    {filter_modal
-                        .get()
-                        .then(|| {
-                            view! {
-                                <ul class=concat!(
-                                    BASE_CLASS,
-                                    "-input-search-backdrop__list",
-                                )>
-                                    {filters
-                                        .map(|filters| {
-                                            filters
-                                                .iter()
-                                                .map(|filter| {
-                                                    let is_selected = active_filters
-                                                        .iter()
-                                                        .any(|f| f.value == filter.value);
-                                                    let filter = filter.clone();
-                                                    let handle_select_filter = handle_select_filter.clone();
-                                                    view! {
-                                                        <li on:click=move |_| handle_select_filter(
-                                                            filter.clone(),
-                                                            is_selected,
-                                                        )>
-                                                            <Tag selected=is_selected label=filter.label.clone() />
-                                                        </li>
-                                                    }
-                                                })
-                                                .collect::<Vec<_>>()
-                                        })
-                                        .unwrap_or_default()}
-                                </ul>
+                <div class=move || {
+                    crate::tw!(
+                        concat!(BASE_CLASS, "-input-search-backdrop__content"),
+                            if filter_modal.get() {
+                                concat!(BASE_CLASS, "-input-search-backdrop__content--open")
+                            } else {
+                                concat!(BASE_CLASS, "-input-search-backdrop__content--closed")
                             }
-                        })}
+                    )
+                }>
+                    <ul class=concat!(
+                        BASE_CLASS,
+                        "-input-search-backdrop__list",
+                    )>
+                        {filters
+                            .into_iter()
+                            .map(|filter| {
+                                let value = filter.value.clone();
+                                let is_selected = Signal::derive(move || {
+                                    active_filters.read().iter().any(|f| f.value == value)
+                                });
+                                let label = filter.label.clone();
+                                view! {
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="cursor-pointer"
+                                            aria-pressed=move || is_selected.get().to_string()
+                                            on:click=move |_| handle_select_filter(filter.clone())
+                                        >
+                                            {move || {
+                                                view! {
+                                                    <Tag selected=is_selected.get() label=label.clone() />
+                                                }
+                                            }}
+                                        </button>
+                                    </li>
+                                }
+                            })
+                            .collect_view()}
+                    </ul>
                 </div>
             </div>
         </div>
